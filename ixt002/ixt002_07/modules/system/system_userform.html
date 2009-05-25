@@ -1,0 +1,139 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_userform.html 739 2009-04-19 07:52:21Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div class="ixt-block" style="_height:100%;overflow:hidden; padding-top:6px; padding-left:6px; padding-right:6px; padding-bottom:6px; margin-left:-7px; margin-right:-6px">
+<{if $lang_reset !== 1}>
+<div style="position: relative;">
+ <div>
+  <fieldset style="padding: 10px;">
+  <legend style="font-weight: bold;"><{$lang_login}></legend>
+  <div id="ixt_block_login_form">
+   <form style="width:100%;" action="<{$xoops_url}>/user.php" method="post">
+    <p><{$lang_username}></p>
+    <div align="right" style="_height:100%;overflow:hidden;">
+     <div align="left" style="padding-top:6px;float:left;overflow:hidden;">
+      <input type="text" name="uname" size="28" maxlength="28" value="<{$usercookie}>" />
+      <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+      <input type="hidden" name="op" value="login" />
+     </div>
+     <div style="float:right;">
+      <button type="submit" class="ixt-button">
+       <span class="btn">
+        <span class="l"></span><span class="r"></span>
+        <span class="t"><{$lang_login}></span>
+       </span>
+      </button>
+     </div>
+    </div>
+    <p><{$lang_password}></p>
+    <div style="width:100%;overflow:hidden;">
+     <input type="password" name="pass" size="28" maxlength="28" />
+    </div>
+    <{if $rememberme }>
+     <div align="right" style="_height:100%;overflow:hidden;padding-top:10px;">
+      <div align="left" style="float:left;overflow:hidden;">
+       <p><{$lang_rememberme}></p>
+      </div>
+      <input type="checkbox" name="rememberme" value="On" />
+     </div>
+    <{/if}> 
+    <input type="hidden" name="xoops_redirect" value="<{$redirect_page}>" />
+    <input type="hidden" name="op" value="login" />
+   </form>
+   <{if $auth_openid}> 
+    <br />
+    <div style="text-align: <{$smarty.const._GLOBAL_LEFT}>;"><a href="#" onclick="xoopsGetElementById('icms_openid-verify-form2').style.display = 'block'; xoopsGetElementById('icms_block_login_form').style.display = 'none'; return false;"><{$lang_login_oid}></a></div>
+   <{/if}> 
+  </div>
+  
+  <{if $auth_openid}>
+   <div id="ixt_openid-verify-form2" style="display: none;">
+    <form method="get" action="<{$xoops_url}>/try_auth.php">
+     <p><{$lang_youoid}></p>
+     <input type="hidden" name="action" value="verify" />
+     <input type="text" class="openid_url" name="openid_identifier" size="12" value="" />
+     <input type="submit" value="<{$lang_login}>" />
+    </form>
+    <div style="text-align: <{$smarty.const._GLOBAL_LEFT}>;"><a href="#" onclick="xoopsGetElementById('icms_block_login_form').style.display = 'block'; xoopsGetElementById('icms_openid-verify-form2').style.display = 'none'; return false;"><{$lang_back2normoid}></a></div>
+   </div>
+   <br />
+  <{/if}> 
+  <a name="lost"></a> 
+  <{if $allow_registration }>
+   <div style="text-align: <{$smarty.const._GLOBAL_RIGHT}>;">
+    <p><{$lang_notregister}></p>
+   </div>
+  <{/if}>
+  </fieldset>
+ </div>
+ <p>&nbsp;</p>
+ <div>
+  <fieldset style="padding: 10px;">
+  <legend style="font-weight: bold;"><{$lang_lostpassword}></legend>
+  <p><{$lang_noproblem}></p>
+  <form action="lostpass.php" method="post">
+   <p><{$lang_youremail}></p>
+   <div align="right" style="_height:100%;overflow:hidden;">
+    <div align="left" style="padding-top:6px;float:left;overflow:hidden;">
+     <input type="text" name="email" size="28" maxlength="28" />
+     <input type="hidden" name="op" value="mailpasswd" />
+     <input type="hidden" name="t" value="<{$mailpasswd_token}>" />
+    </div>
+    <div style="float:right;">
+     <button type="submit" class="ixt-button">
+      <span class="btn">
+       <span class="l"></span><span class="r"></span>
+       <span class="t"><{$lang_sendpassword}></span>
+      </span>
+     </button>
+    </div>
+   </div>
+  </form>
+  </fieldset>
+ </div>
+</div>
+
+<{else}>
+
+<div style="position: relative;height: 250px;">
+ <div style="float: <{$smarty.const._GLOBAL_LEFT}>; width: 80% ">
+  <fieldset style="padding: 10px;">
+  <legend style="font-weight: bold;"><{$smarty.const._US_RESETPASSWORD}></legend>
+  <h1><{$smarty.const._US_RESETPASSTITLE}></h1>
+  <div><{$smarty.const._US_RESETPASSINFO}></div>
+  <br />
+  <form action="resetpass.php" method="post">
+   <{$lang_youremail}>
+   <input type="text" name="email" size="26" maxlength="100" />
+   <br />
+   <{$lang_username}>
+   <input type="username" name="username" size="26" maxlength="60" value="<{$lang_uname}>"/>
+   <br />
+   <{$lang_currentpass}>
+   <input type="password" name="c_password" size="26" maxlength="255" />
+   <br />
+   <{$lang_newpass}>
+   <input type="password" name="password" size="26" maxlength="255" />
+   <br />
+   <{$lang_newpass2}>
+   <input type="password" name="password2" size="26" maxlength="255" />
+   &nbsp;&nbsp;
+   <input type="hidden" name="op" value="resetpass" />
+   <input type="hidden" name="t" value="<{$resetpassword_token}>" />
+   <br />
+   <br />
+   <input type="submit" value="<{$smarty.const._US_RESETPASSWORD}>" />
+  </form>
+  </fieldset>
+ </div>
+</div>
+<{/if}>
+
+</div>
