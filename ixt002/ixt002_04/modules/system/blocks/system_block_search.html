@@ -1,0 +1,30 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_search.html 730 2009-04-19 06:31:12Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div style="width:100%;">
+ <form style="margin-top:0px;" action="<{$xoops_url}>/search.php" method="get">
+  <div align="right" style="_height:100%;overflow:hidden;">
+   <div align="left" style="padding-top:6px;float:left;overflow:hidden;">
+    <input type="text" name="query" size="12" maxlength="20" /><input type="hidden" name="action" value="results" />
+   </div>
+   <div style="float:right;">
+    <button name="search" type="submit" class="ixt-button">
+     <span class="btn">
+      <span class="l"></span><span class="r"></span>
+      <span class="t"><{$block.lang_search}></span>
+     </span>
+    </button>
+   </div>
+  </div>
+ </form>
+ <div style="height:20px; padding-top:3px;">
+  <a href="<{$xoops_url}>/search.php" title="<{$block.lang_advsearch}>"><{$block.lang_advsearch}></a>
+ </div>
+</div>
