@@ -1,0 +1,28 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_contentmenu.html 884 2009-05-11 18:12:42Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<script src="<{$xoops_url}>/modules/system/admin/content/menu.js" type="text/javascript"></script>
+<{if $block.menu_rtl }>
+ <link rel="stylesheet" type="text/css" media="all" title="Style sheet" href="<{$xoops_url}>/modules/system/admin/content/menu_rtl.css" />
+</style>
+<{else}>
+ <link rel="stylesheet" type="text/css" media="all" title="Style sheet" href="<{$xoops_url}>/modules/system/admin/content/menu.css" />
+</style>
+<{/if}>
+<div id="mainmenu">
+  <ul id="primary-nav" style="background:none;">
+    <{foreach from=$block.menu key=key item=menu}> 
+      <li style="list-style:none; list-style-image:none;" <{if $block.showsubs && $menu.hassubs}> class="menuparent"<{/if}>>
+        <a class="menuMain" href="<{$xoops_url}>/content.php?page=<{$menu.menu}>"><{$menu.title}></a>
+        <{if $block.showsubs && $menu.hassubs}><{includeq file='db:blocks/system_block_contentmenu_structure.html' menus=$menu.subs}><{/if}> 
+      </li> 
+    <{/foreach}>
+  </ul>
+</div>

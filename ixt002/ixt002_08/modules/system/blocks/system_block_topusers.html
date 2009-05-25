@@ -1,0 +1,25 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_topusers.html 884 2009-05-11 18:12:42Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div style="width:100%;">
+ <ul>
+  <{foreach item=user from=$block.users}>
+   <li style="list-style:none;list-style-image:none;">
+     <{if $user.avatar != ""}><div><img src="<{$user.avatar}>" alt="<{$user.name}>'s avatar" width="32px" /></div><{/if}>
+     <div align="right">
+      <div align="left" style="float:left; width:80%;">
+       <{$user.rank}>&nbsp;&nbsp;<a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" title="<{$user.name}>"><{$user.name}></a>
+      </div>
+      (<{$user.posts}>)
+     </div>
+   </li>
+  <{/foreach}>
+ </ul>
+</div>
