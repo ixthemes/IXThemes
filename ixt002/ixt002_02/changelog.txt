@@ -1,0 +1,19 @@
+IXThemes ChangeLog
+
+== IXThemes ixt002 ==
+
+===2009-04-17 : 1.2 ===
+
+Improved:
+- New theme structure ( /docs, /icons, /xoplugins, /xosmarty are added)
+- Large screenshot added (screenshot.jpg)
+- .htaccess added
+- xo-info.php added
+
+===2009-04-13 : 1.1 ===
+
+This release has been not published
+
+===2009-04-06 : 1.0 ===
+
+The first public release of a themes collection ixt002
