@@ -1,0 +1,128 @@
+$Id: releasenotes.txt 597 2009-04-06 15:44:10Z algalochkin $
+
+IXThemes theme release notes
+==================================
+
+Please see the full changelog for details in changelog.txt.
+
+
+The Theme is compatible with CMS
+==================================
+
+XOOPS 
+		Releases: xoops 2.0.18, xoops 2.3.0, xoops 2.3.1, xoops 2.3.2, xoops 2.3.3
+		
+Also themes are compatible to others young developing CMS, based on XOOPS
+
+
+Some features of a Theme by IXThemes
+==================================
+
+New global design:
+------------------------
+- Blockquote
+- RSS Feeds
+- Icons for LI tags
+- Popup global navigation menu
+
+New system templates:
+------------------------
+- Site Redirect
+- Site Closed
+- User Info
+- User Form
+- Notification List
+
+New system blocks templates:
+------------------------
+- Language Selection
+- Search
+- Login
+- User Menu
+- Main Menu
+- Waiting Contents
+- Site Info
+- Who's Online
+- Themes
+- Top Posters
+- New Members
+
+The Themes are already tested on browsers:
+------------------------
+- Mozilla Firefox 3.0.7
+- Opera 9.64
+- Google Chrome 1.0.154.48
+- Safari 4 (for Windows)
+- Mozilla SeaMonkey 1.1.14
+- Maxthon 2.5.1.4751
+- Internet Explorer 6,7,8
+
+The Theme is already tested at screen resolution:
+------------------------
+- 1024x768 px
+- 1280x800 px
+- 1280x1024 px
+
+
+Downloading theme by IXThemes
+==================================
+
+All releases can be downloaded here: 
+http://sourceforge.net/project/showfiles.php?group_id=247341
+
+
+Checking out IXThemes files from the Git
+==================================
+
+The path for all releases is the following:
+http://ixthemes.git.sourceforge.net/git/gitweb.cgi?p=ixthemes;a=tree
+
+
+Checking out IXThemes files from the SVN
+==================================
+
+You can easily get IXThemes files using SVN. Instructions about this can be found here:
+http://sourceforge.net/svn/?group_id=247341
+
+The path for this release is the following:
+https://ixthemes.svn.sourceforge.net/svnroot/ixthemes/themes/ixt<collection id>/tags/ixt<collection id>_<theme name>_<release number>/ixt<collection id>_<theme subname>/
+
+If you feel like getting the latest "edge" version, you can checkout the theme branch at :
+https://ixthemes.svn.sourceforge.net/svnroot/ixthemes/themes/ixt<collection id>/branches/ixt<collection id>_<theme name>/ixt<collection id>_<theme subname>/
+
+The IXThemes branch is always the latest as-stable-as-possible development code. It is, of course, not to be used on production sites.
+
+
+Installing theme by IXThemes
+==================================
+
+	1. Get the theme package from the sourceforge file repository
+	2. Unpack a theme as usually in the directory /themes on your webserver
+	3. Make necessary settings in CMS resolving to use this theme
+	4. Enjoy!
+
+
+Where to find more information ?
+==================================
+
+The IXThemes Network
+------------------------
+Sourceforge Project: http://www.sourceforge.net/projects/ixthemes
+Home of IXThemes: http://ixthemes.sourceforge.net
+
+IXThemes Mailing Lists
+------------------------
+
+A few mailing lists are available for everyone to stay informed regarding development information, bug tracking, feature requests, etc...
+Simply go here to subscribe to the desired mailing lists: http://sourceforge.net/mail/?group_id=247341
+
+IXThemes Related Sites
+------------------------
+Ohloh project: http://www.ohloh.net/p/ixthemes/
+Freshmeat project: http://freshmeat.net/projects/ixthemes/
+Google Code project: http://code.google.com/p/ixthemes/
+
+
+==================================
+The IXThemes Project
+http://ixthemes.sourceforge.net
