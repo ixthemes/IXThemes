@@ -1,0 +1,37 @@
+/*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: stylex.css 701 2009-04-17 09:30:42Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*/
+table {width:100%; text-align: left; }
+table th {text-align: center; }
+table td, table th {font-size: 12px; padding:0; border-color:#595959; border-width:1; vertical-align:top; }
+th {background-color:#595959; color:#fff; padding:2px; vertical-align:middle; }
+img {border:0; }
+a:link, a:visited {outline:none;}
+a:hover {outline:none;}
+select {background-color:#D9D4CE;}
+/* --- Banner --- */
+#ixt-banner {clear:both; position:relative; z-index:100; width:970px; height:60px; padding-top:0px;padding-left:10px;}
+#ixt-banner.commercial {clear:both; position:relative; z-index:100; width:970px; height:60px; padding-top:0px;padding-left:10px;}
+#ixt-headerlogo {float:left; padding-left:0px; padding-top:0px;}
+#ixt-headerlogo-siteclosed, #ixt-headerlogo-redirect {float:left; padding-left:2px; padding-top:55px;}
+#ixt-headerbanner {position:relative; top:60px; left:-83px; float:left;}
+#ixt-logo_wrap { position: relative; width: 970px;height: 60px;}
+/* --- Top and bottom zones (2 columns) --- */
+#ixt-page-topleftblocks, #ixt-page-bottomleftblocks {float:left; width:47%; margin-left:1%; margin-right:1%; padding:0px;}
+#ixt-page-toprightblocks, #ixt-page-bottomrightblocks {float:right; width:47%; margin-left:1%; margin-right:1%;}
+* html #ixt-page-topleftblocks, * html #ixt-page-bottomleftblocks, * html #ixt-page-toprightblocks, * html #ixt-page-bottomrightblocks {width:47%;}
+#ixt-page-topcenterblocks, #ixt-page-bottomcenterblocks {clear:both; margin-left:1%; margin-right:1%;}
+/* --- Top and bottom zones (3 columns) --- */
+#ixt-page-topblocks.ixt-lcrpageblocks .ixt-blockszone, #ixt-page-bottomblocks.ixt-lcrpageblocks .ixt-blockszone {float:left; clear:none; width:31.2%;}
+* html #ixt-page-topblocks.ixt-lcrpageblocks .ixt-blockszone, * html #ixt-page-bottomblocks.ixt-lcrpageblocks .ixt-blockszone {width:30.6%;}
+#ixt-page-topblocks.ixt-lcrpageblocks #ixt-page-topleftblocks {}
+
+.ixt-menu ul li { filter: alpha(opacity=90); -moz-opacity:0.9; opacity:0.9; }
+.ixt-Post-body ul li { padding:0px 0 0px 16px; background-image: url('../img/BlockContentBullets.png'); background-repeat:no-repeat; margin:0.5em 0 0.5em 0; line-height:1.2em; }

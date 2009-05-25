@@ -1,0 +1,24 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: banner.html 735 2009-04-19 07:00:17Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div id="ixt-banner" class="<{$ixt_dirname}>">
+ <div id="ixt-headerlogo">
+  <a href="<{xoAppUrl /}>" title="<{$ixt_sitename}>"><img src="<{xoAppUrl /images/logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+<{*
+  <a href="http://ixthemes.org/" title="IXThemes"><img src="<{xoAppUrl /images/logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+  <{if $cms == "icms"}><a href="<{xoAppUrl /}>" title="<{$ixt_sitename}>"><img src="<{xoImgUrl img/icms_logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+  <{elseif $cms == "xoops"}><a href="<{xoAppUrl /}>" title="<{$ixt_sitename}>"><img src="<{xoImgUrl img/xoops_logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+  <{elseif $cms == "exm"}><a href="<{xoAppUrl /}>" title="<{$ixt_sitename}>"><img src="<{xoImgUrl img/exm_logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+  <{else}><a href="<{xoAppUrl /}>" title="<{$ixt_sitename}>"><img src="<{xoAppUrl /images/logo.png}>" height="53px" alt="<{$ixt_sitename}>" /></a>
+  <{/if}>
+*}>
+ </div>
+ <{if $ixt_banner and $ixt_banner != '&nbsp;'}><div id="ixt-headerbanner"><{$ixt_banner}></div><{/if}>
+</div>
