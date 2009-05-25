@@ -1,0 +1,114 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: centerblocks.html 888 2009-05-11 19:20:53Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<{if $lcr=='l'}><{assign var=lcr value='left'}>
+<{elseif $lcr=='r'}><{assign var=lcr value='right'}>
+<{else}><{assign var=lcr value='center'}>
+<{/if}>
+<{if $topbottom=="top"}>
+<{if $ixt_page_topcenter && $lcr=="center"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-topcenterblocks">
+  <{foreach from=$ixt_page_topcenter item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{if $ixt_page_topleft && $lcr=="left"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-topleftblocks">
+  <{foreach from=$ixt_page_topleft item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{if $ixt_page_topright && $lcr=="right"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-toprightblocks">
+  <{foreach from=$ixt_page_topright item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{/if}>
+<{if $topbottom=="bottom"}>
+<{if $ixt_page_bottomcenter && $lcr=="center"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-bottomcenterblocks">
+  <{foreach from=$ixt_page_bottomcenter item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{if $ixt_page_bottomleft && $lcr=="left"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-bottomleftblocks">
+  <{foreach from=$ixt_page_bottomleft item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{if $ixt_page_bottomright && $lcr=="right"}>
+ <div class="ixt-blockszone x2-secondary" id="ixt-page-bottomrightblocks">
+  <{foreach from=$ixt_page_bottomright item=block}>
+   <div class="ixt-Post">
+    <div class="ixt-Post-body">
+     <div class="ixt-Post-inner">
+      <{if $block.title}>
+       <div class="ixt-pmetadata"><h2 class="ixt-phicon-wrapper"><span class="ixt-pheader"><{$block.title}></span></h2></div>
+      <{/if}>
+      <div class="ixt-PostContent"><{$block.content}></div>
+     </div>
+    </div>
+   </div>
+  <{/foreach}>
+ </div>
+<{/if}>
+<{/if}>

@@ -1,0 +1,21 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: header.html 888 2009-05-11 19:20:53Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div class="ixt-header">
+ <div class="ixt-header-png"></div>
+ <div class="ixt-header-jpeg"></div>
+ <div class="ixt-logo">
+   <{if $ixt_banner and $ixt_banner != '&nbsp;'}>
+    <{includeq file="$theme_tpl/banner_commercial.html"}>
+   <{else}>
+    <{includeq file="$theme_tpl/banner.html"}>
+   <{/if}>
+ </div>
+</div>

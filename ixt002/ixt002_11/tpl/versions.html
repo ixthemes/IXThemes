@@ -1,0 +1,69 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: versions.html 888 2009-05-11 19:20:53Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<{if isset($xoops_version) && $xoops_version|truncate:5:""|lower == "xoops"}>
+ <{assign var=cms value="xoops"}>
+ <{assign var=ixt_generator value="XOOPS"}>
+ <{assign var=ixt_canvas_left value=$xoBlocks.canvas_left}>
+ <{assign var=ixt_canvas_right value=$xoBlocks.canvas_right}>
+ <{assign var=ixt_page_topcenter value=$xoBlocks.page_topcenter}>
+ <{assign var=ixt_page_topleft value=$xoBlocks.page_topleft}>
+ <{assign var=ixt_page_topright value=$xoBlocks.page_topright}>
+ <{assign var=ixt_page_bottomcenter value=$xoBlocks.page_bottomcenter}>
+ <{assign var=ixt_page_bottomleft value=$xoBlocks.page_bottomleft}>
+ <{assign var=ixt_page_bottomright value=$xoBlocks.page_bottomright}>
+<{elseif isset($xoops_version) && $xoops_version|truncate:3:""|lower == "exm"}>
+ <{assign var=cms value="exm"}>
+ <{assign var=ixt_generator value="EXM"}>
+ <{assign var=ixt_canvas_left value=$xoBlocks.xoops_lblocks}>
+ <{assign var=ixt_canvas_right value=$xoBlocks.xoops_rblocks}>
+ <{assign var=ixt_page_topcenter value=$xoBlocks.xoops_ccblocks}>
+ <{assign var=ixt_page_topleft value=$xoBlocks.xoops_clblocks}>
+ <{assign var=ixt_page_topright value=$xoBlocks.xoops_crblocks}>
+<{elseif (isset($xoops_version) && $xoops_version|truncate:4:""|lower == "impr") || (isset($icms_version) && $icms_version|truncate:4:""|lower == "icms")}>
+ <{assign var=cms value="icms"}>
+ <{assign var=ixt_generator value="ImpressCMS"}>
+ <{assign var=ixt_canvas_left value=$xoBlocks.canvas_left}>
+ <{assign var=ixt_canvas_right value=$xoBlocks.canvas_right}>
+ <{assign var=ixt_page_topcenter value=$xoBlocks.page_topcenter}>
+ <{assign var=ixt_page_topleft value=$xoBlocks.page_topleft}>
+ <{assign var=ixt_page_topright value=$xoBlocks.page_topright}>
+ <{assign var=ixt_page_bottomcenter value=$xoBlocks.page_bottomcenter}>
+ <{assign var=ixt_page_bottomleft value=$xoBlocks.page_bottomleft}>
+ <{assign var=ixt_page_bottomright value=$xoBlocks.page_bottomright}>
+<{else}>
+ <{assign var=cms value="unknown"}>
+ <{assign var=ixt_generator value="Unknown CMS"}>
+ <{assign var=ixt_canvas_left value=$xoBlocks.canvas_left}>
+ <{assign var=ixt_canvas_right value=$xoBlocks.canvas_right}>
+ <{assign var=ixt_page_topcenter value=$xoBlocks.page_topcenter}>
+ <{assign var=ixt_page_topleft value=$xoBlocks.page_topleft}>
+ <{assign var=ixt_page_topright value=$xoBlocks.page_topright}>
+ <{assign var=ixt_page_bottomcenter value=$xoBlocks.page_bottomcenter}>
+ <{assign var=ixt_page_bottomleft value=$xoBlocks.page_bottomleft}>
+ <{assign var=ixt_page_bottomright value=$xoBlocks.page_bottomright}>
+<{/if}>
+<{assign var=ixt_langcode value=$xoops_langcode|lower}>
+<{assign var=ixt_dirname value=$xoops_dirname}>
+<{assign var=ixt_style value=$xoops_style}>
+<{assign var=ixt_banner value=$xoops_banner}>
+<{assign var=ixt_footer value=$xoops_footer}>
+<{assign var=ixt_pagetitle value=$xoops_pagetitle}>
+<{assign var=ixt_sitename value=$xoops_sitename}>
+<{assign var=ixt_charset value=$xoops_charset}>
+<{assign var=ixt_meta_description value=$xoops_meta_description}>
+<{assign var=ixt_meta_keywords value=$xoops_meta_keywords}>
+<{assign var=ixt_meta_robots value=$xoops_meta_robots}>
+<{assign var=ixt_meta_raiting value=$xoops_meta_raiting}>
+<{assign var=ixt_meta_author value=$xoops_meta_author}>
+<{assign var=ixt_meta_copyright value=$xoops_meta_copyright}>
+<{assign var=ixt_module_header value=$xoops_module_header}>
+<{assign var=ixt_theme_select value=$xoops_theme_select}>
+<{assign var=ixt_contents value=$xoops_contents}>
