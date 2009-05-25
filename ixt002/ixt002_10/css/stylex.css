@@ -4,7 +4,7 @@
 * @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
 * @package       IXThemes, http://ixthemes.org
 * @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
-* @version		     $Id: stylex.css 886 2009-05-11 19:08:48Z algalochkin $
+* @version		     $Id: stylex.css 961 2009-05-16 12:30:13Z algalochkin $
 *
 * Thanks you, that you have left this header untouched!!!
 */
@@ -35,3 +35,4 @@ select {background-color:#D9D4CE;}
 
 .ixt-menu ul li { filter: alpha(opacity=90); -moz-opacity:0.9; opacity:0.9; }
 .ixt-Post-body ul li { padding:0px 0 0px 16px; background-image: url('../img/BlockContentBullets.png'); background-repeat:no-repeat; margin:0.5em 0 0.5em 0; line-height:1.2em; }
+#impress_content {clear:both;}
