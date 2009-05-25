@@ -1,0 +1,25 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_newusers.html 886 2009-05-11 19:08:48Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div style="width:98%;">
+ <ul>
+  <{foreach item=user from=$block.users}>
+   <li style="list-style:none; list-style-image:none;">
+    <{if $user.avatar != ""}><div><img src="<{$user.avatar}>" alt="<{$user.name}>'s avatar" width="32px" /></div><{/if}>
+    <div align="right">
+     <div align="left" style="float:left;">
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" title="<{$user.name}>"><{$user.name}></a>
+     </div>
+     <{$user.joindate}>
+    </div>
+   </li>
+  <{/foreach}>
+ </ul>
+</div>

@@ -1,0 +1,170 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_userinfo.html 886 2009-05-11 19:08:48Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div class="ixt-block" style="_height:100%;overflow:hidden; padding-top:6px; padding-left:6px; padding-right:6px; padding-bottom:6px; margin-left:-7px; margin-right:-6px">
+ <{if $user_ownpage == true}>
+  <form name="usernav" action="user.php" method="post">
+   <div class="ixt-blocktitle" style="width:100%; margin-bottom:10px; margin-left:-3px; text-align:center;">
+    <input type="button" value="<{$lang_editprofile}>" onclick="location='edituser.php'" />
+    <input type="button" value="<{$lang_avatar}>" onclick="location='edituser.php?op=avatarform'" />
+    <input type="button" value="<{$lang_inbox}>" onclick="location='viewpmsg.php'" />
+    <{if $user_candelete == true}>
+     <input type="button" value="<{$lang_deleteaccount}>" onclick="location='user.php?op=delete'" />
+    <{/if}>
+    <input type="button" value="<{$lang_logout}>" onclick="location='user.php?op=logout'" />
+   </div>
+  </form>
+ <{elseif $xoops_isadmin != false}> 
+  <div class="ixt-blocktitle" style="width:100%; margin-bottom:10px; margin-left:-3px; text-align:center;">
+   <input type="button" value="<{$lang_editprofile}>" onclick="location='<{$xoops_url}>/modules/system/admin.php?fct=users&uid=<{$user_uid}>&op=modifyUser'" />
+   <input type="button" value="<{$lang_deleteaccount}>" onclick="location='<{$xoops_url}>/modules/system/admin.php?fct=users&op=delUser&uid=<{$user_uid}>'" />
+  </div>
+ <{/if}>
+ <div style="float:left;overflow:hidden;width:50%;">
+  <div>
+   <div class="divth"><{$lang_allaboutuser}></div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_avatar}>
+    </div>
+    <img src="<{$user_avatarurl}>" alt="Avatar" />
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_realname}>
+    </div>
+    <{$user_realname}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_website}>
+    </div>
+    <{$user_websiteurl}>
+   </div>
+   <div align="left" class="odd" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-0px;float:left;overflow:hidden;width:120px;">
+     <{$lang_email}>
+    </div>
+    <{$user_email}>
+   </div>
+  <{if $user_alwopenid == true}>
+   <div align="left" class="odd" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_openid}>
+    </div>
+    <{$user_openid}>
+   </div>
+  <{/if}>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_privmsg}>
+    </div>
+    <{$user_pmlink}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_icq}>
+    </div>
+    <{$user_icq}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_aim}>
+    </div>
+    <{$user_aim}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_yim}>
+    </div>
+    <{$user_yim}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_msnm}>
+    </div>
+    <{$user_msnm}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_location}>
+    </div>
+    <{$user_location}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_occupation}>
+    </div>
+    <{$user_occupation}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_interest}>
+    </div>
+    <{$user_interest}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_extrainfo}>
+    </div>
+    <{$user_extrainfo}>
+   </div>
+  </div>
+ </div>
+ <div>
+  <div>
+   <div class="divth"><{$lang_statistics}></div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_membersince}>
+    </div>
+    <{$user_joindate}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_rank}>
+    </div>
+    <{if $user_rankimage}><p><{$user_rankimage}></p><{/if}>
+    <{$user_ranktitle}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_posts}>
+    </div>
+    <{$user_posts}>
+   </div>
+   <div align="left" class="even" style="_height:100%;overflow:hidden;">
+    <div align="left" class="head" style="margin-top:-5px;float:left;overflow:hidden;width:120px;">
+     <{$lang_lastlogin}>
+    </div>
+    <{$user_lastlogin}>
+   </div>
+  </div>
+  <{if $user_showsignature == true}>
+   <div>
+    <div class="divth"><{$lang_signature}></div>
+    <div><{$user_signature}></div>
+   </div>
+  <{/if}> 
+ </div>
+ <{foreach item=module from=$modules}>
+  <h4 style="padding-top:10px; padding-bottom:5px;"><{$module.name}></h4>
+  <p>
+   <{foreach item=result from=$module.results}> 
+    <p>
+    <img src="<{$result.image}>" style="margin-right:10px;" alt="<{$module.name}>" />
+    <b><a href="<{$result.link}>" title="<{$result.title}>"><{$result.title}></a></b>
+    <small style="padding-left:10px;">(<{$result.time}>)</small>
+    </p>
+   <{/foreach}>
+   <{$module.showall_link}>
+  </p>
+ <{/foreach}>
+</div>

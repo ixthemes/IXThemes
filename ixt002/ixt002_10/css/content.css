@@ -1,0 +1,71 @@
+/*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: content.css 886 2009-05-11 19:08:48Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*/
+#mainmenu {}
+#mainmenu a {display:block;margin:0;padding:4px;}
+#mainmenu a:hover {}
+#mainmenu a.menuTop {padding-left:3px;}
+#mainmenu a.menuMain {padding-left:3px;}
+#mainmenu a.menuSub {padding-left:17px;font-style:italic;}
+#mainmenu a.menuSub:hover {}
+#usermenu {}
+#usermenu a {display:block;margin:0;padding:4px;}
+#usermenu a:hover {}
+#usermenu a.menuTop {}
+#usermenu a.highlight {background-color:#fcc;color:#ff0000;}
+
+.mainmenu a:link, .mainmenu a:visited, .mainmenu a:active {display:block; margin:0; padding:4px; }
+/*
+.mainmenu a:link, .mainmenu a:visited, .mainmenu a:active {display: block; padding: 5px 3px 5px 22px; background: url(images/arrow.png) no-repeat left; margin: 0 5px 0 15px; font-weight: bold; font-size: 11px; color: #000; }
+.mainmenu a:hover {color: #08738F; text-decoration: none; }
+.mainmenu a.submenu {background: none; padding-left: 30px; font-weight: normal; color: #08738F; }
+*/
+.outer {}
+.head {background-color:#313131; color:inherit; padding:5px; font-weight:bold; }
+td.head {}
+.even { background-color:#515151; color:inherit; padding:5px; }
+.odd {background-color:#313131;color:inherit;padding:5px;}
+.foot {background-color:#F1FEFE;color:inherit;padding:5px;font-weight:bold;}
+tr.even td { background-color:#515151; color:inherit; padding:5px; }
+tr.odd td { background-color:#313131; color:inherit; padding:5px; }
+.errorMsg {background-color:#FFCCCC;color:inherit;text-align:center;border-top:1px solid #DDDDFF;border-left:1px solid #DDDDFF;border-right:1px solid #aaa;border-bottom:1px solid #aaa;font-weight:bold;padding:10px;}
+.confirmMsg {background-color:#DDFFDF;text-align:center;border-top:1px solid #DDDDFF;border-left:1px solid #DDDDFF;border-right:1px solid #aaa;border-bottom:1px solid #aaa;font-weight:bold;padding:10px;}
+.resultMsg {background-color :#bbb;color:#333;text-align:center;border-top:1px solid #ccc;border-left:1px solid #ccc;font-weight:bold;border-right:1px solid #666;border-bottom:1px solid #666;padding:10px;}
+.xoopsCode {background-color:#fff;color:inherit;border:1px inset #000080;font-family:"Courier New",Courier,monospace;padding:0 6px 6px 6px;max-height:200px;overflow:auto;}
+.xoopsQuote {background-color:#fff;color:inherit;border:1px inset #000080;font-family:"Courier New",Courier,monospace;font-style:italic;padding:0 6px 6px 6px;}
+.item {padding:5px 8px; border-style: none; }
+/*
+.itemHead {padding:3px;color:#587788;font-size:1.1em;}
+*/
+.itemInfo {text-align:right;padding:3px;color:inherit;}
+td.itemTitle, td.itemHead {text-align:center;background: #595959;color:#fff;font-size:1.1em;}
+.itemTitle a {font-size:1.1em;font-weight:bold;font-variant:small-caps;color:#fff;background-color:transparent;}
+.itemPoster {font-size:.9em;font-style:italic;}
+.itemPostDate {font-size:.9em;font-style:italic;}
+.itemStats {font-size:.9em;font-style:italic;}
+.itemBody {padding-left:5px;}
+.itemText {margin-top:5px;margin-bottom:5px;line-height:1.5em;}
+.itemText:first-letter {font-size:1.3em;font-weight:bold;}
+.itemFoot {text-align:right;padding:3px;color:inherit;}
+.itemAdminLink {font-size:.9em;}
+.itemPermaLink {font-size:.9em;}
+.comTitle {font-weight:bold;margin-bottom:2px;}
+.comText {padding:2px;}
+.comUserStat {font-size:.7em;font-weight:bold;border:1px solid #ccc;background-color:#fff;margin:2px;padding:2px;}
+.comUserStatCaption {font-weight:normal;}
+.comUserStatus {margin-left:2px;margin-top:10px;background-color:inherit;font-weight:bold;font-size:.8em;}
+.comUserRank {margin:2px;}
+.comUserRankText {font-size:.8em;font-weight:bold;}
+.comUserRankImg {border:0;}
+.comUserName {}
+.comUserImg {margin:2px;}
+.comDate {font-weight:normal;font-style:italic;font-size:.8em}
+.comDateCaption {font-weight:bold;font-style:normal;font-size:.8em}
+.signature {font-size:.8em;font-style:italic;}

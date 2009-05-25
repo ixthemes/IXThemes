@@ -1,0 +1,30 @@
+/*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license		     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package		     IXThemes, http://ixthemes.org
+* @theme_author		 Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: style.ie7.css 886 2009-05-11 19:08:48Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*/
+.ixt-Sheet-tl { clip: rect(auto 35px 35px auto); }
+.ixt-Sheet-tr { clip: rect(auto auto 35px 35px); }
+.ixt-Sheet-bl { clip: rect(35px 35px auto auto); }
+.ixt-Sheet-br { clip: rect(35px auto auto 35px); }
+.ixt-Sheet-tc { clip: rect(auto auto 35px auto); }
+.ixt-Sheet-bc { clip: rect(35px auto auto auto); }
+.ixt-Sheet-cr { clip: rect(auto auto auto 35px); }
+.ixt-Sheet-cl { clip: rect(auto 35px auto auto); }
+.ixt-nav .r { clip: rect(auto auto auto 990px); }
+.ixt-menu a .r { clip: rect(auto auto auto 405px); }
+.ixt-BlockContent-tl { clip: rect(auto 7px 7px auto); }
+.ixt-BlockContent-tr { clip: rect(auto auto 7px 7px); }
+.ixt-BlockContent-bl { clip: rect(7px 7px auto auto); }
+.ixt-BlockContent-br { clip: rect(7px auto auto 7px); }
+.ixt-BlockContent-tc { clip: rect(auto auto 7px auto); }
+.ixt-BlockContent-bc { clip: rect(7px auto auto auto); }
+.ixt-BlockContent-cr { clip: rect(auto auto auto 7px); }
+.ixt-BlockContent-cl { clip: rect(auto 7px auto auto); }
+.ixt-PostContent { height:1%; }
+.ixt-button .btn .r { clip: rect(auto auto auto 399px); }
