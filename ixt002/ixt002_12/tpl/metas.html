@@ -4,7 +4,7 @@
 * @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
 * @package       IXThemes, http://ixthemes.org
 * @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
-* @version		     $Id: metas.html 889 2009-05-11 19:26:51Z algalochkin $
+* @version		     $Id: metas.html 963 2009-05-16 12:34:51Z algalochkin $
 *
 * Thanks you, that you have left this header untouched!!!
 *}>
@@ -21,9 +21,7 @@
 <{if $url}><meta http-equiv="Refresh" content="<{$time}>; url=<{$url}>" /><{/if}>
 <link rel="shortcut icon" type="image/x-icon" href="<{xoAppUrl favicon.ico}>" />
 <link rel="icon" type="image/x-icon" href="<{xoAppUrl favicon.ico}>" />
-<![if !IE 6]>
-<{$ixt_module_header}>
-<![endif]>
 <link rel="stylesheet" type="text/css" media="screen" href="<{xoImgUrl css/style.css}>" />
 <!--[if IE 6]><link rel="stylesheet" href="<{xoImgUrl css/style.ie6.css}>" type="text/css" media="screen" /><![endif]-->
 <!--[if IE 7]><link rel="stylesheet" href="<{xoImgUrl css/style.ie7.css}>" type="text/css" media="screen" /><![endif]-->
+<{$ixt_module_header}>
