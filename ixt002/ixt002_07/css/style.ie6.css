@@ -4,12 +4,15 @@
 * @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
 * @package       IXThemes, http://ixthemes.org
 * @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
-* @version		     $Id: style.ie6.css 740 2009-04-19 07:56:28Z algalochkin $
+* @version		     $Id: style.ie6.css 958 2009-05-16 12:22:37Z algalochkin $
 *
 * Thanks you, that you have left this header untouched!!!
 */
 .ixt-pbgglarimg { background: none;  behavior: expression(this.runtimeStyle.filter?'':this.runtimeStyle.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+GetStyleUrl()+"../img/Page-BgGlare.png',sizingMethod='crop')"); }
+* img { azimuth: expression(this.pngSet?this.pngSet=true: (this.nodeName == "IMG" ? (this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = GetStyleUrl()+"../img/spacer.gif"  ): '' ): (this.currentStyle.backgroundImage.toLowerCase().indexOf('.png')>-1) ? (this.origBg =(this.origBg) ? this.origBg: this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none"  ): '' ), this.pngSet=true);}
+/*
 img {  behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = GetStyleUrl()+"../img/spacer.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none")), this.pngSet=true)); }
+*/
 .ixt-Sheet, .ixt-Sheet-body { zoom:1; }
 .ixt-Sheet-body { position:static; }
 .ixt-Sheet-tr, .ixt-Sheet-tl, .ixt-Sheet-br, .ixt-Sheet-bl, .ixt-Sheet-tc, .ixt-Sheet-bc, .ixt-Sheet-cr, .ixt-Sheet-cl { font-size: 1px; background: none; }
