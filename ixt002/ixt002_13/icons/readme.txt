@@ -1,0 +1,2 @@
+This directory is created to put here, only additional images of type: icons (box mail, configuration, profile, logout), bullets, flags, microformats, action (to publish, erase, add, following, preceding, zoom, rss).
+For more information you can see http://www.xoops.org/modules/extgallery/#2

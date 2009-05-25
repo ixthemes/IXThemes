@@ -1,0 +1,29 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_siteinfo.html 890 2009-05-11 19:39:18Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<{if $block.showgroups == true}>
+ <{foreach item=group from=$block.groups}>
+  <div align="center"><{$group.name}></div>
+  <{foreach item=user from=$group.users}>
+   <{if $user.avatar != ""}><div><img src="<{$user.avatar}>" alt="<{$user.name}>'s avatar" width="32px" /></div><{/if}>
+   <div align="right">
+    <div align="left" style="float:left;">
+     <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" title="<{$user.name}>"><{$user.name}></a>
+    </div>
+    <{$user.msglink}>
+   </div>
+  <{/foreach}>
+ <{/foreach}>
+<{/if}>
+<div style="height:20px;"></div>
+<div style="text-align:center;">
+ <img src="<{$block.logourl}>" alt="<{$xoops_sitename}>" border="0" />
+ <p><{$block.recommendlink}></p>
+</div>

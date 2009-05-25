@@ -1,0 +1,24 @@
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_block_waiting.html 890 2009-05-11 19:39:18Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<div style="width:100%;">
+ <ul>
+  <{foreach item=module from=$block.modules}>
+   <li style="list-style:none;list-style-image:none;">
+    <div align="right" style="_height:100%;overflow:hidden;">
+     <div align="left" style="float:left;width:132px;overflow:hidden;">
+      <a href="<{$module.adminlink}>" title="<{$module.pendingnum}> <{$module.lang_linkname}>"><{$module.lang_linkname}></a>
+     </div>
+     <{$module.pendingnum}>
+    </div>
+   </li>
+  <{/foreach}>
+ </ul>
+</div>

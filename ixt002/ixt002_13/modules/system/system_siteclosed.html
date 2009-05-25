@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<{*
+* Qualitative Web Templates for Web Application Platforms
+*
+* @license       http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL)
+* @package       IXThemes, http://ixthemes.org
+* @theme_author  Alexander Galochkin (algalochkin at users.sourceforge.net)
+* @version		     $Id: system_siteclosed.html 890 2009-05-11 19:39:18Z algalochkin $
+*
+* Thanks you, that you have left this header untouched!!!
+*}>
+<{assign var=theme_name value=$xoTheme->folderName}><{assign var=theme_tpl value=$xoTheme->folderName|cat:'/tpl'}>
+<{includeq file="$theme_tpl/versions.html"}>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="<{$ixt_langcode}>" xml:lang="<{$ixt_langcode}>">
+ <head>
+ <{includeq file="$theme_tpl/metas.html"}>
+ <{includeq file="$theme_tpl/scripts.html"}>	
+ <{assign var=theme_top_order value=clr}><{assign var=theme_bottom_order value=clr}><{assign var=hide_content value=0}>
+ </head>
+ <body>
+  <div class="ixt-pbggrad"></div>
+  <div class="ixt-pbgglar"><div class="ixt-pbgglarimg"></div></div>
+  <div class="ixt-main">
+   <div class="ixt-Sheet">
+    <div class="ixt-Sheet-tl"></div><div class="ixt-Sheet-tr"><div></div></div><div class="ixt-Sheet-bl"><div></div></div><div class="ixt-Sheet-br"><div></div></div><div class="ixt-Sheet-tc"><div></div></div><div class="ixt-Sheet-bc"><div></div></div><div class="ixt-Sheet-cl"><div></div></div><div class="ixt-Sheet-cr"><div></div></div><div class="ixt-Sheet-cc"></div>
+    <div class="ixt-Sheet-body">
+     <{assign var=columns_layout value="ixt-layout"}>
+     <{includeq file="$theme_tpl/header_min.html"}>
+     <div align="center">
+      <div style="width:400px;" class="content">
+       <p>&nbsp;</p>
+       <p><{$lang_siteclosemsg}></p>
+       <div class="ixt-Block">
+        <div class="ixt-Block-body">
+         <div class="ixt-BlockContent">
+          <div class="ixt-BlockContent-tl"></div><div class="ixt-BlockContent-tr"><div></div></div><div class="ixt-BlockContent-bl"><div></div></div><div class="ixt-BlockContent-br"><div></div></div><div class="ixt-BlockContent-tc"><div></div></div><div class="ixt-BlockContent-bc"><div></div></div><div class="ixt-BlockContent-cl"><div></div></div><div class="ixt-BlockContent-cr"><div></div></div><div class="ixt-BlockContent-cc"></div>
+          <div class="ixt-BlockContent-body">
+           <form action="<{$xoops_url}>/user.php" method="post">
+            <div align="right" style="_height:100%;overflow:hidden;">
+             <div align="left" style="float:left;overflow:hidden;"><{$lang_username}></div>
+             <input type="text" name="uname" size="21" maxlength="25" value="" />
+            </div>
+            <br />
+            <div align="right" style="_height:100%;overflow:hidden;">
+             <div align="left" style="float:left;overflow:hidden;"><{$lang_password}></div>
+             <input type="password" name="pass" size="21" maxlength="32" />
+             <input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+             <input type="hidden" name="xoops_login" value="1" />
+            </div>
+            <br />
+            <div align="center">
+             <button name="login" type="submit" class="ixt-button">
+              <span class="btn">
+               <span class="l"></span><span class="r"></span>
+               <span class="t"><{$lang_login}></span>
+              </span>
+             </button>
+            </div>
+            <br />
+           </form>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>  
+     <div class="cleared"></div>
+     <{includeq file="$theme_tpl/footer.html"}>
+    </div>
+   </div>
+   <div class="cleared"></div>
+   <p class="ixt-page-footer"><a href="http://ixthemes.org/"><{$ixt_generator}> Template</a> created with IXThemes</p>
+  </div>
+ </body>
+</html>
