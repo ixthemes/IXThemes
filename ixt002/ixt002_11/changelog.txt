@@ -2,6 +2,26 @@ IXThemes ChangeLog
 
 == IXThemes ixt002 ==
 
-===2009-05-12 : 1.2 ===
+===2009-05-16 : 1.3 ===
+
+Fixed:
+- "File does not exist: .../none" in apache error.log (IE6 only). Thanks ghia.
+- table td, table th (border-width:1px)
+- xoops.js is loaded after style.css loading (it is shown only for IE6)
+- Arrangement of the content block for XOOPS based CMS (does not mention XOOPS 2.3.3)
+
+===2009-04-19 : 1.2 ===
+
+Improved:
+- New theme structure ( /docs, /icons, /xoplugins, /xosmarty are added)
+- Large screenshot added (screenshot.jpg)
+- .htaccess added
+- xo-info.php added
+
+===2009-04-13 : 1.1 ===
+
+This release has been not published
+
+===2009-04-06 : 1.0 ===
 
 The first public release of a themes collection ixt002
