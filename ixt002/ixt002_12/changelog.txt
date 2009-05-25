@@ -1,0 +1,7 @@
+IXThemes ChangeLog
+
+== IXThemes ixt002 ==
+
+===2009-05-12 : 1.2 ===
+
+The first public release of a themes collection ixt002
