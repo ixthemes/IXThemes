@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  

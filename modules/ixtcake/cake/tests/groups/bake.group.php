@@ -45,10 +45,12 @@ class BakeGroupTest extends TestSuite {
  * @return void
  */
 	function BakeGroupTest() {
+// algalochkin: controller test	must be disabled in helper group test, you can run it as individual test
+// algalochkin: model test	must be disabled in helper group test, you can run it as individual test
 		$path = CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'tasks' . DS;
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'bake');
-		TestManager::addTestFile($this, $path . 'controller');
-		TestManager::addTestFile($this, $path . 'model');
+//		TestManager::addTestFile($this, $path . 'controller');
+//		TestManager::addTestFile($this, $path . 'model');
 		TestManager::addTestFile($this, $path . 'view');
 		TestManager::addTestFile($this, $path . 'fixture');
 		TestManager::addTestFile($this, $path . 'test');

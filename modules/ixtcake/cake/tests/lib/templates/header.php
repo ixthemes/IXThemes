@@ -22,13 +22,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>IXTCake :: CakePHP Test Suite 1.3</title>
+		<title>IXTCake: CakePHP Test Suite 1.3</title>
 		<style type="text/css">
 			h3 {font-size: 170%; padding-top: 1em}
 			a {font-size: 120%}
 			li {line-height: 140%}
-			.test-menu {float:left; width: 29%;}
-			.test-results {float:left; width: 70%;}
+/*			.test-menu {float:left; width: 29%; visibility:hidden; } */
+			.test-results {float:left; width: 100%;}
 			ul.tests {margin: 0; font-size:12px;}
 			ul.tests li {
 				list-style: none;
@@ -117,7 +117,7 @@
 	</head>
 	<body>
 		<div id="container">
-			<div id="header"><h1>IXTCake: integration CakePHP into XOOPS</h1></div>
+			<div id="header"><h1>IXTCake: integration of CakePHP into XOOPS</h1></div>
 			<div id="content">
 			<h2><a style="text-decoration:none;" href="<?php echo XOOPS_URL; ?>/modules/ixtcake/" target="_self">IXTCake</a>: CakePHP Test Suite 1.3</h2>
    <br />

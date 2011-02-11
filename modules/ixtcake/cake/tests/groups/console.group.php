@@ -43,6 +43,8 @@ class ConsoleGroupTest extends TestSuite {
  * @return void
  */
 	function ConsoleGroupTest() {
+// algalochkin: controller test	must be disabled in helper group test, you can run it as individual test
+// algalochkin: model test	must be disabled in helper group test, you can run it as individual test
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'cake');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'acl');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'api');
@@ -52,11 +54,11 @@ class ConsoleGroupTest extends TestSuite {
 
 		$path = CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'tasks' . DS;
 		
-		TestManager::addTestFile($this, $path . 'controller');
+//		TestManager::addTestFile($this, $path . 'controller');
 		TestManager::addTestFile($this, $path . 'db_config');
 		TestManager::addTestFile($this, $path . 'extract');
 		TestManager::addTestFile($this, $path . 'fixture');
-		TestManager::addTestFile($this, $path . 'model');
+//		TestManager::addTestFile($this, $path . 'model');
 		TestManager::addTestFile($this, $path . 'plugin');
 		TestManager::addTestFile($this, $path . 'project');
 		TestManager::addTestFile($this, $path . 'test');

@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -67,24 +67,8 @@ td { vertical-align:top; )
 /* ixtFINISH mark and table */
 </style>";
 
-/* current default theme */
-$curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
-
 xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGFREE, ""));
 echo "<br />";
-
-/* list only allowed themes */
-$themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
-if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
-    echo "<br />";
-} elseif (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme."/xoplugins/ixt09.php"))) {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGNOTIXTTHEME4, $curtheme));
-    echo "<br />";
-} else {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGDEFTHEME1, $curtheme));
-    echo "<br />";
-}
 
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -198,8 +182,6 @@ switch ($op)
 					<tr>
 						<th align=\"center\">"._AM_IXTCAKE_CORETESTGROUPS_NAME."</th>
 						<th align=\"center\">"._AM_IXTCAKE_CORETESTGROUPS_PATH."</th>
-						<th align=\"center\">"._AM_IXTCAKE_CORETESTGROUPS_SUBMITTER."</th>
-						<th align=\"center\">"._AM_IXTCAKE_CORETESTGROUPS_DATE_CREATED."</th>
 						<th align=\"center\">"._AM_IXTCAKE_CORETESTGROUPS_ONLINE."</th>
 						
 						<th align=\"center\" width=\"10%\">"._AM_IXTCAKE_FORMACTION."</th>
@@ -214,12 +196,9 @@ switch ($op)
 						$class = ($class == "even") ? "odd" : "even";
 						echo "<tr class=\"".$class."\">";
 						
-					echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title="._AM_IXTCAKE_CORETESTGROUPS_NAME.">".$coretestgroups_arr[$i]->getVar("coretestgroups_name")."</a></td>";	
+					echo "<td align=\"left\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title="._AM_IXTCAKE_CORETESTGROUPS_NAME.">".$coretestgroups_arr[$i]->getVar("coretestgroups_name")."</a></td>";	
 					
-					echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title="._AM_IXTCAKE_CORETESTGROUPS_PATH.">".$coretestgroups_arr[$i]->getVar("coretestgroups_path")."</a></td>";	
-					
-					echo "<td align=\"center\">".XoopsUser::getUnameFromId($coretestgroups_arr[$i]->getVar("coretestgroups_submitter"),"S")."</td>";	
-					echo "<td align=\"center\">".formatTimeStamp($coretestgroups_arr[$i]->getVar("coretestgroups_date_created"),"S")."</td>";	
+					echo "<td align=\"left\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title="._AM_IXTCAKE_CORETESTGROUPS_PATH.">".$coretestgroups_arr[$i]->getVar("coretestgroups_path")."</a></td>";	
 					
 					$online = $coretestgroups_arr[$i]->getVar("coretestgroups_online");
 				

@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -36,6 +36,8 @@ include_once("../include/functions.php");
 $myts =& MyTextSanitizer::getInstance();
 include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/apptestgroups.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/coretestgroups.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/apptestcases.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/coretestcases.php";
 
 if ( $xoopsUser ) {
 	$xoopsModule = XoopsModule::getByDirname("ixtcake");
@@ -55,5 +57,7 @@ xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
 
 $apptestgroupsHandler =& xoops_getModuleHandler("ixtcake_apptestgroups", "ixtcake");
 $coretestgroupsHandler =& xoops_getModuleHandler("ixtcake_coretestgroups", "ixtcake");
+$apptestcasesHandler =& xoops_getModuleHandler("ixtcake_apptestcases", "ixtcake");
+$coretestcasesHandler =& xoops_getModuleHandler("ixtcake_coretestcases", "ixtcake");
 
 ?>

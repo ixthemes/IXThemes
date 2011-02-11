@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -66,9 +66,9 @@ function ixtcake_adminmenu ($currentoption = 0, $breadcrumb = "")
 			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/index.php\"><span>_MI_IXTCAKE_MANAGER_INDEX</span></a></li>
 				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestgroups.php\"><span>_MI_IXTCAKE_MANAGER_APPTESTGROUPS</span></a></li>
 				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestgroups.php\"><span>_MI_IXTCAKE_MANAGER_CORETESTGROUPS</span></a></li>
-				
-				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/permissions.php\"><span>_MI_IXTCAKE_MANAGER_PERMISSIONS</span></a></li>
-				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/about.php\"><span>_MI_IXTCAKE_MANAGER_ABOUT</span></a></li>
+				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestcases.php\"><span>_MI_IXTCAKE_MANAGER_APPTESTCASES</span></a></li>
+				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestcases.php\"><span>_MI_IXTCAKE_MANAGER_CORETESTCASES</span></a></li>
+				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/about.php\"><span>_MI_IXTCAKE_MANAGER_ABOUT</span></a></li>
 			</ul></div>";
 }
 

@@ -44,7 +44,7 @@ class NoCrossContaminationGroupTest extends TestSuite {
  * @var string
  * @access public
  */
-	var $blacklist = array('cake_test_case.test.php', 'object.test.php');
+	var $blacklist = array('cake_test_case.test.php', 'object.test.php', 'cake.test.php', 'schema.test.php', 'shell.test.php', 'controller.test.php', 'model.test.php');
 
 /**
  * NoCrossContaminationGroupTest method

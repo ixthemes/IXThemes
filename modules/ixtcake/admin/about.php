@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -25,23 +25,14 @@ xoops_cp_header();
 
 // algalochkin: Admin menu with support old CMS version or icms
 if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtcake_adminmenu(4, _AM_IXTCAKE_MANAGER_ABOUT);
+ixtcake_adminmenu(5, _AM_IXTCAKE_MANAGER_ABOUT);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (4, _AM_IXTCAKE_MANAGER_ABOUT);
+loadModuleAdminMenu (5, _AM_IXTCAKE_MANAGER_ABOUT);
 }
 
 echo "<style>
-.cpbigtitle{
-	font-size: 20px;
-	color: #1E90FF;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 50px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
+.cpbigtitle{ font-size: 20px; color: #1E90FF; background: no-repeat left top; font-weight: bold; height: 50px; vertical-align: middle; padding: 10px 0 0 50px; border-bottom: 3px solid #1E90FF; }
 </style>";
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/about.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTCAKE_MANAGER_ABOUT."</strong>
 </div><br />";
@@ -49,20 +40,10 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/abo
 $versioninfo =& $module_handler->get( $xoopsModule->getVar("mid") );
 
 echo "<style type=\"text/css\">
-		label,text {
-			display: block;
-			float: left;
-			margin-bottom: 2px;
-		}
-		label {
-			text-align: right;
-			width: 150px;
-			padding-right: 20px;
-		}
-		br {
-			clear: left;
-		}
-	</style>
+label,text { display: block; float: left; margin-bottom: 2px; }
+label { text-align: right; width: 150px; padding-right: 20px; }
+br { clear: left; }
+</style>
 
 	<fieldset>
 		<legend style=\"font-weight: bold; color: #900;\">".$xoopsModule->getVar("name")."</legend>

@@ -15,26 +15,11 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
- 	
 
-function ixtcake_dummy() {
+function ixtixtcake_dummy() {
 }
 
-/***************Blocks***************/
-function block_addixtcakeCatSelect($cats) {
-	if(is_array($cats)) 
-	{
-		$cat_sql = "(".current($cats);
-		array_shift($cats);
-		foreach($cats as $cat) 
-		{
-			$cat_sql .= ",".$cat;
-		}
-		$cat_sql .= ")";
-	}
-	return $cat_sql;
-}
 ?>

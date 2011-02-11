@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -47,6 +47,16 @@ loadModuleAdminMenu (0, _AM_IXTCAKE_MANAGER_INDEX);
 	$criteria->add(new Criteria("coretestgroups_online", 1));
 	$coretestgroups_online = $coretestgroupsHandler->getCount($criteria);
 	
+	$count_apptestcases = $apptestcasesHandler->getCount();
+	$criteria = new CriteriaCompo();
+	$criteria->add(new Criteria("apptestcases_online", 1));
+	$apptestcases_online = $apptestcasesHandler->getCount($criteria);
+	
+	$count_coretestcases = $coretestcasesHandler->getCount();
+	$criteria = new CriteriaCompo();
+	$criteria->add(new Criteria("coretestcases_online", 1));
+	$coretestcases_online = $coretestcasesHandler->getCount($criteria);
+	
 include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/menu.php";
 
 	$menu = new ixtcakeMenu();
@@ -55,8 +65,7 @@ include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/menu.php";
 	$menu->addItem("about", "about.php", "../images/deco/about.png", _AM_IXTCAKE_MANAGER_ABOUT);
 	$menu->addItem("preference", "../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$xoopsModule->getVar("mid")."&amp;&confcat_id=1", "../images/deco/pref.png", _AM_IXTCAKE_MANAGER_PREFERENCES);
  $menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=ixtcake", "../images/deco/update.png",  _AM_IXTCAKE_MANAGER_UPDATE);	
- $menu->addItem("apptestgroups", "apptestgroups.php", "../images/deco/apptestgroups.png", _AM_IXTCAKE_MANAGER_APPTESTGROUPS);$menu->addItem("coretestgroups", "coretestgroups.php", "../images/deco/coretestgroups.png", _AM_IXTCAKE_MANAGER_CORETESTGROUPS);
-	$menu->addItem("permissions", "permissions.php", "../images/deco/permissions.png", _AM_IXTCAKE_MANAGER_PERMISSIONS);
+ $menu->addItem("apptestgroups", "apptestgroups.php", "../images/deco/apptestgroups.png", _AM_IXTCAKE_MANAGER_APPTESTGROUPS);$menu->addItem("coretestgroups", "coretestgroups.php", "../images/deco/coretestgroups.png", _AM_IXTCAKE_MANAGER_CORETESTGROUPS);$menu->addItem("apptestcases", "apptestcases.php", "../images/deco/apptestcases.png", _AM_IXTCAKE_MANAGER_APPTESTCASES);$menu->addItem("coretestcases", "coretestcases.php", "../images/deco/coretestcases.png", _AM_IXTCAKE_MANAGER_CORETESTCASES);
 	$menu->addItem("whoisusing", "http://ixthemes.org/modules/wflinks/viewcat.php?cid=3", "../images/deco/whoisusing.png", _AM_IXTCAKE_MANAGER_WHOISUSING);
 	$menu->addItem("findthebesttheme", "http://downloads.ixthemes.com/xoops", "../images/deco/findtheme.png", _AM_IXTCAKE_MANAGER_FINDTHEBESTTHEME);
 	$menu->addItem("subscriberss", "http://ixthemes.com/headlines/feed.rss", "../images/deco/subscriberss.png", _AM_IXTCAKE_MANAGER_SUBSCRIBERSS);
@@ -97,24 +106,8 @@ td { vertical-align:top; )
 /* ixtFINISH mark and table */
 </style>";
 	
-/* current default theme */
-$curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
-
 xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGFREE, ""));
 echo "<br />";
-
-/* list only allowed themes */
-$themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
-if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
-    echo "<br />";
-} elseif (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme."/xoplugins/ixt09.php"))) {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGNOTIXTTHEME4, $curtheme));
-    echo "<br />";
-} else {
-    xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGDEFTHEME1, $curtheme));
-    echo "<br />";
-}
 
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -140,18 +133,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 			<tr>
 				<td valign=\"top\">".$menu->render()."</td>
 				<td valign=\"top\" width=\"60%\">";
-				
-					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_THEMES."</legend>
-						<br />";
-						printf(_AM_IXTCAKE_THEREARE_THEMES, $count_themes);
-						echo "<br /><br />";
-						printf(_AM_IXTCAKE_THEREARE_THEMES_ONLINE, $themes_online);
-						echo "<br /><br />";
-						printf(_AM_IXTCAKE_THEREARE_THEMES_DEFAULT, $themes_default);
-						echo "<br />
-					</fieldset><br /><br />";
-					
+			
 					echo "<fieldset>
 						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_APPTESTGROUPS."</legend>
 						<br />";
@@ -167,6 +149,24 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 						printf(_AM_IXTCAKE_THEREARE_CORETESTGROUPS, $count_coretestgroups);
 						echo "<br /><br />";
 						printf(_AM_IXTCAKE_THEREARE_CORETESTGROUPS_ONLINE, $coretestgroups_online);
+						echo "<br />
+					</fieldset><br /><br />";
+					
+					echo "<fieldset>
+						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_APPTESTCASES."</legend>
+						<br />";
+						printf(_AM_IXTCAKE_THEREARE_APPTESTCASES, $count_apptestcases);
+						echo "<br /><br />";
+						printf(_AM_IXTCAKE_THEREARE_APPTESTCASES_ONLINE, $apptestcases_online);
+						echo "<br />
+					</fieldset><br /><br />";
+					
+					echo "<fieldset>
+						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_CORETESTCASES."</legend>
+						<br />";
+						printf(_AM_IXTCAKE_THEREARE_CORETESTCASES, $count_coretestcases);
+						echo "<br /><br />";
+						printf(_AM_IXTCAKE_THEREARE_CORETESTCASES_ONLINE, $coretestcases_online);
 						echo "<br />
 					</fieldset><br /><br />";
 					

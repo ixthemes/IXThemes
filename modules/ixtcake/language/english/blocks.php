@@ -15,46 +15,43 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  	
 define("_MB_IXTCAKE_APPTESTGROUPS_DISPLAY","Display");
 define("_MB_IXTCAKE_APPTESTGROUPS_TITLELENGTH","Lenght of Title");
-define("_MB_IXTCAKE_APPTESTGROUPS_CATTODISPLAY","Cat to display");
-define("_MB_IXTCAKE_APPTESTGROUPS_ALLCAT","All cat");
+define("_MB_IXTCAKE_APPTESTGROUPS_ID","Id");
+define("_MB_IXTCAKE_APPTESTGROUPS_NAME","Name");
+define("_MB_IXTCAKE_APPTESTGROUPS_PATH","Path");
+define("_MB_IXTCAKE_APPTESTGROUPS_SUBMITTER","Submitter");
+define("_MB_IXTCAKE_APPTESTGROUPS_DATE_CREATED","Date created");
+define("_MB_IXTCAKE_APPTESTGROUPS_ONLINE","Online");
 
-
-		define("_MB_IXTCAKE_APPTESTGROUPS_ID","Id");
-		
-		define("_MB_IXTCAKE_APPTESTGROUPS_NAME","Name");
-		
-		define("_MB_IXTCAKE_APPTESTGROUPS_PATH","Path");
-		
-		define("_MB_IXTCAKE_APPTESTGROUPS_SUBMITTER","Submitter");
-		
-		define("_MB_IXTCAKE_APPTESTGROUPS_DATE_CREATED","Date_created");
-		
-		define("_MB_IXTCAKE_APPTESTGROUPS_ONLINE","Online");
-		
 define("_MB_IXTCAKE_CORETESTGROUPS_DISPLAY","Display");
 define("_MB_IXTCAKE_CORETESTGROUPS_TITLELENGTH","Lenght of Title");
-define("_MB_IXTCAKE_CORETESTGROUPS_CATTODISPLAY","Cat to display");
-define("_MB_IXTCAKE_CORETESTGROUPS_ALLCAT","All cat");
-
-
-		define("_MB_IXTCAKE_CORETESTGROUPS_ID","Id");
+define("_MB_IXTCAKE_CORETESTGROUPS_ID","Id");
+define("_MB_IXTCAKE_CORETESTGROUPS_NAME","Name");
+define("_MB_IXTCAKE_CORETESTGROUPS_PATH","Path");
+define("_MB_IXTCAKE_CORETESTGROUPS_SUBMITTER","Submitter");
+define("_MB_IXTCAKE_CORETESTGROUPS_DATE_CREATED","Date created");
+define("_MB_IXTCAKE_CORETESTGROUPS_ONLINE","Online");
 		
-		define("_MB_IXTCAKE_CORETESTGROUPS_NAME","Name");
+define("_MB_IXTCAKE_APPTESTCASES_DISPLAY","Display");
+define("_MB_IXTCAKE_APPTESTCASES_TITLELENGTH","Lenght of Title");
+define("_MB_IXTCAKE_APPTESTCASES_ID","Id");
+define("_MB_IXTCAKE_APPTESTCASES_NAME","Name");
+define("_MB_IXTCAKE_APPTESTCASES_PATH","Path");
+define("_MB_IXTCAKE_APPTESTCASES_SUBMITTER","Submitter");
+define("_MB_IXTCAKE_APPTESTCASES_DATE_CREATED","Date created");
+define("_MB_IXTCAKE_APPTESTCASES_ONLINE","Online");
 		
-		define("_MB_IXTCAKE_CORETESTGROUPS_PATH","Path");
-		
-		define("_MB_IXTCAKE_CORETESTGROUPS_SUBMITTER","Submitter");
-		
-		define("_MB_IXTCAKE_CORETESTGROUPS_DATE_CREATED","Date_created");
-		
-		define("_MB_IXTCAKE_CORETESTGROUPS_ONLINE","Online");
-		
-
-
+define("_MB_IXTCAKE_CORETESTCASES_DISPLAY","Display");
+define("_MB_IXTCAKE_CORETESTCASES_TITLELENGTH","Lenght of Title");
+define("_MB_IXTCAKE_CORETESTCASES_ID","Id");
+define("_MB_IXTCAKE_CORETESTCASES_NAME","Name");
+define("_MB_IXTCAKE_CORETESTCASES_PATH","Path");
+define("_MB_IXTCAKE_CORETESTCASES_SUBMITTER","Submitter");
+define("_MB_IXTCAKE_CORETESTCASES_DATE_CREATED","Date created");
+define("_MB_IXTCAKE_CORETESTCASES_ONLINE","Online");
 ?>

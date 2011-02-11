@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -43,5 +43,19 @@ if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtcake/coretestgroups/index.html");
+				
+//Creation du fichier apptestcases dans uploads
+$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtcake/apptestcases";
+if(!is_dir($module_uploads))
+	mkdir($module_uploads, 0777);
+	chmod($module_uploads, 0777);
+copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtcake/apptestcases/index.html");
+				
+//Creation du fichier coretestcases dans uploads
+$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtcake/coretestcases";
+if(!is_dir($module_uploads))
+	mkdir($module_uploads, 0777);
+	chmod($module_uploads, 0777);
+copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtcake/coretestcases/index.html");
 				
 ?>

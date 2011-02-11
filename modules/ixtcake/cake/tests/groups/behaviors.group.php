@@ -43,6 +43,11 @@ class BehaviorsGroupTest extends TestSuite {
  * @return void
  */
 	function BehaviorsGroupTest() {
-		TestManager::addTestCasesFromDirectory($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors');
+// algalochkin: translate test	must be disabled in helper group test, you can run it as individual test
+//		TestManager::addTestCasesFromDirectory($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors' . DS . 'acl');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors' . DS . 'containable');
+//		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors' . DS . 'translate');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'behaviors' . DS . 'tree');
 	}
 }
