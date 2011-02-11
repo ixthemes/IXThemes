@@ -1,0 +1,15 @@
+*** Version 1.03 beta (2010-10-04) ***
+
+Improvements
+- New submodule THEMES IN SYSTEM has been created.
+- Link to XOOPS 2.3.3 demo on index page has been added.
+- Link to XOOPS 2.5.0 demo on index page has been added.
+- Actions icons from GIF to PNG has been updated.
+- This changelog.txt has been added.
+
+Bug Fixed
+- Link to IXThemes RSS Feed on index page.
+
+*** Version 1.02 beta (2010-10-01) ***
+
+- First public release of the module.
