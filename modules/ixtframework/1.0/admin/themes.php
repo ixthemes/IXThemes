@@ -15,26 +15,21 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
 
 include_once("./header.php");
 
-require_once XOOPS_ROOT_PATH . '/class/xoopslists.php';
-	
 xoops_cp_header();
 
 if (isset($_REQUEST["op"])) {
 	$op = $_REQUEST["op"];
 } else {
-	@$op = "show_list_themes";
+	@$op = "default";
 }
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -75,12 +70,17 @@ div.xoops-form-element-caption-required .caption-marker {	background-color:inher
 
 if (!($op == "not_supported") && !($op == "edit_themes") && !($op == "save_themes") && !($op == "update_online_themes") && !($op == "delete_themes")) {
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(2, _AM_IXTFRAMEWORK_MANAGER_THEMES);
+if (!ixtframework_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtframework_adminmenu(2, _AM_IXTFRAMEWORK_MANAGER_THEMES);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (2, _AM_IXTFRAMEWORK_MANAGER_THEMES);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (2, _AM_IXTFRAMEWORK_MANAGER_THEMES);
+ define('RMCLOCATION','themes'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 echo "<style>
@@ -114,8 +114,8 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-echo "<br />";
+//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+//echo "<br />";
 
 /* list only allowed themes */
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
@@ -146,14 +146,14 @@ switch ($op)
 {	
 	case "not_supported":
 	/* not supported now for XOOPS 2.3.3 */
-	redirect_header("themes.php?op=show_list_themes", 1, sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,"This"));
+	ixt_redirect("themes.php?op=show_list_themes", 1, sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,"This"));
 
 	case "save_themes":
 	/* not supported now for XOOPS 2.3.3 */
-	redirect_header("themes.php?op=not_supported",0,'One moment, please...'); break;
+	ixt_redirect("themes.php?op=not_supported",0,'One moment, please...'); break;
 	
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("themes.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+           ixt_redirect("themes.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["themes_id"])) {
            $obj =& $themesHandler->get($_REQUEST["themes_id"]);
@@ -173,7 +173,7 @@ switch ($op)
 			$uploader_themes_screenshot->fetchMedia("themes_screenshot");
 			if (!$uploader_themes_screenshot->upload()) {
 				$errors = $uploader_themes_screenshot->getErrors();
-				redirect_header("javascript:history.go(-1)",3, $errors);
+				ixt_redirect("javascript:history.go(-1)",3, $errors);
 			} else {
 				$obj->setVar("themes_screenshot", $uploader_themes_screenshot->getSavedFileName());
 			}
@@ -196,17 +196,16 @@ switch ($op)
 		$verif_themes_online = ($_REQUEST["themes_online"] == 1) ? "1" : "0";
 		$obj->setVar("themes_online", $verif_themes_online);
 		
-		
-        if ($themesHandler->insert($obj)) {
-           redirect_header("themes.php?op=show_list_themes", 2, _AM_IXTFRAMEWORK_FORMOK);
-        }
-        echo $obj->getHtmlErrors();
-        $form =& $obj->getForm();
+		if ($themesHandler->insert($obj)) {
+					ixt_redirect("themes.php?op=show_list_themes", 2, _AM_IXTFRAMEWORK_FORMOK);
+		}
+		echo $obj->getHtmlErrors();
+		$form =& $obj->getForm();
 	break;
 	
 	case "edit_themes":
 	/* not supported now for XOOPS 2.3.3 */
-	redirect_header("themes.php?op=not_supported",0,'One moment, please...'); break;
+	ixt_redirect("themes.php?op=not_supported",0,'One moment, please...'); break;
 	
 		$obj = $themesHandler->get($_REQUEST["themes_id"]);
 		$form = $obj->getForm();
@@ -215,15 +214,15 @@ switch ($op)
 	
 	case "delete_themes":
 	/* not supported now for XOOPS 2.3.3 */
-	redirect_header("themes.php?op=not_supported",0,'One moment, please...'); break;
+	ixt_redirect("themes.php?op=not_supported",0,'One moment, please...'); break;
 	
 		$obj =& $themesHandler->get($_REQUEST["themes_id"]);
 		if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
 			if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-				redirect_header("themes.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+				ixt_redirect("themes.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
 			}
 			if ($themesHandler->delete($obj)) {
-				redirect_header("themes.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
+				ixt_redirect("themes.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
 			} else {
 				echo $obj->getHtmlErrors();
 			}
@@ -235,7 +234,7 @@ switch ($op)
 	
 	case "update_online_themes":
 	/* not supported now for XOOPS 2.3.3 */
-	redirect_header("themes.php?op=not_supported",0,'One moment, please...'); break;
+	ixt_redirect("themes.php?op=not_supported",0,'One moment, please...'); break;
 	
 	if (isset($_REQUEST["themes_id"])) {
 		$obj =& $themesHandler->get($_REQUEST["themes_id"]);
@@ -243,7 +242,7 @@ switch ($op)
 	$obj->setVar("themes_online", $_REQUEST["themes_online"]);
 
 	if ($themesHandler->insert($obj)) {
-		redirect_header("themes.php", 3, _AM_IXTFRAMEWORK_FORMOK);
+		ixt_redirect("themes.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
 	echo $obj->getHtmlErrors();
 
@@ -273,6 +272,7 @@ switch ($op)
 						<th align=\"center\">"._AM_IXTFRAMEWORK_THEMES_DATE_CREATED."</th>
 						-->
 						<th align=\"center\">"._AM_IXTFRAMEWORK_THEMES_ONLINE."</th>
+						<th align=\"center\">"._AM_IXTFRAMEWORK_THEMES_DEFAULT."</th>
 						
 						<th align=\"center\" width=\"10%\">"._AM_IXTFRAMEWORK_FORMACTION."</th>
 					</tr>";
@@ -305,66 +305,76 @@ switch ($op)
 							if (is_readable(XOOPS_THEME_PATH . '/' .$themename."/".$info_arr['thumbnail'])) {
 					 	 echo "<td align=\"center\"><a rel=\"prettyPhoto\" style=\"text-decoration:none\" class=\"tooltip\" href=\"/themes/$themename/$info_arr[screenshot]\" title=\"Preview ".$themename."\"><img title=\"Theme ".$themename."\" src=\"".XOOPS_URL."/themes/".$themename."/".$info_arr['thumbnail']."\" width=\"80px\" /></a></td>";	
 							} else {
-								echo "<td align=\"center\">empty</td>";
+								echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
        }
 						} else {
  						if (is_readable(XOOPS_THEME_PATH . '/' .$themename."/shot.gif")) {
  						 echo "<td align=\"center\"><a rel=\"prettyPhoto\" style=\"text-decoration:none\" class=\"tooltip\" href=\"/themes/$themename/shot.gif\" title=\"Preview ".$themename."\"><img title=\"".$themename."\" src=\"".XOOPS_URL."/themes/".$themename."/shot.gif\" width=\"80px\" /></a></td>";	
 				 		} else {
-        echo "<td align=\"center\">empty</td>";
+        echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
 							}
 						};	
 
       if ($hasinfo && isset($info_arr['version'])) {
 						 echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_RELEASE."&nbsp;".$info_arr['version']."\">".$info_arr['version']."</a></td>";	
 						} else {
-							echo "<td align=\"center\">empty</td>";
+							echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
 						};	
 
       if ($hasinfo) {
-						 echo "<td align=\"center\" class=\"green\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\"Theme "._AM_IXTFRAMEWORK_THEMES_STRUCTURE."\">GOOD</a></td>";	
+						 echo "<td align=\"center\" class=\"green\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\"".$themename.": Theme "._AM_IXTFRAMEWORK_THEMES_STRUCTURE." "._AM_IXTFRAMEWORK_THEMES_IS." "._AM_IXTFRAMEWORK_THEMES_GOOD."\">"._AM_IXTFRAMEWORK_THEMES_GOOD."</a></td>";	
 						} else {
-							echo "<td align=\"center\" class=\"red\">Not correct</td>";
+						 echo "<td align=\"center\" class=\"red\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\"".$themename.": Theme "._AM_IXTFRAMEWORK_THEMES_STRUCTURE." "._AM_IXTFRAMEWORK_THEMES_IS." "._AM_IXTFRAMEWORK_THEMES_NOTVALID."\">"._AM_IXTFRAMEWORK_THEMES_NOTVALID."</a></td>";	
 						};	
 
 						if ($hasinfo && isset($info_arr['description'])) {
 						 echo "<td align=\"center\" style=\"width:150px;\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_DESCRIPTION."\">".$info_arr['description']."</a></td>";	
 						} else {
-							echo "<td align=\"center\">empty</td>";
+							echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
 						};	
 
 						if ($hasinfo && isset($info_arr['author'])) {
 						 echo "<td align=\"center\" style=\"width:120px;\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_AUTHOR."\">".$info_arr['author']."</a></td>";	
 						} else {
-							echo "<td align=\"center\">empty</td>";
+							echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
 						};	
 
 						if ($hasinfo && isset($info_arr['copyright'])) {
 						 echo "<td align=\"center\" style=\"width:120px;\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_COPYRIGHT."\">".$info_arr['copyright']."</a></td>";	
 						} else {
-							echo "<td align=\"center\">empty</td>";
+							echo "<td align=\"center\">"._AM_IXTFRAMEWORK_THEMES_EMPTY."</td>";
 						};	
 
 						$online = in_array($themename, $themesallowed);
 						
 						if ( isset($ifjquery) && ($ifjquery == 1) ) {
 							if ( $online == 1 ) {
-								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_ON)."');\" title=\""._AM_IXTFRAMEWORK_ON."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\" /></a></td>";	
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_ON)."');\" title=\""._AM_IXTFRAMEWORK_THEMES_SELECTABLE."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\" /></a></td>";	
 							} else {
-								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_OFF)."');\" title=\""._AM_IXTFRAMEWORK_OFF."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\" /></a></td>";
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_OFF)."');\" title=\""._AM_IXTFRAMEWORK_THEMES_NOTSELECTABLE."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\" /></a></td>";
 							}
-							echo "<td align=\"center\" width=\"10%\">
-								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_EDIT)."', {life:3000, position:'center', speed:'slow'});\" title=\""._AM_IXTFRAMEWORK_EDIT."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\" /></a>
+							if ( $themename == $curtheme ) {
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\" title=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\" /></a></td>";	
+							} else {
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./thcat.php?op=install-normal&theme=".$themename."\" title=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\" title=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\" /></a></td>";
+							}
+							echo "<td align=\"center\">
+								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_EDIT)."', {life:3000, position:'center', speed:'slow'});\" title=\""._AM_IXTFRAMEWORK_EDIT."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\" /></a><br />
 								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" onclick=\"$.jGrowl('".sprintf(_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED,_AM_IXTFRAMEWORK_DELETE)."', {life:3000, position:'center', speed:'slow'});\" title=\""._AM_IXTFRAMEWORK_DELETE."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\" /></a>
 								</td>";
 						} else {
-							if( $online == 1 ) {
-								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./themes.php?op=update_online_themes&themes_name=".$themename."&themes_online=0\" title=\""._AM_IXTFRAMEWORK_ON."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\" /></a></td>";	
+							if ( $online == 1 ) {
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./themes.php?op=update_online_themes&themes_name=".$themename."&themes_online=0\" title=\""._AM_IXTFRAMEWORK_THEMES_SELECTABLE."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\" /></a></td>";	
 							} else {
-								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./themes.php?op=update_online_themes&themes_name=".$themename."&themes_online=1\" title=\""._AM_IXTFRAMEWORK_OFF."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\" /></a></td>";
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./themes.php?op=update_online_themes&themes_name=".$themename."&themes_online=1\" title=\""._AM_IXTFRAMEWORK_THEMES_NOTSELECTABLE."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\" /></a></td>";
 							}
-							echo "<td align=\"center\" width=\"10%\">
-								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"themes.php?op=edit_themes&themes_name=".$themename."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\" /></a>
+							if ( $themename == $curtheme ) {
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\" title=\""._AM_IXTFRAMEWORK_THEMES_THISISDEFAULT."\" /></a></td>";	
+							} else {
+								echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./thcat.php?op=install-normal&theme=".$themename."\" title=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\" title=\""._AM_IXTFRAMEWORK_THEMES_SETASDEFAULT."\" /></a></td>";
+							}
+							echo "<td align=\"center\">
+								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"themes.php?op=edit_themes&themes_name=".$themename."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\" /></a><br />
 								<a style=\"text-decoration:none\" class=\"tooltip\" href=\"themes.php?op=delete_themes&themes_name=".$themename."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\" /></a>
 								</td>";
 						}

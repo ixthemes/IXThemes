@@ -15,38 +15,39 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  	
 //Menu
 define("_AM_IXTFRAMEWORK_MANAGER_INDEX","Index");
-define("_AM_IXTFRAMEWORK_THEREARE_PAGELAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Pagelayout in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_PAGELAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Pagelayout enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_SLIDES","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Slides in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_SLIDES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Slides enabled");
+define("_AM_IXTFRAMEWORK_MANAGER_DASHBOARD","Dashboard");
+define("_AM_IXTFRAMEWORK_THEREARE_PAGELAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Page Layout Modes in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_PAGELAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Page Layout Modes enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_SLIDES","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Slideshow Scenarios in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_SLIDES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Slideshow Scenarios enabled");
 define("_AM_IXTFRAMEWORK_THEREARE_TOPIC","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Topic in our database");
 define("_AM_IXTFRAMEWORK_THEREARE_TOPIC_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Topic enabled");
 define("_AM_IXTFRAMEWORK_THEREARE_ASSIGNS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Assigns in our database");
 define("_AM_IXTFRAMEWORK_THEREARE_ASSIGNS_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Assigns enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_WIDGETS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Widgets in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_WIDGETS_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Widgets enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_GLOBALNAV","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Globalnav in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_GLOBALNAV_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Globalnav enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_PREHEADER","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Preheader in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_PREHEADER_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Preheader enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_UITHEME","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Uitheme in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_UITHEME_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Uitheme enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_FIXSKIN","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Fixskin in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_FIXSKIN_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Fixskin enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_TOPLAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Toplayout in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_TOPLAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Toplayout enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_BOTLAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Botlayout in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_BOTLAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Botlayout enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_WIDGETS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Addon Widgets/Blocks in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_WIDGETS_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Addon Widgets/Blocks enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_GLOBALNAV","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Globalnav Modes in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_GLOBALNAV_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Globalnav Modes enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_PREHEADER","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Preheader Modes in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_PREHEADER_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Preheader Modes enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_UITHEME","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> UI Theme in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_UITHEME_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> UI Theme enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_FIXSKIN","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Fixed Skin in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_FIXSKIN_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Fixed Skin enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_TOPLAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Top Blocks Layout Modes in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_TOPLAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Top Blocks Layout Modes enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_BOTLAYOUT","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Bottom Blocks Layout in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_BOTLAYOUT_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Bottom Blocks Layout enabled");
 define("_AM_IXTFRAMEWORK_THEREARE_THEMES","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Themes in our database");
-define("_AM_IXTFRAMEWORK_THEREARE_THEMES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Themes enabled");
-define("_AM_IXTFRAMEWORK_THEREARE_THEMES_DEFAULT","Default Theme is <span style=\"color: #ff0000; font-weight: bold;\">%s</span>");
-define("_AM_IXTFRAMEWORK_THEREARE_THEMES_SELECTED","Selected Theme is <span style=\"color: #ff0000; font-weight: bold;\">%s</span>");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Themes selectable on user side");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES_DEFAULT","Active/Default Theme is <span style=\"color: #ff0000; font-weight: bold;\">%s</span>");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES_SELECTED","Active/Default Theme is <span style=\"color: #ff0000; font-weight: bold;\">%s</span>");
 
 define("_AM_IXTFRAMEWORK_MANAGER_ABOUT","About");
 define("_AM_IXTFRAMEWORK_MANAGER_PREFERENCES","Preferences");
@@ -63,31 +64,32 @@ define("_AM_IXTFRAMEWORK_MANAGER_XOOPS233DEMO","Demo on XOOPS 2.3.3");
 define("_AM_IXTFRAMEWORK_MANAGER_XOOPS245DEMO","Demo on XOOPS 2.4.5");
 define("_AM_IXTFRAMEWORK_MANAGER_XOOPS250DEMO","Demo on XOOPS 2.5.0");
 
-//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME", "WARNING: Default theme on your site is %s. It is not Theme by IXThemes.<br />Please set default theme by IXThemes. (System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
-//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4", "WARNING: Default theme on your site is %s. It is not Release 4 Theme by IXThemes.<br />Please set default theme by IXThemes Release 4.<br />(System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME", "WARNING: Selected theme on an user side is %s. It is not Theme by IXThemes.<br />Select theme by IXThemes and set it as default theme for your site, please. (System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4", "WARNING: Selected theme on an user side is %s. It is not Release 4 Theme by IXThemes.<br />Select theme by IXThemes Release 4 and set it as default theme for your site, please.<br />(System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
-//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME", "<span class=\"green\">INFO: Default theme on your site is %s.</span>");
-//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1", "<span class=\"green\">INFO: Default theme on your site is %s. It is marked as a green background of row.</span>");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME", "<span class=\"green\">INFO: Selected theme on an user side is %s.</span>");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1", "<span class=\"green\">INFO: Selected theme on an user side is %s. It is marked as a green background of row in a THEMES table.</span>");
+//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME", "WARNING: Active/Default theme on your site is %s. It is not Theme by IXThemes.<br />Please activate/set default theme by IXThemes. (System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
+//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4", "WARNING: Active/Default theme on your site is %s. It is not Release 4 Theme by IXThemes.<br />Please activate/set default theme by IXThemes Release 4.<br />(System : Preferences : General Settings : Default theme) + Relogin into Admin Side.");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME", "WARNING: Active theme on the user side is <strong>%s</strong>. It is not Theme by IXThemes.<br />Select theme by IXThemes and activate it for your site, please. See column <strong>Def</strong> in the <strong>Themes</strong> table.");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4", "WARNING: Active theme on the user side is <strong>%s</strong>. It is not Release 4 Theme by IXThemes.<br />Select theme by IXThemes Release 4 and activate it for your site, please.<br />See column <strong>Def</strong> in the <strong>Themes</strong> table.");
+//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME", "<span class=\"green\">INFO: Activa/Default theme on your site is %s.</span>");
+//define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1", "<span class=\"green\">INFO: Active/Default theme on your site is %s. It is marked as a green background of row.</span>");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME", "<span class=\"green\">INFO: Active theme on the user side is %s.</span>");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1", "<span class=\"green\">INFO: Active theme on the user side is %s. It is marked as a green background of row in the <strong>Themes</strong> table.</span>");
 define("_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE", "<span class=\"green\">INFO: This module is delivered to you absolutely FREE.<br />Developers of this module are NEVER will demand a money from you.<br />However you CAN SUPPORT the further developing of this module if you will purchase one of PREMIUM THEMES in <a class=\"tooltip\" title=\"Get PREMIUM Theme NOW!!!\" href=\"http://shop.ixthemes.com\" target=\"_blank\">IXTHEMES SHOP</a>. Thanks!</span>");
-define("_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED", "Sorry, buddy. %s property is NOT SUPPORTED in this Release.");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFASSIGNS", "<span class=\"green\">INFO: Current ASSIGNS style is %s. It is marked as a green background of row in an ASSIGNS table.</span>");
+define("_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED", "Sorry, but %s property is NOT SUPPORTED in this Release.");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFASSIGNS", "<span class=\"green\">INFO: Current ASSIGNS style is <strong>%s</strong>. It is marked as a green background of row in an ASSIGNS table.</span>");
 
 //Index
 define("_AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT","Page Layout");
-define("_AM_IXTFRAMEWORK_MANAGER_SLIDES","Slides");
+define("_AM_IXTFRAMEWORK_MANAGER_SLIDES","Slideshow Scenario Names/ID's");
 define("_AM_IXTFRAMEWORK_MANAGER_TOPIC","Topic");
 define("_AM_IXTFRAMEWORK_MANAGER_ASSIGNS","Assigns");
-define("_AM_IXTFRAMEWORK_MANAGER_WIDGETS","Widgets");
+define("_AM_IXTFRAMEWORK_MANAGER_WIDGETS","Widgets/Blocks");
 define("_AM_IXTFRAMEWORK_MANAGER_GLOBALNAV","Globalnav");
 define("_AM_IXTFRAMEWORK_MANAGER_PREHEADER","Preheader");
 define("_AM_IXTFRAMEWORK_MANAGER_UITHEME","UI Theme");
 define("_AM_IXTFRAMEWORK_MANAGER_FIXSKIN","Fixed Skin");
-define("_AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT","Top Content Layout");
-define("_AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT","Bottom Content Layout");
+define("_AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT","Top Blocks Layout");
+define("_AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT","Bottom Blocks Layout");
 define("_AM_IXTFRAMEWORK_MANAGER_THEMES","Themes");
+define("_AM_IXTFRAMEWORK_MANAGER_THEMESCAT","Themes Catalogue");
 
 //General
 define("_AM_IXTFRAMEWORK_FORMOK","Successfully saved");
@@ -96,29 +98,30 @@ define("_AM_IXTFRAMEWORK_FORMSUREDEL", "are you sure you want to delete : <b><sp
 define("_AM_IXTFRAMEWORK_FORMSURERENEW", "are you sure you want to update : <b><span style=\"color : Red\"> %s </span></b>");
 define("_AM_IXTFRAMEWORK_FORMUPLOAD","Upload");
 define("_AM_IXTFRAMEWORK_FORMIMAGE_PATH","File present in %s");
-define("_AM_IXTFRAMEWORK_FORMACTION","Action");
+define("_AM_IXTFRAMEWORK_FORMACTION","Act");
 define("_AM_IXTFRAMEWORK_OFF","Off");
 define("_AM_IXTFRAMEWORK_ON","On");
 define("_AM_IXTFRAMEWORK_EDIT","Edit");
 define("_AM_IXTFRAMEWORK_DELETE","Delete");
 
 //pagelayout
-define("_AM_IXTFRAMEWORK_PAGELAYOUT_ADD","Add pagelayout");
-define("_AM_IXTFRAMEWORK_PAGELAYOUT_EDIT","Edit pagelayout");
+define("_AM_IXTFRAMEWORK_PAGELAYOUT_ADD","Add page layout");
+define("_AM_IXTFRAMEWORK_PAGELAYOUT_EDIT","Edit page layout");
 define("_AM_IXTFRAMEWORK_PAGELAYOUT_ID","Id");
-define("_AM_IXTFRAMEWORK_PAGELAYOUT_NAME","Name");
+define("_AM_IXTFRAMEWORK_PAGELAYOUT_NAME","Layout Name");
 define("_AM_IXTFRAMEWORK_PAGELAYOUT_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_PAGELAYOUT_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_PAGELAYOUT_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_PAGELAYOUT_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_PAGELAYOUT_ONLINE","Selectable");
 
 //slides
-define("_AM_IXTFRAMEWORK_SLIDES_ADD","Add slides");
-define("_AM_IXTFRAMEWORK_SLIDES_EDIT","Edit slides");
+define("_AM_IXTFRAMEWORK_SLIDES_ADD","Add slideshow scenario name/ID");
+define("_AM_IXTFRAMEWORK_SLIDES_EDIT","Edit slideshow scenario name/ID");
 define("_AM_IXTFRAMEWORK_SLIDES_ID","Id");
-define("_AM_IXTFRAMEWORK_SLIDES_NAME","Name");
+define("_AM_IXTFRAMEWORK_SLIDES_NAME","Scenario Name/ID");
+define("_AM_IXTFRAMEWORK_SLIDES_DESC","Description");
 define("_AM_IXTFRAMEWORK_SLIDES_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_SLIDES_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_SLIDES_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_SLIDES_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_SLIDES_ONLINE","Selectable");
 
 //topic
 define("_AM_IXTFRAMEWORK_TOPIC_ADD","Add topic");
@@ -131,73 +134,73 @@ define("_AM_IXTFRAMEWORK_TOPIC_IMG","Img");
 define("_AM_IXTFRAMEWORK_TOPIC_WEIGHT","Weight");
 define("_AM_IXTFRAMEWORK_TOPIC_COLOR","Color");
 define("_AM_IXTFRAMEWORK_TOPIC_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_TOPIC_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_TOPIC_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_TOPIC_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_TOPIC_ONLINE","Selectable");
 
 //widgets
-define("_AM_IXTFRAMEWORK_WIDGETS_ADD","Add widgets");
-define("_AM_IXTFRAMEWORK_WIDGETS_EDIT","Edit widgets");
+define("_AM_IXTFRAMEWORK_WIDGETS_ADD","Add widget/block");
+define("_AM_IXTFRAMEWORK_WIDGETS_EDIT","Edit widget/block");
 define("_AM_IXTFRAMEWORK_WIDGETS_ID","Id");
-define("_AM_IXTFRAMEWORK_WIDGETS_NAME","Name");
+define("_AM_IXTFRAMEWORK_WIDGETS_NAME","Name (begin with 'ixt')");
 define("_AM_IXTFRAMEWORK_WIDGETS_TITLE","Title");
 define("_AM_IXTFRAMEWORK_WIDGETS_CONTENT","Content");
 define("_AM_IXTFRAMEWORK_WIDGETS_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_WIDGETS_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_WIDGETS_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_WIDGETS_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_WIDGETS_ONLINE","Selectable");
 
 //globalnav
-define("_AM_IXTFRAMEWORK_GLOBALNAV_ADD","Add globalnav");
-define("_AM_IXTFRAMEWORK_GLOBALNAV_EDIT","Edit globalnav");
+define("_AM_IXTFRAMEWORK_GLOBALNAV_ADD","Add globalnav mode");
+define("_AM_IXTFRAMEWORK_GLOBALNAV_EDIT","Edit globalnav mode");
 define("_AM_IXTFRAMEWORK_GLOBALNAV_ID","Id");
-define("_AM_IXTFRAMEWORK_GLOBALNAV_NAME","Name");
+define("_AM_IXTFRAMEWORK_GLOBALNAV_NAME","Mode Name");
 define("_AM_IXTFRAMEWORK_GLOBALNAV_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_GLOBALNAV_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_GLOBALNAV_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_GLOBALNAV_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_GLOBALNAV_ONLINE","Selectable");
 
 //preheader
-define("_AM_IXTFRAMEWORK_PREHEADER_ADD","Add preheader");
-define("_AM_IXTFRAMEWORK_PREHEADER_EDIT","Edit preheader");
+define("_AM_IXTFRAMEWORK_PREHEADER_ADD","Add preheader mode");
+define("_AM_IXTFRAMEWORK_PREHEADER_EDIT","Edit preheader mode");
 define("_AM_IXTFRAMEWORK_PREHEADER_ID","Id");
-define("_AM_IXTFRAMEWORK_PREHEADER_NAME","Name");
+define("_AM_IXTFRAMEWORK_PREHEADER_NAME","Mode Name");
 define("_AM_IXTFRAMEWORK_PREHEADER_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_PREHEADER_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_PREHEADER_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_PREHEADER_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_PREHEADER_ONLINE","Selectable");
 
 //uitheme
-define("_AM_IXTFRAMEWORK_UITHEME_ADD","Add uitheme");
-define("_AM_IXTFRAMEWORK_UITHEME_EDIT","Edit uitheme");
+define("_AM_IXTFRAMEWORK_UITHEME_ADD","Add users interface theme");
+define("_AM_IXTFRAMEWORK_UITHEME_EDIT","Edit users interface theme");
 define("_AM_IXTFRAMEWORK_UITHEME_ID","Id");
 define("_AM_IXTFRAMEWORK_UITHEME_NAME","Name");
 define("_AM_IXTFRAMEWORK_UITHEME_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_UITHEME_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_UITHEME_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_UITHEME_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_UITHEME_ONLINE","Selectable");
 
 //fixskin
-define("_AM_IXTFRAMEWORK_FIXSKIN_ADD","Add fixskin");
-define("_AM_IXTFRAMEWORK_FIXSKIN_EDIT","Edit fixskin");
+define("_AM_IXTFRAMEWORK_FIXSKIN_ADD","Add fixed skin");
+define("_AM_IXTFRAMEWORK_FIXSKIN_EDIT","Edit fixed skin");
 define("_AM_IXTFRAMEWORK_FIXSKIN_ID","Id");
 define("_AM_IXTFRAMEWORK_FIXSKIN_NAME","Name");
 define("_AM_IXTFRAMEWORK_FIXSKIN_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_FIXSKIN_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_FIXSKIN_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_FIXSKIN_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_FIXSKIN_ONLINE","Selectable");
 
 //toplayout
-define("_AM_IXTFRAMEWORK_TOPLAYOUT_ADD","Add toplayout");
-define("_AM_IXTFRAMEWORK_TOPLAYOUT_EDIT","Edit toplayout");
+define("_AM_IXTFRAMEWORK_TOPLAYOUT_ADD","Add top blocks layout");
+define("_AM_IXTFRAMEWORK_TOPLAYOUT_EDIT","Edit top blocks layout");
 define("_AM_IXTFRAMEWORK_TOPLAYOUT_ID","Id");
-define("_AM_IXTFRAMEWORK_TOPLAYOUT_NAME","Name");
+define("_AM_IXTFRAMEWORK_TOPLAYOUT_NAME","Layout Name");
 define("_AM_IXTFRAMEWORK_TOPLAYOUT_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_TOPLAYOUT_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_TOPLAYOUT_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_TOPLAYOUT_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_TOPLAYOUT_ONLINE","Selectable");
 
 //botlayout
-define("_AM_IXTFRAMEWORK_BOTLAYOUT_ADD","Add botlayout");
-define("_AM_IXTFRAMEWORK_BOTLAYOUT_EDIT","Edit botlayout");
+define("_AM_IXTFRAMEWORK_BOTLAYOUT_ADD","Add bottom blocks layout");
+define("_AM_IXTFRAMEWORK_BOTLAYOUT_EDIT","Edit bottom blocks layout");
 define("_AM_IXTFRAMEWORK_BOTLAYOUT_ID","Id");
-define("_AM_IXTFRAMEWORK_BOTLAYOUT_NAME","Name");
+define("_AM_IXTFRAMEWORK_BOTLAYOUT_NAME","Layout Name");
 define("_AM_IXTFRAMEWORK_BOTLAYOUT_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_BOTLAYOUT_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_BOTLAYOUT_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_BOTLAYOUT_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_BOTLAYOUT_ONLINE","Selectable");
 
 //themes
 define("_AM_IXTFRAMEWORK_THEMES_ADD","Add themes");
@@ -211,8 +214,67 @@ define("_AM_IXTFRAMEWORK_THEMES_DESCRIPTION","Description");
 define("_AM_IXTFRAMEWORK_THEMES_AUTHOR","Author");
 define("_AM_IXTFRAMEWORK_THEMES_COPYRIGHT","Copyright");
 define("_AM_IXTFRAMEWORK_THEMES_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_THEMES_DATE_CREATED","Date_created");
-define("_AM_IXTFRAMEWORK_THEMES_ONLINE","Online");
+define("_AM_IXTFRAMEWORK_THEMES_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_THEMES_ONLINE","Sel");
+define("_AM_IXTFRAMEWORK_THEMES_DEFAULT","Def");
+define("_AM_IXTFRAMEWORK_THEMES_SELECTABLE","Theme is selectable on user side");
+define("_AM_IXTFRAMEWORK_THEMES_NOTSELECTABLE","Theme is NOT selectable on user side");
+define("_AM_IXTFRAMEWORK_THEMES_NOTVALID","NOT valid");
+define("_AM_IXTFRAMEWORK_THEMES_GOOD","GOOD");
+define("_AM_IXTFRAMEWORK_THEMES_IS","is");
+define("_AM_IXTFRAMEWORK_THEMES_EMPTY","empty");
+define("_AM_IXTFRAMEWORK_THEMES_THISISDEFAULT","This is a Active/Default Theme");
+define("_AM_IXTFRAMEWORK_THEMES_SETASDEFAULT","Activate Theme/Set as Default");
+
+//thcat
+define("_AM_IXTFRAMEWORK_THCAT_STANDARD","Standard XOOPS theme");
+define("_AM_IXTFRAMEWORK_THCAT_UNKNOWN","Unknown");
+define("_AM_IXTFRAMEWORK_THCAT_NOTVALIDTHEME","Not a valid Theme");
+define("_AM_IXTFRAMEWORK_THCAT_NOTVALIDIXTHEME","Not a valid <strong>IXThemes</strong> Theme");
+define("_AM_IXTFRAMEWORK_THCAT_CANTBECONF","This theme can not be configured by IXTFramework because is not a valid Theme by IXThemes");
+define("_AM_IXTFRAMEWORK_THCAT_NOTCONFOPT","This theme has not configuration options");
+define("_AM_IXTFRAMEWORK_THCAT_THEMENOTEXIST","Theme %s does not exists!");
+define("_AM_IXTFRAMEWORK_THCAT_THEMENOTVALID","Theme %s is not a valid IXThemes theme!");
+define("_AM_IXTFRAMEWORK_THCAT_THEMERETERRORS","Theme %s return next errors:");
+define("_AM_IXTFRAMEWORK_THCAT_THEMENOTINST","The theme has not been activated!");
+define("_AM_IXTFRAMEWORK_THCAT_THEMEINSTSUC","Theme activated successfully");
+define("_AM_IXTFRAMEWORK_THCAT_BUTSOMEERRORS","but there was some errors:");
+define("_AM_IXTFRAMEWORK_THCAT_ISIXTTHEME","%s is an IXThemes theme!");
+define("_AM_IXTFRAMEWORK_THCAT_ERRORSOPERATION","There was errors during this operation:");
+define("_AM_IXTFRAMEWORK_THCAT_SETTINGSUPDATED","Settings updated!");
+
+// thcat template
+define("_AM_IXTFRAMEWORK_THCAT_ELECONFIG","%s Configuration");
+define("_AM_IXTFRAMEWORK_THCAT_CURACTTHEME","Current Active Theme");
+define("_AM_IXTFRAMEWORK_THCAT_EMAIL","Email");
+define("_AM_IXTFRAMEWORK_THCAT_SETTINGS","Settings");
+define("_AM_IXTFRAMEWORK_THCAT_VISITWEB","Visit Web");
+define("_AM_IXTFRAMEWORK_THCAT_MORETHEMES","More themes");
+define("_AM_IXTFRAMEWORK_THCAT_OTHERTHEMES","Other Available Themes (selectable on user side)");
+define("_AM_IXTFRAMEWORK_THCAT_ACTIVATE","Activate");
+define("_AM_IXTFRAMEWORK_THCAT_BY","by");
+define("_AM_IXTFRAMEWORK_THCAT_WEBSITE","Website");
+define("_AM_IXTFRAMEWORK_THCAT_SAVECONF","Save Configuration");
+define("_AM_IXTFRAMEWORK_THCAT_CANCEL","Cancel");
+
+define("_AM_IXTFRAMEWORK_THCAT_ADD","Add theme");
+define("_AM_IXTFRAMEWORK_THCAT_EDIT","Edit theme");
+define("_AM_IXTFRAMEWORK_THCAT_ID","Id");
+define("_AM_IXTFRAMEWORK_THCAT_NAME","Name");
+define("_AM_IXTFRAMEWORK_THCAT_SCREENSHOT","Screenshot");
+define("_AM_IXTFRAMEWORK_THCAT_RELEASE","Release");
+define("_AM_IXTFRAMEWORK_THCAT_STRUCTURE","Structure");
+define("_AM_IXTFRAMEWORK_THCAT_DESCRIPTION","Description");
+define("_AM_IXTFRAMEWORK_THCAT_AUTHOR","Author");
+define("_AM_IXTFRAMEWORK_THCAT_DEMO","Demo");
+define("_AM_IXTFRAMEWORK_THCAT_DEMO1","XOOPS 2.3.x Demo");
+define("_AM_IXTFRAMEWORK_THCAT_DEMO2","XOOPS 2.4.x Demo");
+define("_AM_IXTFRAMEWORK_THCAT_DEMO3","XOOPS 2.5.x Demo");
+define("_AM_IXTFRAMEWORK_THCAT_COPYRIGHT","Copyright");
+define("_AM_IXTFRAMEWORK_THCAT_LICENSE","License");
+define("_AM_IXTFRAMEWORK_THCAT_SUBMITTER","Submitter");
+define("_AM_IXTFRAMEWORK_THCAT_DATE_CREATED","Date created");
+define("_AM_IXTFRAMEWORK_THCAT_ONLINE","Selectable");
 
 //assigns
 define("_AM_IXTFRAMEWORK_ASSIGNS_ADD","Add assigns");
@@ -234,17 +296,18 @@ define("_AM_IXTFRAMEWORK_ASSIGNS_W2","Content + Sidebar2 Width (%)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOS","Logo Image");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOW","Width of Logo Image (px)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOH","Height of Logo Image (px)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL0","Enable Control Zone0");
-define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL1","Enable Control Zone1");
-define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL2","Enable Control Zone2");
+define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL0","Enable Control Area0");
+define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL1","Enable Control Area1");
+define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL2","Enable Control Area2");
+define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL3","Enable Control Area3");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EXTFOOTER","Enable Expanded Footer");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EHBLOCK","Widget in Expanded Header (one only)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS0","List of Widgets in Expanded Footer Block0 (,)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS1","List of Widgets in Expanded Footer Block1 (,)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS2","List of Widgets in Expanded Footer Block2 (,)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS3","List of Widgets in Expanded Footer Block3 (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS1","List of Widgets in Top Wide Block (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS2","List of Widgets in Bottom Wide Block (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS1","List of Widgets in Top Wide Area (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS2","List of Widgets in Bottom Wide Area (,)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_FOOTERRSS","Enable RSS in Footer");
 define("_AM_IXTFRAMEWORK_ASSIGNS_UITHEME","UI Theme");
 define("_AM_IXTFRAMEWORK_ASSIGNS_MULTISKIN","Enable Multiskin");
@@ -254,13 +317,13 @@ define("_AM_IXTFRAMEWORK_ASSIGNS_SB1STYLE","Enable Style for Sidebar1 Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_SB2STYLE","Enable Style for Sidebar2 Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EFTSTYLE","Enable Style for Footer Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_SYSBSTYLE","Enable Style for System Blocks");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WIDE1STYLE","Enable Style for Wide Block1");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WIDE2STYLE","Enable Style for Wide Block2");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WIDE1STYLE","Enable Style for Top Wide Area Blocks");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WIDE2STYLE","Enable Style for Bottom Wide Area Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_RTL","Enable RTL Support");
 define("_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_TOP_ORDER","Order of Top Content Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_BOTTOM_ORDER","Order of Bottom Content Blocks");
 define("_AM_IXTFRAMEWORK_ASSIGNS_SUBMITTER","Submitter");
-define("_AM_IXTFRAMEWORK_ASSIGNS_DATE_CREATED","Date_created");
+define("_AM_IXTFRAMEWORK_ASSIGNS_DATE_CREATED","Date created");
 define("_AM_IXTFRAMEWORK_ASSIGNS_ONLINE","Online");
 
 //Blocks

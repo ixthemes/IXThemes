@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
 
@@ -27,6 +27,7 @@ class IxtframeworkCorePreload extends XoopsPreloadItem
 	{
 		$GLOBALS['xoTheme']->addStylesheet('modules/ixtframework/css/tooltip.css');
 		$GLOBALS['xoTheme']->addStylesheet('modules/ixtframework/css/prettyPhoto.css');
+		$GLOBALS['xoTheme']->addStylesheet('modules/ixtframework/css/thcat.css');
 		$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
 		if (!(is_file(XOOPS_TRUST_PATH . "/Frameworks/jquery/plugins/jquery.jgrowl.js"))) {
 			// it is XOOPS 2.4.x

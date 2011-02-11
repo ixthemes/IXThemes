@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -25,6 +25,7 @@ include_once(XOOPS_ROOT_PATH."/class/xoopsmodule.php");
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 include_once XOOPS_ROOT_PATH."/class/tree.php";
+include_once XOOPS_ROOT_PATH."/class/template.php";
 include_once XOOPS_ROOT_PATH."/class/xoopslists.php";
 include_once XOOPS_ROOT_PATH."/class/pagenav.php";
 include_once XOOPS_ROOT_PATH."/class/xoopstopic.php";
@@ -46,15 +47,16 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/fixskin.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/toplayout.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/botlayout.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/themes.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/theme.php";
 
 if ( $xoopsUser ) {
 	$xoopsModule = XoopsModule::getByDirname("ixtframework");
 	if ( !$xoopsUser->isAdmin($xoopsModule->mid()) ) { 
-		redirect_header(XOOPS_URL."/",3,_NOPERM);
+		ixt_redirect(XOOPS_URL."/",3,_NOPERM);
 		exit();
 	}
 } else {
-	redirect_header(XOOPS_URL."/",3,_NOPERM);
+	ixt_redirect(XOOPS_URL."/",3,_NOPERM);
 	exit();
 }
 

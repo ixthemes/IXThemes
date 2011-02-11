@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -29,10 +29,7 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_topic";
 }
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -116,6 +113,7 @@ xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
 echo "<br />";
 
 /* list only allowed themes */
+/*
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
@@ -127,7 +125,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
     echo "<br />";
 }
-
+*/
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/topic.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_TOPIC."</strong>
 	</div><br /><br>";
@@ -137,7 +135,7 @@ switch ($op)
 {	
 	case "save_topic":
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("topic.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+           ixt_redirect("topic.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["topic_id"])) {
            $obj =& $topicHandler->get($_REQUEST["topic_id"]);
@@ -161,7 +159,7 @@ switch ($op)
 			$uploader_topic_img->fetchMedia("topic_img");
 			if (!$uploader_topic_img->upload()) {
 				$errors = $uploader_topic_img->getErrors();
-				redirect_header("javascript:history.go(-1)",3, $errors);
+				ixt_redirect("javascript:history.go(-1)",3, $errors);
 			} else {
 				$obj->setVar("topic_img", $uploader_topic_img->getSavedFileName());
 			}
@@ -182,7 +180,7 @@ switch ($op)
 		
 		
         if ($topicHandler->insert($obj)) {
-           redirect_header("topic.php?op=show_list_topic", 2, _AM_IXTFRAMEWORK_FORMOK);
+           ixt_redirect("topic.php?op=show_list_topic", 2, _AM_IXTFRAMEWORK_FORMOK);
         }
         echo $obj->getHtmlErrors();
         $form =& $obj->getForm();
@@ -197,10 +195,10 @@ switch ($op)
 		$obj =& $topicHandler->get($_REQUEST["topic_id"]);
 		if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
 			if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-				redirect_header("topic.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+				ixt_redirect("topic.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
 			}
 			if ($topicHandler->delete($obj)) {
-				redirect_header("topic.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
+				ixt_redirect("topic.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
 			} else {
 				echo $obj->getHtmlErrors();
 			}
@@ -217,7 +215,7 @@ switch ($op)
 	$obj->setVar("topic_online", $_REQUEST["topic_online"]);
 
 	if ($topicHandler->insert($obj)) {
-		redirect_header("topic.php", 3, _AM_IXTFRAMEWORK_FORMOK);
+		ixt_redirect("topic.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
 	echo $obj->getHtmlErrors();
 	

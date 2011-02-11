@@ -18,6 +18,7 @@ PRIMARY KEY (`pagelayout_id`)
 CREATE TABLE  `ixtframework_slides` (
 `slides_id` int (8)   NOT NULL  auto_increment,
 `slides_name` varchar (20)   NOT NULL ,
+`slides_desc` varchar(500) NOT NULL,
 `slides_submitter` int (10)   NOT NULL default '0',
 `slides_date_created` int (10)   NOT NULL default '0',
 `slides_online` tinyint (1)   NOT NULL default '0',
@@ -67,6 +68,7 @@ CREATE TABLE  `ixtframework_assigns` (
 `assigns_ctrl0` tinyint (1)   NOT NULL ,
 `assigns_ctrl1` tinyint (1)   NOT NULL ,
 `assigns_ctrl2` tinyint (1)   NOT NULL ,
+`assigns_ctrl3` tinyint (1)   NOT NULL ,
 `assigns_extfooter` tinyint (1)   NOT NULL ,
 `assigns_ehblock` varchar ( 255)   NOT NULL ,
 `assigns_efblocks0` varchar ( 255)   NOT NULL ,
@@ -206,26 +208,37 @@ CREATE TABLE  `ixtframework_themes` (
 PRIMARY KEY (`themes_id`)
 ) ENGINE=MyISAM;
 
+CREATE TABLE `ixtframework_thconfig` (
+  `id_conf` bigint(20) NOT NULL auto_increment,
+  `name` varchar(50) NOT NULL,
+  `value` text NOT NULL,
+  `type` varchar(5) NOT NULL,
+  `element` varchar(50) NOT NULL,
+  PRIMARY KEY  (`id_conf`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM;
+
+
 INSERT INTO `ixtframework_pagelayout` VALUES (1, 'lcr', 1, 1285610400, 1);
 INSERT INTO `ixtframework_pagelayout` VALUES (2, 'clr', 1, 1285610400, 1);
 INSERT INTO `ixtframework_pagelayout` VALUES (3, 'lrc', 1, 1285610400, 1);
 
-INSERT INTO `ixtframework_slides` VALUES (1, 's0', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (2, 's1', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (3, 's2', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (4, 's3', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (5, 's4', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (6, 's5', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (7, 's6', 1, 1285610400, 1);
-INSERT INTO `ixtframework_slides` VALUES (8, 'no', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (1, 's0', 'fx: ''fade'',  speed: 4000, timeout: 3000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (2, 's1', 'fx: ''scrollRight'', speedIn: 2500, speedOut: 400, delay: -4000, timeout: 5000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (3, 's2', 'fx: ''scrollDown'', speedIn: 2000, speedOut: 500, delay: -1000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (4, 's3', 'fx: ''custom'', cssBefore: {left: 615, top: -274, display: ''block''}, animIn: {left: 0, top: 0}, animOut: {left: 615, top: 274}, delay: -3000, timeout: 4000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (5, 's4', 'fx: ''custom'', sync: 0, cssBefore: {top: 0, left: 980, display: ''block''}, animIn: {left: 0}, animOut: {top: 274}, delay: -1000, speed: 700, timeout: 4500', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (6, 's5', 'fx: ''custom'', cssBefore: {left: 980, top: 274, width: 0, height: 0, opacity: 1, zIndex: 1}, animOut: {opacity: 0}, animIn: {left: 0, top: 0, width: 980, height: 274}, cssAfter: {zIndex: 0}, delay: -3000, speed: 3000, timeout: 4000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (7, 's6', 'fx: ''custom'', cssBefore: {top: 0, left: 0, width: 0, height: 0, zIndex: 1}, animIn: {width: 980, height: 274}, animOut: {top: 274, left: 980, width: 0, height: 0}, cssAfter: {zIndex: 0}, delay: -1000, timeout: 4000', 1, 1285610400, 1);
+INSERT INTO `ixtframework_slides` VALUES (8, 'no', 'Slideshow is disabled', 1, 1285610400, 1);
 
 INSERT INTO `ixtframework_topic` VALUES (1, 0, 'styles', 'styles description', '', 0, '', 1, 1285610400, 1);
 
-INSERT INTO `ixtframework_assigns` VALUES (1, 'style0', '1,3,6,7,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo.png', 199, 51, 0, 1, 1, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283277600, 1);
-INSERT INTO `ixtframework_assigns` VALUES (2, 'style1', '1,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo.png', 199, 51, 0, 1, 1, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283364000, 0);
-INSERT INTO `ixtframework_assigns` VALUES (3, 'style2', '9999', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo_490.png', 490, 126, 0, 1, 1, 1, 'ixt05', '1', 'ixt01', 'ixt02', '5', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283450400, 0);
-INSERT INTO `ixtframework_assigns` VALUES (4, 'style3', '3,6', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'blank.gif', 199, 51, 0, 1, 1, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283536800, 0);
-INSERT INTO `ixtframework_assigns` VALUES (5, 'style4', '1,7,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'blank.gif', 199, 51, 0, 1, 1, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283623200, 0);
+INSERT INTO `ixtframework_assigns` VALUES (1, 'style0', '1,3,6,7,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo.png', 199, 51, 0, 1, 1, 0, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283277600, 1);
+INSERT INTO `ixtframework_assigns` VALUES (2, 'style1', '1,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo.png', 199, 51, 0, 1, 1, 0, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283364000, 0);
+INSERT INTO `ixtframework_assigns` VALUES (3, 'style2', '9999', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'logo_490.png', 490, 126, 0, 1, 1, 0, 1, 'ixt05', '1', 'ixt01', 'ixt02', '5', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283450400, 0);
+INSERT INTO `ixtframework_assigns` VALUES (4, 'style3', '3,6', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'blank.gif', 199, 51, 0, 1, 1, 0, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283536800, 0);
+INSERT INTO `ixtframework_assigns` VALUES (5, 'style4', '1,7,8', 1, 2, 0, 2, 1, 0, 1, 1, 55, 75, 80, 'blank.gif', 199, 51, 0, 1, 1, 0, 1, 'ixt05', 'ixt04', 'ixt01', 'ixt02', 'ixt09', 'ixt07,ixt04', 'ixt08', 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2, 1, 1283623200, 0);
 
 INSERT INTO `ixtframework_widgets` VALUES (1, 'ixt01', 'Do You like it?', '<div align="center"><a href="http://ixthemes.org">If you like these themes you can support IXThemes Project</a><p>&nbsp;</p><div align="center"><span class="ixt-button-wrapper"><span class="l"></span><span class="r"></span><a class="ixt-button" href="http://ixthemes.com/shop" >MAKE SHOPPING</a></span></div><p>&nbsp;</p><a href="http://ixthemes.com">We will create many FREE fine themes for YOUR COMMUNITY!</a><p>&nbsp;</p></div>', 1, 1285610400, 1);
 INSERT INTO `ixtframework_widgets` VALUES (2, 'ixt02', 'Follow Us!!!', '<div align="center"><a href="http://twitter.com/ixthemes"><img title="Follow IXThemes on Twitter" alt="IXThemes on Twitter" src="\'.XOOPS_URL.\'/themes/\'.$theme.\'/img/twitter-follow-me.png" /></a><p>&nbsp;</p><a href="http://ixthemes.org"><img title="Welcome to IXThemes Project" alt="The Best FREE XOOPS Themes" src="\'.XOOPS_URL.\'/themes/\'.$theme.\'/img/logo.png" /></a><p>&nbsp;</p></div>', 1, 1285610400, 1);

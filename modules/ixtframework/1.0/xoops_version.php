@@ -15,18 +15,21 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
- 
 	
-	$modversion["name"] = "ixtframework";
-	$modversion["version"] = 1.03;
+	$modversion["name"] = "IXTFramework";
+	$modversion["version"] = 1.04;
 	$modversion["description"] = "Engine for management the XOOPS Themes by IXThemes. IXThemes is an implementation of innovative methods in the development of qualitative universality modules and themes for CMS based on the XOOPS.";
-	$modversion["author"] = "IXThemes Project";
+	$modversion["author"] = "algalochkin";
+	$modversion["authormail"] = "support@ixthemes.org";
+	$modversion["authorweb"] = "IXThemes Project";
+	$modversion["authorurl"] = "http://ixthemes.org";
 	$modversion["author_website_url"] = "http://ixthemes.org";
 	$modversion["author_website_name"] = "IXThemes Project";
-	$modversion["credits"] = "algalochkin, ixthemes, ixtdev, etc.";
+	$modversion["credits"] = "IXThemes Project";
+ $modversion["help"] = "http://ixthemes.org/modules/liaise/index.php?form_id=1";
 	$modversion["license"] = "GPL 2.0";
 	$modversion["release_info"] = "Release";
 	$modversion["release_file"] = "none";
@@ -42,11 +45,11 @@
  $modversion['icon48'] = 'images/icons/icon48.png';
 
 	//about
-	$modversion["demo_site_url"] = "http://xoops245demo.ixthemes.org";
+	$modversion["demo_site_url"] = "http://xoops250demo.ixthemes.org";
 	$modversion["demo_site_name"] = "IXThemes Demo";
 	$modversion["module_website_url"] = "http://ixthemes.com";
-	$modversion["module_website_name"] = "IXThemes Modules";
-	$modversion["release"] = "10-10-2010";
+	$modversion["module_website_name"] = "IXThemes Modules and Themes";
+	$modversion["release"] = "12-20-2010";
 	$modversion["module_status"] = "Final";
 	
 	// Admin things
@@ -72,6 +75,7 @@
 	$modversion["tables"][9] = "ixtframework_toplayout";
 	$modversion["tables"][10] = "ixtframework_botlayout";
 	$modversion["tables"][11] = "ixtframework_themes";
+	$modversion["tables"][12] = "ixtframework_thconfig";
 	
 	
 	// Scripts to run upon installation or update
@@ -89,34 +93,6 @@
 	$modversion["config"][$i]["category"]    = "global";
 	$i++;
 	
-	//Uploads : size topic_img
-	/*
-	$modversion["config"][$i]["name"] = "topic_img_size";
-	$modversion["config"][$i]["title"] = "_MI_IXTFRAMEWORK_TOPIC_IMG_SIZE";
-	$modversion["config"][$i]["description"] = "";
-	$modversion["config"][$i]["formtype"] = "textbox";
-	$modversion["config"][$i]["valuetype"] = "int";
-	$modversion["config"][$i]["default"] = "10485760";
-	$i++;
-	*/
-	//Uploads : mimetypes topic_img
-	/*
-	$modversion["config"][$i]["name"] = "topic_img_mimetypes";
-	$modversion["config"][$i]["title"] = "_MI_IXTFRAMEWORK_TOPIC_IMG_MIMETYPES";
-	$modversion["config"][$i]["description"] = "";
-	$modversion["config"][$i]["formtype"] = "select_multi";
-	$modversion["config"][$i]["valuetype"] = "array";
-	$modversion["config"][$i]["default"] = array("image/gif", "image/jpeg", "image/png");
-	$modversion["config"][$i]["options"] = array(			
-										"bmp" => "image/bmp",
-										"gif" => "image/gif",
-										"jpeg" => "image/pjpeg",
-										"jpeg" => "image/jpeg",
-										"jpg" => "image/jpeg",
-										"jpe" => "image/jpeg",
-										"png" => "image/png");
-	$i++;
-	*/				
 	//Uploads : size assigns_logos
 	$modversion["config"][$i]["name"] = "assigns_logos_size";
 	$modversion["config"][$i]["title"] = "_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_SIZE";
@@ -169,32 +145,15 @@
 										"png" => "image/png");
 	$i++;
 					
-	//Blocs
-	/*
-	$i = 1;
-	$modversion["blocks"][$i]["file"] = "blocks_assigns.php";
-	$modversion["blocks"][$i]["name"] = _MI_IXTFRAMEWORK_ASSIGNS_BLOCK_RECENT;
-	$modversion["blocks"][$i]["description"] = "";
-	$modversion["blocks"][$i]["show_func"] = "b_ixtframework_assigns";
-	$modversion["blocks"][$i]["edit_func"] = "b_ixtframework_assigns_edit";
-	$modversion["blocks"][$i]["options"] = "recent|5|25|0";
-	$modversion["blocks"][$i]["template"] = "ixtframework_assigns_block_recent.html";
-	$i++;
-	$modversion["blocks"][$i]["file"] = "blocks_assigns.php";
-	$modversion["blocks"][$i]["name"] = _MI_IXTFRAMEWORK_ASSIGNS_BLOCK_DAY;
-	$modversion["blocks"][$i]["description"] = "";
-	$modversion["blocks"][$i]["show_func"] = "b_ixtframework_assigns";
-	$modversion["blocks"][$i]["edit_func"] = "b_ixtframework_assigns_edit";
-	$modversion["blocks"][$i]["options"] = "day|5|25|0";
-	$modversion["blocks"][$i]["template"] = "ixtframework_assigns_block_day.html";
-	$i++;
-	$modversion["blocks"][$i]["file"] = "blocks_assigns.php";
-	$modversion["blocks"][$i]["name"] = _MI_IXTFRAMEWORK_ASSIGNS_BLOCK_RANDOM;
-	$modversion["blocks"][$i]["description"] = "";
-	$modversion["blocks"][$i]["show_func"] = "b_ixtframework_assigns";
-	$modversion["blocks"][$i]["edit_func"] = "b_ixtframework_assigns_edit";
-	$modversion["blocks"][$i]["options"] = "random|5|25|0";
-	$modversion["blocks"][$i]["template"] = "ixtframework_assigns_block_random.html";
-	$i++;		
-	*/
+// Templates
+$i = 0;
+
+$i++;
+$modversion['templates'][$i]['file'] = 'admin/ixtframework_thcat_index.html';
+$modversion['templates'][$i]['description'] = 'themes catalogue template';
+
+$i++;
+$modversion['templates'][$i]['file'] = 'admin/ixtframework_thcat_config.html';
+$modversion['templates'][$i]['description'] = 'theme config template for rel.5.x';
+	
 ?>

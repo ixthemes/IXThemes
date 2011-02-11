@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -25,7 +25,7 @@ xoops_cp_header();
 
 if( !empty($_POST["submit"]) ) 
 {
-	redirect_header( XOOPS_URL."/modules/".$xoopsModule->dirname()."/admin/permissions.php" , 1 , _MP_GPERMUPDATED );
+	ixt_redirect( XOOPS_URL."/modules/".$xoopsModule->dirname()."/admin/permissions.php" , 1 , _MP_GPERMUPDATED );
 }
 
 global $xoopsDB;

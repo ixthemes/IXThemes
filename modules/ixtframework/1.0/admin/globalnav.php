@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -29,10 +29,7 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_globalnav";
 }
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -73,12 +70,17 @@ div.xoops-form-element-caption-required .caption-marker {	background-color:inher
 
 if (!($op == "save_globalnav") && !($op == "update_online_globalnav") && !($op == "delete_globalnav")) {
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(6, _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
+if (!ixtframework_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtframework_adminmenu(6, _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (6, _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (6, _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
+ define('RMCLOCATION','globalnav'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 echo "<style>
@@ -112,10 +114,11 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-echo "<br />";
+//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+//echo "<br />";
 
 /* list only allowed themes */
+/*
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
@@ -127,7 +130,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
     echo "<br />";
 }
-
+*/
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/globalnav.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_GLOBALNAV."</strong>
 	</div><br /><br>";
@@ -137,7 +140,7 @@ switch ($op)
 {	
 	case "save_globalnav":
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("globalnav.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+           ixt_redirect("globalnav.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["globalnav_id"])) {
            $obj =& $globalnavHandler->get($_REQUEST["globalnav_id"]);
@@ -157,7 +160,7 @@ switch ($op)
 		
 		
         if ($globalnavHandler->insert($obj)) {
-           redirect_header("globalnav.php?op=show_list_globalnav", 2, _AM_IXTFRAMEWORK_FORMOK);
+           ixt_redirect("globalnav.php?op=show_list_globalnav", 2, _AM_IXTFRAMEWORK_FORMOK);
         }
         echo $obj->getHtmlErrors();
         $form =& $obj->getForm();
@@ -172,10 +175,10 @@ switch ($op)
 		$obj =& $globalnavHandler->get($_REQUEST["globalnav_id"]);
 		if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
 			if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-				redirect_header("globalnav.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+				ixt_redirect("globalnav.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
 			}
 			if ($globalnavHandler->delete($obj)) {
-				redirect_header("globalnav.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
+				ixt_redirect("globalnav.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
 			} else {
 				echo $obj->getHtmlErrors();
 			}
@@ -192,7 +195,7 @@ switch ($op)
 	$obj->setVar("globalnav_online", $_REQUEST["globalnav_online"]);
 
 	if ($globalnavHandler->insert($obj)) {
-		redirect_header("globalnav.php", 3, _AM_IXTFRAMEWORK_FORMOK);
+		ixt_redirect("globalnav.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
 	echo $obj->getHtmlErrors();
 	

@@ -15,19 +15,189 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
- 
+
+define('IXTPATH', XOOPS_ROOT_PATH.'/modules/ixtframework');
+//define('IXTURL', XOOPS_URL.'/modules/ixtframework');
+
+/**
+* Checks if a theme is valid.
+* If thame is valid then returns the prefix for functions names
+* 
+* @param string $theme
+* @return bool|string
+*/
+function &ixt_is_valid($theme) {
+	global $xoopsConfig;
+
+ $object = false;
+	if (is_file(XOOPS_THEME_PATH.'/'.$theme.'/config/theme.php')) {
+		// release 5.x
+		include_once XOOPS_THEME_PATH.'/'.$theme.'/config/theme.php';
+		$ixttheme = preg_replace('/\s+/', '', strtolower($theme));
+		$ixttheme = str_replace('-','',$ixttheme);
+		$class ='IXTheme'.ucfirst($ixttheme);
+		if (class_exists($class)) {
+			$object = new $class();
+  }
+	} else {
+		if (is_file(XOOPS_THEME_PATH.'/'.$theme.'/tpl/assigns.html')) {
+//		if (is_file(XOOPS_THEME_PATH.'/'.$theme.'/xo-info.php')) {
+			// releases 3.x, 4.x
+   $object = true;
+		}
+	}
+	return $object;
+}
+
+function values_decode(&$value, $key){
+	$value = utf8_decode($value);
+}
+
+/**
+* Redirect with a message
+*/
+
+function ixt_redirect($url, $time = 3, $message) {
+	
+	if (ixtframework_isrmcommon()) {
+  redirectMsg($url, $message, $level=0);
+	} else {
+		redirect_header($url, $time, $message);
+	}
+	exit();
+}
+
+/**
+* Gets the current theme config
+*/
+function ixt_get_current_config($element='', $edit = false){
+//	$ret = array();
+	$db = Database::getInstance();
+	$sql = "SELECT * FROM ".$db->prefix("ixtframework_thconfig").($element != '' ? " WHERE element='$element'" : '');
+	$result = $db->query($sql);
+	while ($row = $db->fetchArray($result)){
+		$ret[$row['name']] = $row['type']=='array' ? unserialize($row['value']) : $row['value'];
+	}
+	
+	array_walk_recursive($ret, 'decode_entities');
+	
+	if ($edit){
+		array_walk_recursive($ret, 'special_chars');
+	}
+	
+	return $ret;
+}
+
+function decode_entities(&$value, $key){
+	$value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
+}
+
+function special_chars(&$value, $key){
+	$value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+/**
+* Insert configuration in db
+* @param array Array of configurations
+* @param string Element type: theme or plugin
+*/
+function ixt_insert_configs($configs, $element){
+	
+	if (empty($configs)) return;
+	
+	$db = Database::getInstance();
+	
+	$db->queryF("DELETE FROM ".$db->prefix("ixtframework_thconfig")." WHERE element='$element'");
+	
+	$sql = "INSERT INTO ".$db->prefix("ixtframework_thconfig")." (`name`,`value`,`type`,`element`) VALUES ('%s','%s','%s','$element')";
+	foreach ($configs as $name => $value){
+		$type = '';
+		if (is_array($value)){
+			$value = json_encode($value);
+			$type = 'array';
+		}
+		
+		$db->queryF(sprintf($sql, $name, $value, $type));
+		
+	}
+	
+}
+
+/**
+* Check if a plugin is installed
+* When plugin is installed then this function returns an array with
+* all plugin info. This array can be used to check version or another
+* things.
+* 
+* @param string Plugin name
+* @return bool|array
+*/
+function ixt_plugin_installed($plugin){
+	
+	if ($plugin=='') return false;
+	
+	$db = Database::getInstance();
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("ixtheme_plugins")." WHERE dir='".MyTextSanitizer::addSlashes($plugin)."'";
+	list($num) = $db->fetchRow($db->query($sql));
+	
+	if ($num<=0) return;
+	
+	$path = IXTPATH.'/plugins/'.$plugin;
+	
+	if (!is_file($path.'/ixthemes_plugin_'.$plugin.'.php')) return false;
+	
+	include_once $path.'/ixthemes_plugin_'.$plugin.'.php';
+	$class = "IXThemes".ucfirst($plugin);
+	if (!class_exists($class)) return false;
+	
+	$plugin = new $class();
+	return $plugin->get_info();
+	
+}
+
+/**
+* Check if a modules is installed
+* @param string Module dirname
+* @return bool
+*/
+function ixt_module_installed($dir){
+	if ($dir=='') return;
+	
+	$db = Database::getInstance();
+	$sql = "SELECT COUNT(*) FROM ".$db->prefix("modules")." WHERE dirname='".MyTextSanitizer::addSlashes($dir)."'";
+	list($num) = $db->fetchRow($db->query($sql));
+	
+	if ($num<=0) return false;
+	
+	return true;
+	
+}
+
+function ixtframework_isrmcommon() {
+	$isrmc = false;
+	
+	$module_handler =& xoops_gethandler('module');
+	$installed_mods = $module_handler->getObjects();
+	foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
+	if (isset($rmisactive) && ($rmisactive)) {
+		$isrmc = true;
+	}
+	
+	return $isrmc;
+}
+
 function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "") 
 {   
 	global $xoopsModule, $xoopsConfig; 
 
 	echo "
-    	<style type=\"text/css\">
-    	#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
-    	#buttonbar { float:left; width:100%; background: #e7e7e7 url(".XOOPS_URL."/modules/ixtframework/images/menu/bg.png) repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
-    	#buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
+		<style type=\"text/css\">
+		#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
+		#buttonbar { float:left; width:100%; background: #e7e7e7 url(".XOOPS_URL."/modules/ixtframework/images/menu/bg.png) repeat-x left bottom; font-size:93%; line-height:normal; border-left: 1px solid black; border-right: 1px solid black; margin-bottom: 12px; }
+		#buttonbar ul { margin:0; margin-top: 15px; padding:10px 10px 0; list-style:none; }
 		#buttonbar li { display:inline; margin:0; padding:0; }
 		#buttonbar a { float:left; background:url(".XOOPS_URL."/modules/ixtframework/images/deco/left_both.png) no-repeat left top; margin:0; padding:0 0 0 9px; border-bottom:1px solid #000; text-decoration:none; }
 		#buttonbar a span { float:left; display:block; background:url(".XOOPS_URL."/modules/ixtframework/images/deco/right_both.png) no-repeat right top; padding:5px 15px 4px 6px; font-weight:bold; color:#765; }
@@ -82,5 +252,24 @@ function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "")
 			</ul></div>";
 }
 
+// For RMCommon Utility
+function ixtframework_rmtoolbar(){
+	
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_DASHBOARD, './index.php', '../images/deco/icon_index_16.png', 'dashboard');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_ASSIGNS, './assigns.php', '../images/deco/icon_assigns_16.png', 'assigns');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_THEMES, './themes.php', '../images/deco/icon_themes_16.png', 'themes');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_THEMESCAT, './thcat.php', '../images/deco/icon_themes_16.png', 'thcat');
+ RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT, './pagelayout.php', '../images/deco/icon_pagelayout_16.png', 'pagelayout');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_SLIDES, './slides.php', '../images/deco/icon_slides_16.png', 'slides');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_WIDGETS, './widgets.php', '../images/deco/icon_widgets_16.png', 'widgets');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV, './globalnav.php', '../images/deco/icon_globalnav_16.png', 'globalnav');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_PREHEADER, './preheader.php', '../images/deco/icon_preheader_16.png', 'preheader');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT, './toplayout.php', '../images/deco/icon_toplayout_16.png', 'toplayout');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT, './botlayout.php', '../images/deco/icon_botlayout_16.png', 'botlayout');
+	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_ABOUT, './about.php', '../images/deco/icon_about_16.png', 'about');
+ 
+	RMTemplate::get()->set_help('http://ixthemes.org/modules/liaise/index.php?form_id=1');
+
+}
 
 ?>

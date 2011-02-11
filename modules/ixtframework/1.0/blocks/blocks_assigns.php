@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  	
@@ -145,6 +145,9 @@ $assigns[$k]["assigns_ctrl1"] = $verif_assigns_ctrl1;
 
 $verif_assigns_ctrl2 = ( $assigns_arr[$i]->getVar("assigns_ctrl2") == 1 ) ? "yes" : "no";
 $assigns[$k]["assigns_ctrl2"] = $verif_assigns_ctrl2;
+
+$verif_assigns_ctrl3 = ( $assigns_arr[$i]->getVar("assigns_ctrl3") == 1 ) ? "yes" : "no";
+$assigns[$k]["assigns_ctrl3"] = $verif_assigns_ctrl3;
 
 $verif_assigns_extfooter = ( $assigns_arr[$i]->getVar("assigns_extfooter") == 1 ) ? "yes" : "no";
 $assigns[$k]["assigns_extfooter"] = $verif_assigns_extfooter;

@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -29,10 +29,7 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_botlayout";
 }
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -73,12 +70,17 @@ div.xoops-form-element-caption-required .caption-marker {	background-color:inher
 
 if (!($op == "save_botlayout") && !($op == "update_online_botlayout") && !($op == "delete_botlayout")) {
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(11, _AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT);
+if (!ixtframework_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtframework_adminmenu(11, _AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (11, _AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (11, _AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT);
+ define('RMCLOCATION','botlayout'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 echo "<style>
@@ -112,10 +114,11 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-echo "<br />";
+//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+//echo "<br />";
 
 /* list only allowed themes */
+/*
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
@@ -127,7 +130,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
     echo "<br />";
 }
-
+*/
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/botlayout.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT."</strong>
 	</div><br /><br>";
@@ -137,7 +140,7 @@ switch ($op)
 {	
 	case "save_botlayout":
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("botlayout.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+           ixt_redirect("botlayout.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["botlayout_id"])) {
            $obj =& $botlayoutHandler->get($_REQUEST["botlayout_id"]);
@@ -157,7 +160,7 @@ switch ($op)
 		
 		
         if ($botlayoutHandler->insert($obj)) {
-           redirect_header("botlayout.php?op=show_list_botlayout", 2, _AM_IXTFRAMEWORK_FORMOK);
+           ixt_redirect("botlayout.php?op=show_list_botlayout", 2, _AM_IXTFRAMEWORK_FORMOK);
         }
         echo $obj->getHtmlErrors();
         $form =& $obj->getForm();
@@ -172,10 +175,10 @@ switch ($op)
 		$obj =& $botlayoutHandler->get($_REQUEST["botlayout_id"]);
 		if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
 			if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-				redirect_header("botlayout.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+				ixt_redirect("botlayout.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
 			}
 			if ($botlayoutHandler->delete($obj)) {
-				redirect_header("botlayout.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
+				ixt_redirect("botlayout.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
 			} else {
 				echo $obj->getHtmlErrors();
 			}
@@ -192,7 +195,7 @@ switch ($op)
 	$obj->setVar("botlayout_online", $_REQUEST["botlayout_online"]);
 
 	if ($botlayoutHandler->insert($obj)) {
-		redirect_header("botlayout.php", 3, _AM_IXTFRAMEWORK_FORMOK);
+		ixt_redirect("botlayout.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
 	echo $obj->getHtmlErrors();
 	
@@ -212,7 +215,7 @@ switch ($op)
 			{			
 				echo "<table width=\"100%\" cellspacing=\"1\" class=\"outer\">
 					<tr>
-						<th align=\"center\">"._AM_IXTFRAMEWORK_BOTLAYOUT_NAME."</th>
+						<th colspan=\"2\" align=\"center\">"._AM_IXTFRAMEWORK_BOTLAYOUT_NAME."</th>
 						<th align=\"center\">"._AM_IXTFRAMEWORK_BOTLAYOUT_SUBMITTER."</th>
 						<th align=\"center\">"._AM_IXTFRAMEWORK_BOTLAYOUT_DATE_CREATED."</th>
 						<th align=\"center\">"._AM_IXTFRAMEWORK_BOTLAYOUT_ONLINE."</th>
@@ -228,7 +231,8 @@ switch ($op)
 					{
 						$class = ($class == "even") ? "odd" : "even";
 						echo "<tr class=\"".$class."\">";
-						
+
+					echo "<td align=\"center\"><img src=\"../images/deco/c".$botlayout_arr[$i]->getVar("botlayout_name").".png\"></img></td>";	
 					echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_BOTLAYOUT_NAME."\">".$botlayout_arr[$i]->getVar("botlayout_name")."</a></td>";	
 					
 					echo "<td align=\"center\">".XoopsUser::getUnameFromId($botlayout_arr[$i]->getVar("botlayout_submitter"),"S")."</td>";	

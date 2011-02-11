@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -57,6 +57,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$this->initVar("assigns_ctrl0",XOBJ_DTYPE_INT,null,false,1);
 			$this->initVar("assigns_ctrl1",XOBJ_DTYPE_INT,null,false,1);
 			$this->initVar("assigns_ctrl2",XOBJ_DTYPE_INT,null,false,1);
+			$this->initVar("assigns_ctrl3",XOBJ_DTYPE_INT,null,false,1);
 			$this->initVar("assigns_extfooter",XOBJ_DTYPE_INT,null,false,1);
 			$this->initVar("assigns_ehblock",XOBJ_DTYPE_TXTBOX,null,false);
 			$this->initVar("assigns_efblocks0",XOBJ_DTYPE_TXTBOX,null,false);
@@ -119,7 +120,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$globalnav_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_GLOBALNAV, "assigns_globalnav", $this->getVar("assigns_globalnav"));
 			$globalnav_select->addOptionArray($globalnavHandler->getList());
 			$form->addElement($globalnav_select, true);
-			 $assigns_widecontent = $this->isNew() ? 1 : $this->getVar("assigns_widecontent");
+			 $assigns_widecontent = $this->isNew() ? 0 : $this->getVar("assigns_widecontent");
 			$check_assigns_widecontent = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_WIDECONTENT, "assigns_widecontent", $assigns_widecontent);
 			$check_assigns_widecontent->addOption(1, " ");
 			$form->addElement($check_assigns_widecontent);
@@ -172,7 +173,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 
 			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_LOGOW, "assigns_logow", 50, 255, $this->getVar("assigns_logow")), true);
 			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_LOGOH, "assigns_logoh", 50, 255, $this->getVar("assigns_logoh")), true);
-			 $assigns_ctrl0 = $this->isNew() ? 1 : $this->getVar("assigns_ctrl0");
+			 $assigns_ctrl0 = $this->isNew() ? 0 : $this->getVar("assigns_ctrl0");
 			$check_assigns_ctrl0 = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_CTRL0, "assigns_ctrl0", $assigns_ctrl0);
 			$check_assigns_ctrl0->addOption(1, " ");
 			$form->addElement($check_assigns_ctrl0);
@@ -184,6 +185,10 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$check_assigns_ctrl2 = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_CTRL2, "assigns_ctrl2", $assigns_ctrl2);
 			$check_assigns_ctrl2->addOption(1, " ");
 			$form->addElement($check_assigns_ctrl2);
+			 $assigns_ctrl3 = $this->isNew() ? 0 : $this->getVar("assigns_ctrl3");
+			$check_assigns_ctrl3 = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_CTRL3, "assigns_ctrl3", $assigns_ctrl3);
+			$check_assigns_ctrl3->addOption(1, " ");
+			$form->addElement($check_assigns_ctrl3);
 			 $assigns_extfooter = $this->isNew() ? 1 : $this->getVar("assigns_extfooter");
 			$check_assigns_extfooter = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_EXTFOOTER, "assigns_extfooter", $assigns_extfooter);
 			$check_assigns_extfooter->addOption(1, " ");
@@ -204,7 +209,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$uitheme_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_UITHEME, "assigns_uitheme", $this->getVar("assigns_uitheme"));
 			$uitheme_select->addOptionArray($uithemeHandler->getList());
 			$form->addElement($uitheme_select, true);
-			 $assigns_multiskin = $this->isNew() ? 1 : $this->getVar("assigns_multiskin");
+			 $assigns_multiskin = $this->isNew() ? 0 : $this->getVar("assigns_multiskin");
 			$check_assigns_multiskin = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_MULTISKIN, "assigns_multiskin", $assigns_multiskin);
 			$check_assigns_multiskin->addOption(1, " ");
 			$form->addElement($check_assigns_multiskin);
@@ -213,11 +218,11 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$fixskin_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_FIXSKIN, "assigns_fixskin", $this->getVar("assigns_fixskin"));
 			$fixskin_select->addOptionArray($fixskinHandler->getList());
 			$form->addElement($fixskin_select, true);
-			 $assigns_blconcat = $this->isNew() ? 1 : $this->getVar("assigns_blconcat");
+			 $assigns_blconcat = $this->isNew() ? 0 : $this->getVar("assigns_blconcat");
 			$check_assigns_blconcat = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_BLCONCAT, "assigns_blconcat", $assigns_blconcat);
 			$check_assigns_blconcat->addOption(1, " ");
 			$form->addElement($check_assigns_blconcat);
-			 $assigns_sb1style = $this->isNew() ? 1 : $this->getVar("assigns_sb1style");
+			 $assigns_sb1style = $this->isNew() ? 0 : $this->getVar("assigns_sb1style");
 			$check_assigns_sb1style = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_SB1STYLE, "assigns_sb1style", $assigns_sb1style);
 			$check_assigns_sb1style->addOption(1, " ");
 			$form->addElement($check_assigns_sb1style);
@@ -233,7 +238,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$check_assigns_sysbstyle = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_SYSBSTYLE, "assigns_sysbstyle", $assigns_sysbstyle);
 			$check_assigns_sysbstyle->addOption(1, " ");
 			$form->addElement($check_assigns_sysbstyle);
-			 $assigns_wide1style = $this->isNew() ? 1 : $this->getVar("assigns_wide1style");
+			 $assigns_wide1style = $this->isNew() ? 0 : $this->getVar("assigns_wide1style");
 			$check_assigns_wide1style = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_WIDE1STYLE, "assigns_wide1style", $assigns_wide1style);
 			$check_assigns_wide1style->addOption(1, " ");
 			$form->addElement($check_assigns_wide1style);
@@ -241,7 +246,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$check_assigns_wide2style = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_WIDE2STYLE, "assigns_wide2style", $assigns_wide2style);
 			$check_assigns_wide2style->addOption(1, " ");
 			$form->addElement($check_assigns_wide2style);
-			 $assigns_rtl = $this->isNew() ? 1 : $this->getVar("assigns_rtl");
+			 $assigns_rtl = $this->isNew() ? 0 : $this->getVar("assigns_rtl");
 			$check_assigns_rtl = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_RTL, "assigns_rtl", $assigns_rtl);
 			$check_assigns_rtl->addOption(1, " ");
 			$form->addElement($check_assigns_rtl);
@@ -257,7 +262,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$form->addElement($botlayout_select, true);
 			$form->addElement(new XoopsFormSelectUser(_AM_IXTFRAMEWORK_ASSIGNS_SUBMITTER, "assigns_submitter", false, $this->getVar("assigns_submitter"), 1, false), true);
 			$form->addElement(new XoopsFormTextDateSelect(_AM_IXTFRAMEWORK_ASSIGNS_DATE_CREATED, "assigns_date_created", "", $this->getVar("assigns_date_created")));
-			 $assigns_online = $this->isNew() ? 1 : $this->getVar("assigns_online");
+			 $assigns_online = $this->isNew() ? 0 : $this->getVar("assigns_online");
 			$check_assigns_online = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_ONLINE, "assigns_online", $assigns_online);
 			$check_assigns_online->addOption(1, " ");
 			$form->addElement($check_assigns_online);

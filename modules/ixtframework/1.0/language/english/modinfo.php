@@ -15,14 +15,15 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
 //Menu
 define("_MI_IXTFRAMEWORK_MANAGER_INDEX","Index");
+define("_MI_IXTFRAMEWORK_MANAGER_DASHBOARD","Dashboard");
 define("_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT","Page Layout");
-define("_MI_IXTFRAMEWORK_MANAGER_SLIDES","Slides");
+define("_MI_IXTFRAMEWORK_MANAGER_SLIDES","Slideshow Scenarios");
 define("_MI_IXTFRAMEWORK_MANAGER_TOPIC","Topic");
 define("_MI_IXTFRAMEWORK_MANAGER_ASSIGNS","Assigns");
 define("_MI_IXTFRAMEWORK_MANAGER_WIDGETS","Widgets");
@@ -30,9 +31,10 @@ define("_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV","Globalnav");
 define("_MI_IXTFRAMEWORK_MANAGER_PREHEADER","Preheader");
 define("_MI_IXTFRAMEWORK_MANAGER_UITHEME","UI Theme");
 define("_MI_IXTFRAMEWORK_MANAGER_FIXSKIN","Fixed Skin");
-define("_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT","Top Content Layout");
-define("_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT","Bottom Content Layout");
+define("_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT","Top Blocks");
+define("_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT","Bottom Blocks");
 define("_MI_IXTFRAMEWORK_MANAGER_THEMES","Themes");
+define("_MI_IXTFRAMEWORK_MANAGER_THEMESCAT","Catalogue");
 
 define("_MI_IXTFRAMEWORK_MANAGER_ABOUT","About");
 define("_MI_IXTFRAMEWORK_MANAGER_PREFERENCES","Preferences");

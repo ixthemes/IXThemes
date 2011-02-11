@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  	
@@ -26,7 +26,7 @@
 		
 		define("_MB_IXTFRAMEWORK_PAGELAYOUT_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_PAGELAYOUT_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_PAGELAYOUT_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_PAGELAYOUT_ONLINE","Online");
 		
@@ -37,7 +37,7 @@
 		
 		define("_MB_IXTFRAMEWORK_SLIDES_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_SLIDES_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_SLIDES_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_SLIDES_ONLINE","Online");
 		
@@ -58,7 +58,7 @@
 		
 		define("_MB_IXTFRAMEWORK_TOPIC_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_TOPIC_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_TOPIC_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_TOPIC_ONLINE","Online");
 		
@@ -86,7 +86,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_HEADERRSS","Headerrss");
 		
-		define("_MB_IXTFRAMEWORK_ASSIGNS_SLIDES","Slides");
+		define("_MB_IXTFRAMEWORK_ASSIGNS_SLIDES","Slideshow Scenario");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_LAYOUT","Layout");
 		
@@ -107,6 +107,8 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		define("_MB_IXTFRAMEWORK_ASSIGNS_CTRL1","Ctrl1");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_CTRL2","Ctrl2");
+		
+		define("_MB_IXTFRAMEWORK_ASSIGNS_CTRL3","Ctrl3");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_EXTFOOTER","Extfooter");
 		
@@ -154,7 +156,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_ASSIGNS_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_ASSIGNS_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_ASSIGNS_ONLINE","Online");
 		
@@ -169,7 +171,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_WIDGETS_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_WIDGETS_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_WIDGETS_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_WIDGETS_ONLINE","Online");
 		
@@ -180,7 +182,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_GLOBALNAV_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_GLOBALNAV_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_GLOBALNAV_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_GLOBALNAV_ONLINE","Online");
 		
@@ -191,7 +193,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_PREHEADER_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_PREHEADER_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_PREHEADER_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_PREHEADER_ONLINE","Online");
 		
@@ -202,7 +204,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_UITHEME_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_UITHEME_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_UITHEME_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_UITHEME_ONLINE","Online");
 		
@@ -213,7 +215,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_FIXSKIN_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_FIXSKIN_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_FIXSKIN_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_FIXSKIN_ONLINE","Online");
 		
@@ -224,7 +226,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_TOPLAYOUT_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_TOPLAYOUT_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_TOPLAYOUT_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_TOPLAYOUT_ONLINE","Online");
 		
@@ -235,7 +237,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_BOTLAYOUT_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_BOTLAYOUT_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_BOTLAYOUT_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_BOTLAYOUT_ONLINE","Online");
 		
@@ -256,7 +258,7 @@ define("_MB_IXTFRAMEWORK_ASSIGNS_ALLCAT","All cat");
 		
 		define("_MB_IXTFRAMEWORK_THEMES_SUBMITTER","Submitter");
 		
-		define("_MB_IXTFRAMEWORK_THEMES_DATE_CREATED","Date_created");
+		define("_MB_IXTFRAMEWORK_THEMES_DATE_CREATED","Date created");
 		
 		define("_MB_IXTFRAMEWORK_THEMES_ONLINE","Online");
 		

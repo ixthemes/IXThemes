@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -29,10 +29,7 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_uitheme";
 }
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -73,12 +70,17 @@ div.xoops-form-element-caption-required .caption-marker {	background-color:inher
 
 if (!($op == "save_uitheme") && !($op == "update_online_uitheme") && !($op == "delete_uitheme")) {
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(8, _AM_IXTFRAMEWORK_MANAGER_UITHEME);
+if (!ixtframework_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtframework_adminmenu(8, _AM_IXTFRAMEWORK_MANAGER_UITHEME);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (8, _AM_IXTFRAMEWORK_MANAGER_UITHEME);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (8, _AM_IXTFRAMEWORK_MANAGER_UITHEME);
+ define('RMCLOCATION','uitheme'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 echo "<style>
@@ -112,10 +114,11 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-echo "<br />";
+//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+//echo "<br />";
 
 /* list only allowed themes */
+/*
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
@@ -127,7 +130,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
     echo "<br />";
 }
-
+*/
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/uitheme.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_UITHEME."</strong>
 	</div><br /><br>";
@@ -137,7 +140,7 @@ switch ($op)
 {	
 	case "save_uitheme":
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("uitheme.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+           ixt_redirect("uitheme.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
         }
         if (isset($_REQUEST["uitheme_id"])) {
            $obj =& $uithemeHandler->get($_REQUEST["uitheme_id"]);
@@ -157,7 +160,7 @@ switch ($op)
 		
 		
         if ($uithemeHandler->insert($obj)) {
-           redirect_header("uitheme.php?op=show_list_uitheme", 2, _AM_IXTFRAMEWORK_FORMOK);
+           ixt_redirect("uitheme.php?op=show_list_uitheme", 2, _AM_IXTFRAMEWORK_FORMOK);
         }
         echo $obj->getHtmlErrors();
         $form =& $obj->getForm();
@@ -172,10 +175,10 @@ switch ($op)
 		$obj =& $uithemeHandler->get($_REQUEST["uitheme_id"]);
 		if (isset($_REQUEST["ok"]) && $_REQUEST["ok"] == 1) {
 			if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-				redirect_header("uitheme.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+				ixt_redirect("uitheme.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
 			}
 			if ($uithemeHandler->delete($obj)) {
-				redirect_header("uitheme.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
+				ixt_redirect("uitheme.php", 3, _AM_IXTFRAMEWORK_FORMDELOK);
 			} else {
 				echo $obj->getHtmlErrors();
 			}
@@ -192,7 +195,7 @@ switch ($op)
 	$obj->setVar("uitheme_online", $_REQUEST["uitheme_online"]);
 
 	if ($uithemeHandler->insert($obj)) {
-		redirect_header("uitheme.php", 3, _AM_IXTFRAMEWORK_FORMOK);
+		ixt_redirect("uitheme.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
 	echo $obj->getHtmlErrors();
 	

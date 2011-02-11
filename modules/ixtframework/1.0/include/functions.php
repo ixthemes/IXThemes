@@ -15,15 +15,15 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
- 	
 
 function ixtframework_dummy() {
 }
 
-/***************Blocks***************/
+/* ixtSTART topic not supported now */
+/*
 function block_addCatSelect($cats) {
 	if(is_array($cats)) 
 	{
@@ -37,4 +37,6 @@ function block_addCatSelect($cats) {
 	}
 	return $cat_sql;
 }
+/* ixtFINISH topic not supported now */
+
 ?>

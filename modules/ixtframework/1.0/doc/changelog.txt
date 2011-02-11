@@ -1,11 +1,31 @@
+*** Version 1.04 final (2010-12-20) ***
+
+News and Improvements
+
+- A new CATALOGUE submodule has been created.
+- THEMES submodule has been updated.
+- New icons for ALL submodules (for RMCommon GUI) has been added.
+- Horisontal menu bar in the RM Common Utilities is used jet.
+- Activate Theme (Set default theme) from a THEMES table is possible jet.
+- Description field in the SLIDESHOW SCENARIOS table has been added.
+- Addon Links from Index/Dashboard into submodules has been added.
+- CONTROL AREA3 (Chameleon Mode) field in the ASSIGNS table has been added.
+- Intuitive Symbolic icons in the PAGE LAYOUT table has been added.
+- Intuitive Symbolic icons in the TOP BLOCKS LAYOUT table has been added.
+- Intuitive Symbolic icons in the BOTTOM BLOCKS LAYOUT table has been added.
+- Some comments in code has been added.
+- Compatible with CMS: XOOPS 2.3.3, XOOPS 2.4.x, XOOPS 2.5.x
+- Compatible with Modules: RM Common Utilities Rel.#2.098 by Red México
+
+
 *** Version 1.03 final (2010-10-10) ***
 
 News and Improvements
 
 - Full support jGrowl redirect messages for XOOPS 2.4.x, XOOPS 2.5.x.
-- 4 module icons for support RMCommon has been included.
+- 4 module icons for support RMCommon Utilities has been included.
 - A CSS addon for RMCommon GUI has been included. (A correction for required elements in XOOPS forms)
-- jquery.prettyPhoto.js and tooltip.js for RMCommon GUI has been included.
+- jquery.prettyPhoto.js and tooltip.js for RMCommon Utilities GUI has been included.
 - A XOOPS preloads property is supported. (for XOOPS 2.4.x, XOOPS 2.5.x)
 - A Style for CSS3 Tooltips has been included. (for XOOPS 2.4.x)
 

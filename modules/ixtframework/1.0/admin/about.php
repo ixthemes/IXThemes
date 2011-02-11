@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -23,12 +23,19 @@ include_once("./header.php");
 
 xoops_cp_header();
 
+global $xoopsModule;
+
+if (!ixtframework_isrmcommon()) {
 // algalochkin: Admin menu with support old CMS version or icms
 if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+	ixtframework_adminmenu(14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+ define('RMCLOCATION','about'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 echo "<style>

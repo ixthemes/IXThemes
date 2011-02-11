@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -25,10 +25,7 @@ xoops_cp_header();
 
 global $xoopsModule;
 
-$module_handler =& xoops_gethandler('module');
-$installed_mods = $module_handler->getObjects();
-foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
-if (isset($rmisactive) && ($rmisactive)) {
+if (ixtframework_isrmcommon()) {
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -67,12 +64,17 @@ div.xoops-form-element-caption-required .caption-marker {	background-color:inher
 	}
 }
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
+if (!ixtframework_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtframework_adminmenu(0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
+ define('RMCLOCATION','dashboard'); // for menubar item hover
+ ixtframework_rmtoolbar();
 }
 
 	$count_themes = count(XoopsLists::getThemesList());
@@ -144,6 +146,7 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/menu.php";
 	$menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=ixtframework", "../images/deco/update.png",  _AM_IXTFRAMEWORK_MANAGER_UPDATE);	
  $menu->addItem("assigns", "assigns.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
 	$menu->addItem("themes", "themes.php", "../images/deco/themes.png", _AM_IXTFRAMEWORK_MANAGER_THEMES);
+	$menu->addItem("thcat", "thcat.php", "../images/deco/themes.png", _AM_IXTFRAMEWORK_MANAGER_THEMESCAT);
  $menu->addItem("pagelayout", "pagelayout.php", "../images/deco/pagelayout.png", _AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT);
 	$menu->addItem("slides", "slides.php", "../images/deco/slides.png", _AM_IXTFRAMEWORK_MANAGER_SLIDES);
 //	$menu->addItem("topic", "topic.php", "../images/deco/topic.png", _AM_IXTFRAMEWORK_MANAGER_TOPIC);
@@ -198,8 +201,8 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-echo "<br />";
+//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+//echo "<br />";
 
 /* list only allowed themes */
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
@@ -214,27 +217,34 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     echo "<br />";
 }
 
+if (ixtframework_isrmcommon()) {
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_DASHBOARD."</strong></div><br />
+		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
+			<tr>
+				<td valign=\"top\">".$menu->render()."</td>
+				<td valign=\"top\" width=\"50%\">";
+} else {
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_INDEX."</strong></div><br />
 		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
 			<tr>
 				<td valign=\"top\">".$menu->render()."</td>
-				<td valign=\"top\" width=\"60%\">";
-				
+				<td valign=\"top\" width=\"50%\">";
+}
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_THEMES."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"themes.php\">"._AM_IXTFRAMEWORK_MANAGER_THEMES."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES, $count_themes);
 						echo "<br /><br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_ONLINE, $themes_online);
 						echo "<br /><br />";
-						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_SELECTED, $themes_selected);
+						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_SELECTED, '<a href="thcat.php">'.$themes_selected.'</a>');
 //						echo "<br /><br />";
 //						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_DEFAULT, $themes_default);
 						echo "<br />
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_ASSIGNS."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"assigns.php\">"._AM_IXTFRAMEWORK_MANAGER_ASSIGNS."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_ASSIGNS, $count_assigns);
 						echo "<br /><br />";
@@ -243,7 +253,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"pagelayout.php\">"._AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_PAGELAYOUT, $count_pagelayout);
 						echo "<br /><br />";
@@ -252,7 +262,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_SLIDES."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"slides.php\">"._AM_IXTFRAMEWORK_MANAGER_SLIDES."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_SLIDES, $count_slides);
 						echo "<br /><br />";
@@ -261,7 +271,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_WIDGETS."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"widgets.php\">"._AM_IXTFRAMEWORK_MANAGER_WIDGETS."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_WIDGETS, $count_widgets);
 						echo "<br /><br />";
@@ -270,7 +280,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_GLOBALNAV."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"globalnav.php\">"._AM_IXTFRAMEWORK_MANAGER_GLOBALNAV."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_GLOBALNAV, $count_globalnav);
 						echo "<br /><br />";
@@ -279,7 +289,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_PREHEADER."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"preheader.php\">"._AM_IXTFRAMEWORK_MANAGER_PREHEADER."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_PREHEADER, $count_preheader);
 						echo "<br /><br />";
@@ -288,7 +298,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"toplayout.php\">"._AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_TOPLAYOUT, $count_toplayout);
 						echo "<br /><br />";
@@ -297,7 +307,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"botlayout.php\">"._AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT."</a></legend>
 						<br />";
 						printf(_AM_IXTFRAMEWORK_THEREARE_BOTLAYOUT, $count_botlayout);
 						echo "<br /><br />";

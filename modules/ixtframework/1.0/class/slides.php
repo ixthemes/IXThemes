@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -39,11 +39,11 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$this->XoopsObject();
 			$this->initVar("slides_id",XOBJ_DTYPE_INT,null,false,8);
 			$this->initVar("slides_name",XOBJ_DTYPE_TXTBOX,null,false);
+			$this->initVar("slides_desc",XOBJ_DTYPE_TXTBOX,null,false);
 			$this->initVar("slides_submitter",XOBJ_DTYPE_INT,null,false,10);
 			$this->initVar("slides_date_created",XOBJ_DTYPE_INT,null,false,10);
 			$this->initVar("slides_online",XOBJ_DTYPE_INT,null,false,1);
 			
-			// Pour autoriser le html
 			$this->initVar("dohtml", XOBJ_DTYPE_INT, 1, false);
 			
 		}
@@ -69,6 +69,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$form->setExtra('enctype="multipart/form-data"');
 			
 			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_SLIDES_NAME, "slides_name", 50, 255, $this->getVar("slides_name")), true);
+			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_SLIDES_DESC, "slides_desc", 50, 500, $this->getVar("slides_desc")), true);
 			$form->addElement(new XoopsFormSelectUser(_AM_IXTFRAMEWORK_SLIDES_SUBMITTER, "slides_submitter", false, $this->getVar("slides_submitter"), 1, false), true);
 			$form->addElement(new XoopsFormTextDateSelect(_AM_IXTFRAMEWORK_SLIDES_DATE_CREATED, "slides_date_created", "", $this->getVar("slides_date_created")));
 			 $slides_online = $this->isNew() ? 1 : $this->getVar("slides_online");
