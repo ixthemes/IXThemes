@@ -21,20 +21,21 @@
  
 include("./header.php");
 
+xoops_cp_header();
+
 if( !empty($_POST["submit"]) ) 
 {
 	redirect_header( XOOPS_URL."/modules/".$xoopsModule->dirname()."/admin/permissions.php" , 1 , _MP_GPERMUPDATED );
 }
 
-xoops_cp_header();
-
 global $xoopsDB;
-//Admin menu with support old CMS version
-if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(12,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
+
+// algalochkin: Admin menu with support old CMS version or icms
+if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+ixtframework_adminmenu(13,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (12,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
+loadModuleAdminMenu (13,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
 }
 
 echo "<style>

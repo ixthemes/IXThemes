@@ -21,53 +21,47 @@
  
 $indexFile = XOOPS_ROOT_PATH."/modules/ixtframework/include/index.html";
 $blankFile = XOOPS_ROOT_PATH."/modules/ixtframework/images/deco/blank.gif";
-$logoFile = XOOPS_ROOT_PATH."/modules/ixtframework/images/logo.png";
-$logomaxFile = XOOPS_ROOT_PATH."/modules/ixtframework/images/logo_490.png";
+$logoFile = XOOPS_ROOT_PATH."/modules/ixtframework/images/samples/logo.png";
+$biglogoFile = XOOPS_ROOT_PATH."/modules/ixtframework/images/samples/logo_490.png";
 
-//Creation du dossier "uploads" pour le module à la racine du site
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/index.html");
 
-//Creation du fichier pagelayout dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/pagelayout";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/pagelayout/index.html");
 				
-//Creation du fichier slides dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/slides";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/slides/index.html");
 				
-//Creation du fichier topic dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/topic";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/topic/index.html");
 				
-//Creation du dossier "uploads" pour le module à la racine du site
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/topic/topic_img";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/topic/topic_img/index.html");
 copy($blankFile, XOOPS_ROOT_PATH."/uploads/ixtframework/topic/topic_img/blank.gif");
+//copy($logoFile, XOOPS_ROOT_PATH."/uploads/ixtframework/topic/topic_img/logo.png");
 
-//Creation du fichier assigns dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/assigns";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/index.html");
 				
-//Creation du dossier "uploads" pour le module à la racine du site
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
@@ -75,55 +69,62 @@ if(!is_dir($module_uploads))
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/index.html");
 copy($blankFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/blank.gif");
 copy($logoFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/logo.png");
-copy($logomaxFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/logo_490.png");
+copy($biglogoFile, XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/logo_490.png");
 
-//Creation du fichier wigets dans uploads
-$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/wigets";
+$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/widgets";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
-copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/wigets/index.html");
+copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/widgets/index.html");
 				
-//Creation du fichier globalnav dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/globalnav";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/globalnav/index.html");
 				
-//Creation du fichier preheader dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/preheader";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/preheader/index.html");
 				
-//Creation du fichier uitheme dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/uitheme";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/uitheme/index.html");
 				
-//Creation du fichier fixskin dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/fixskin";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/fixskin/index.html");
 				
-//Creation du fichier toplayout dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/toplayout";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/toplayout/index.html");
 				
-//Creation du fichier botlayout dans uploads
 $module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/botlayout";
 if(!is_dir($module_uploads))
 	mkdir($module_uploads, 0777);
 	chmod($module_uploads, 0777);
 copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/botlayout/index.html");
 				
+$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/themes";
+if(!is_dir($module_uploads))
+	mkdir($module_uploads, 0777);
+	chmod($module_uploads, 0777);
+copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/themes/index.html");
+				
+$module_uploads = XOOPS_ROOT_PATH."/uploads/ixtframework/themes/themes_screenshot";
+if(!is_dir($module_uploads))
+	mkdir($module_uploads, 0777);
+	chmod($module_uploads, 0777);
+copy($indexFile, XOOPS_ROOT_PATH."/uploads/ixtframework/themes/themes_screenshot/index.html");
+copy($blankFile, XOOPS_ROOT_PATH."/uploads/ixtframework/themes/themes_screenshot/blank.gif");
+//copy($logoFile, XOOPS_ROOT_PATH."/uploads/ixtframework/themes/themes_screenshot/logo.png");
+
 ?>

@@ -24,9 +24,12 @@
 		die("XOOPS root path not defined");
 	}
 
-	if (!class_exists("XoopsPersistableObjectHandler")) {
-		include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/object.php";
-	}
+// algalochkin : this need for support xoops2.0.x or icms1.1 ONLY
+/*
+if (!class_exists("XoopsPersistableObjectHandler")) {
+  include_once XOOPS_ROOT_PATH."/modules/ixtcreate/class/object.php";
+}
+*/
 
 	class ixtframework_assigns extends XoopsObject
 	{ 

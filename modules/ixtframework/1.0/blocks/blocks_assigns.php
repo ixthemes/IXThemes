@@ -30,11 +30,12 @@ $type_block = $options[0];
 $nb_assigns = $options[1];
 $lenght_title = $options[2];
 
+/* ixtSTART handlers added */
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/pagelayout.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/slides.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/topic.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/assigns.php";
-include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/wigets.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/widgets.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/globalnav.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/preheader.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/uitheme.php";
@@ -45,25 +46,30 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/botlayout.php";
 $pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "ixtframework");
 $slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "ixtframework");
 $topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
-$assignsHandler =& xoops_getModuleHandler("ixtframework_assigns", "ixtframework");
-$wigetsHandler =& xoops_getModuleHandler("ixtframework_wigets", "ixtframework");
+$widgetsHandler =& xoops_getModuleHandler("ixtframework_widgets", "ixtframework");
 $globalnavHandler =& xoops_getModuleHandler("ixtframework_globalnav", "ixtframework");
 $preheaderHandler =& xoops_getModuleHandler("ixtframework_preheader", "ixtframework");
 $uithemeHandler =& xoops_getModuleHandler("ixtframework_uitheme", "ixtframework");
 $fixskinHandler =& xoops_getModuleHandler("ixtframework_fixskin", "ixtframework");
 $toplayoutHandler =& xoops_getModuleHandler("ixtframework_toplayout", "ixtframework");
 $botlayoutHandler =& xoops_getModuleHandler("ixtframework_botlayout", "ixtframework");
+/* ixtFINISH handlers added */
+
+$assignsHandler =& xoops_getModuleHandler("ixtframework_assigns", "ixtframework");
 
 $criteria = new CriteriaCompo();
 array_shift($options);
 array_shift($options);
 array_shift($options);
 
+/* ixtSTART topic not supported now */
 /*
 if (!(count($options) == 1 && $options[0] == 0)) {
 $criteria->add(new Criteria("assigns_topic", block_addCatSelect($options),"IN"));
 }
 */
+/* ixtFINISH topic not supported now */
+
 switch ($type_block) 
 {
 	case "recent":
@@ -86,13 +92,14 @@ switch ($type_block)
 
 $criteria->setLimit($nb_assigns);
 $assigns_arr = $assignsHandler->getall($criteria);
-$k=0;
+$k=0; // algalochkin: new index variable
 
 	foreach (array_keys($assigns_arr) as $i) 
-	{ $k++;
-		$assigns[$k]["assigns_id"] = $assigns_arr[$i]->getVar("assigns_id");
+	{
+		 $k++;
+		 $assigns[$k]["assigns_id"] = $assigns_arr[$i]->getVar("assigns_id");
 			$assigns[$k]["assigns_name"] = $assigns_arr[$i]->getVar("assigns_name");
-
+			
 $assigns[$k]["assigns_scrolblocks"] = explode(',',$assigns_arr[$i]->getVar("assigns_scrolblocks"));
 			
 $verif_assigns_jsenable = ( $assigns_arr[$i]->getVar("assigns_jsenable") == 1 ) ? "yes" : "no";
@@ -196,10 +203,10 @@ $botlayout =& $botlayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_b
 $title_botlayout = $botlayout->getVar("botlayout_name");	
 $assigns[$k]["assigns_content_bottom_order"] = $title_botlayout;
 			
+			
 			$assigns[$k]["assigns_submitter"] = $assigns_arr[$i]->getVar("assigns_submitter");
 			$assigns[$k]["assigns_date_created"] = $assigns_arr[$i]->getVar("assigns_date_created");
 			$assigns[$k]["assigns_online"] = $assigns_arr[$i]->getVar("assigns_online");
-		
 	}
 return $assigns;
 }

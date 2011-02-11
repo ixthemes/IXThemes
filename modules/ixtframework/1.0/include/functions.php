@@ -19,6 +19,10 @@
  * ****************************************************************************
  */
  	
+
+function ixtframework_dummy() {
+}
+
 /***************Blocks***************/
 function block_addCatSelect($cats) {
 	if(is_array($cats)) 

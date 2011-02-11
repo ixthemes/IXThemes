@@ -23,11 +23,12 @@ include_once("./header.php");
 
 xoops_cp_header();
 
+// algalochkin: Admin menu with support old CMS version or icms
 if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtframework_adminmenu(13, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+ixtframework_adminmenu(14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (13, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
+loadModuleAdminMenu (14, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
 }
 
 echo "<style>

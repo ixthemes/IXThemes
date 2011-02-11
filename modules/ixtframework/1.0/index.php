@@ -21,7 +21,6 @@
  
 include "../../mainfile.php";
 include_once XOOPS_ROOT_PATH."/header.php";
-redirect_header(XOOPS_URL, 1, "Thanks. Welcome to our Site with IXThemes FrameWork Module!", false);
-exit();
+
 include_once XOOPS_ROOT_PATH."/footer.php";	
 ?>

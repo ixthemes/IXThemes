@@ -1,0 +1,13 @@
+div.jGrowl { padding: 1em; z-index: 9999; }
+body > div.jGrowl { position: fixed; }
+body > div.jGrowl.top-right { right: 25%; left: 25%; top: 15%; }
+body > div.jGrowl.bottom-left { left:0; bottom:0; }
+body > div.jGrowl.bottom-right { right:0; bottom:0; }
+body > div.jGrowl.center { top:0; left:0; }
+body > div.jGrowl.top-left { left:0; top:0; }
+div.center div.jGrowl-notification, div.center div.jGrowl-closer { margin-left: auto; margin-right: auto; }
+div.jGrowl div.jGrowl-notification, div.jGrowl div.jGrowl-closer { background:             #FBE3E4; color:                  #DF3066; width:                  100%; padding:        .5em; margin-top:        .5em; margin-bottom:        .5em; font-family:        Tahoma, Arial, Helvetica, sans-serif; font-size:        1.2em; text-align:        center; border:                 1px solid #FBC2C4; display:         none; -moz-border-radius:     5px; -webkit-border-radius:    5px; }
+div.jGrowl div.jGrowl-notification { min-height: 40px; }
+div.jGrowl div.jGrowl-notification div.header { font-weight: bold; font-size: 10px; }
+div.jGrowl div.jGrowl-notification div.close { float: right; font-weight: bold; font-size: 12px; cursor: pointer; }
+div.jGrowl div.jGrowl-closer { height: 15px; padding-top: 4px; padding-bottom: 4px; cursor: pointer; font-size: 11px; font-weight: bold; text-align: center; }

@@ -29,9 +29,52 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_uitheme";
 }
 
+$module_handler =& xoops_gethandler('module');
+$installed_mods = $module_handler->getObjects();
+foreach ($installed_mods as $module) {if ($module->getVar('dirname') == 'rmcommon' && $module->getVar('isactive') == 1) {$rmisactive = 1;}}
+if (isset($rmisactive) && ($rmisactive)) {
+echo "
+<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+<link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+<link rel=\"stylesheet\" href=\"../css/tooltip.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
+<script type=\"text/javascript\" src=\"../js/jquery.jgrowl.js\" charset=\"utf-8\"></script>
+<script type=\"text/javascript\" src=\"../js/tooltip.js\" charset=\"utf-8\"></script>
+";
+
+echo "<script type=\"text/javascript\" charset=\"utf-8\">
+	$(document).ready(function(){
+		$(\"a[rel^=prettyPhoto]\").prettyPhoto({
+			animationSpeed: \"normal\",
+			padding: 40,
+			opacity: 0.35,
+			showTitle: true,
+			allowresize: true,
+			counter_separator_label: \"/\",
+			theme: \"light_rounded\"
+		});
+	});
+</script>";
+
+echo "<style>
+/* Correction RMCommon GUI for required elements in XOOPS form */
+div.xoops-form-element-caption .caption-marker { display:none; }
+div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+</style>
+";
+} else {
+	if (class_exists('XoopsPreload')) {
+		// since XOOPS 2.4.x
+		$xoopsPreload =& XoopsPreload::getInstance();
+		$xoopsPreload->triggerEvent('ixtframework.admin');
+  $xoopsPreload->triggerEvent('ixtframework.jgrowlredirect');
+	}
+}
+
 if (!($op == "save_uitheme") && !($op == "update_online_uitheme") && !($op == "delete_uitheme")) {
-//Admin menu with support old CMS version
-if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php") ) {
+
+// algalochkin: Admin menu with support old CMS version or icms
+if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
 ixtframework_adminmenu(8, _AM_IXTFRAMEWORK_MANAGER_UITHEME);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
@@ -49,11 +92,47 @@ echo "<style>
 	padding: 10px 0 0 50px;
 	border-bottom: 3px solid #1E90FF;
 }
+/* ixtSTART colors */
+.red { background-color:transparent; color:#ff0000; }
+.blue { background-color:transparent; color:#0000ff; }
+.black { background-color:transparent; color:#000; }
+.white { background-color:transparent; color:#fff; }
+.yellow { background-color:transparent; color:#ffff00; }
+.orange { background-color:transparent; color:#ffa500; }
+.green { background-color:transparent; color:#008000; }
+.silver { background-color:transparent; color:#c0c0c0; }
+/* ixtFINISH colors */
+/* ixtSTART mark and table */
+.mark {	background-color: #91EF88; }
+.mark td {	padding:10px 0 10px 0; }
+td { vertical-align:top; )
+/* ixtFINISH mark and table */
 </style>";
-echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/assigns.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+
+/* current selected theme on user side */
+$curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
+
+xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
+echo "<br />";
+
+/* list only allowed themes */
+$themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
+if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
+    xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
+    echo "<br />";
+} elseif (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme."/xoplugins/ixt09.php"))) {
+    xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4, $curtheme));
+    echo "<br />";
+} else {
+    xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
+    echo "<br />";
+}
+
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/uitheme.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_UITHEME."</strong>
 	</div><br /><br>";
 }
+
 switch ($op) 
 {	
 	case "save_uitheme":
@@ -149,20 +228,22 @@ switch ($op)
 					{
 						$class = ($class == "even") ? "odd" : "even";
 						echo "<tr class=\"".$class."\">";
-						echo "<td align=\"center\">".$uitheme_arr[$i]->getVar("uitheme_name")."</td>";	
+						
+					echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:void(0);\" title=\""._AM_IXTFRAMEWORK_UITHEME_NAME."\">".$uitheme_arr[$i]->getVar("uitheme_name")."</a></td>";	
+					
 					echo "<td align=\"center\">".XoopsUser::getUnameFromId($uitheme_arr[$i]->getVar("uitheme_submitter"),"S")."</td>";	
 					echo "<td align=\"center\">".formatTimeStamp($uitheme_arr[$i]->getVar("uitheme_date_created"),"S")."</td>";	
 					
 					$online = $uitheme_arr[$i]->getVar("uitheme_online");
 				
 					if( $online == 1 ) {
-						echo "<td align=\"center\"><a href=\"./uitheme.php?op=update_online_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."&uitheme_online=0\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
+						echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./uitheme.php?op=update_online_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."&uitheme_online=0\" title=\""._AM_IXTFRAMEWORK_ON."\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
 					} else {
-						echo "<td align=\"center\"><a href=\"./uitheme.php?op=update_online_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."&uitheme_online=1\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+						echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./uitheme.php?op=update_online_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."&uitheme_online=1\" title=\""._AM_IXTFRAMEWORK_OFF."\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
 					}
 									echo "<td align=\"center\" width=\"10%\">
-										<a href=\"uitheme.php?op=edit_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
-										<a href=\"uitheme.php?op=delete_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
+										<a style=\"text-decoration:none\" class=\"tooltip\" href=\"uitheme.php?op=edit_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
+										<a style=\"text-decoration:none\" class=\"tooltip\" href=\"uitheme.php?op=delete_uitheme&uitheme_id=".$uitheme_arr[$i]->getVar("uitheme_id")."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
 									  </td>";
 						echo "</tr>";
 					}	
@@ -170,7 +251,6 @@ switch ($op)
 				echo "</table><br><br>";
 			}
 		
-		// Affichage du formulaire
     	$obj =& $uithemeHandler->create();
     	$form = $obj->getForm();	
 }

@@ -25,7 +25,7 @@ define("_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT","Page Layout");
 define("_MI_IXTFRAMEWORK_MANAGER_SLIDES","Slides");
 define("_MI_IXTFRAMEWORK_MANAGER_TOPIC","Topic");
 define("_MI_IXTFRAMEWORK_MANAGER_ASSIGNS","Assigns");
-define("_MI_IXTFRAMEWORK_MANAGER_WIGETS","Wigets");
+define("_MI_IXTFRAMEWORK_MANAGER_WIDGETS","Widgets");
 define("_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV","Globalnav");
 define("_MI_IXTFRAMEWORK_MANAGER_PREHEADER","Preheader");
 define("_MI_IXTFRAMEWORK_MANAGER_UITHEME","UI Theme");
@@ -45,12 +45,11 @@ define("_MI_IXTFRAMEWORK_EDITOR","Editor");
 define("_MI_IXTFRAMEWORK_TOPIC_IMG_SIZE","Max filesize of topic_img");
 define("_MI_IXTFRAMEWORK_TOPIC_IMG_MIMETYPES","MIME-types for topic_img");
 
-define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_SIZE","Max filesize of Logo image");
-define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_MIMETYPES","MIME-types for Logo image");
+define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_SIZE","Max filesize of assigns_logos");
+define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_MIMETYPES","MIME-types for assigns_logos");
 
-define("_MI_IXTFRAMEWORK_ASSIGNS_LIMIT","Number of assigns to display per page");
-
-define("_MI_IXTFRAMEWORK_THEMES_LIMIT","Number of themes to display per page");
+define("_MI_IXTFRAMEWORK_THEMES_SCREENSHOT_SIZE","Max filesize of themes_screenshot");
+define("_MI_IXTFRAMEWORK_THEMES_SCREENSHOT_MIMETYPES","MIME-types for themes_screenshot");
 
 //Blocks
 define("_MI_IXTFRAMEWORK_PAGELAYOUT_BLOCK_RECENT","pagelayout recent");
@@ -65,9 +64,9 @@ define("_MI_IXTFRAMEWORK_TOPIC_BLOCK_RANDOM","topic random");
 define("_MI_IXTFRAMEWORK_ASSIGNS_BLOCK_RECENT","assigns recent");
 define("_MI_IXTFRAMEWORK_ASSIGNS_BLOCK_DAY","assigns day");
 define("_MI_IXTFRAMEWORK_ASSIGNS_BLOCK_RANDOM","assigns random");
-define("_MI_IXTFRAMEWORK_WIGETS_BLOCK_RECENT","wigets recent");
-define("_MI_IXTFRAMEWORK_WIGETS_BLOCK_DAY","wigets day");
-define("_MI_IXTFRAMEWORK_WIGETS_BLOCK_RANDOM","wigets random");
+define("_MI_IXTFRAMEWORK_WIDGETS_BLOCK_RECENT","widgets recent");
+define("_MI_IXTFRAMEWORK_WIDGETS_BLOCK_DAY","widgets day");
+define("_MI_IXTFRAMEWORK_WIDGETS_BLOCK_RANDOM","widgets random");
 define("_MI_IXTFRAMEWORK_GLOBALNAV_BLOCK_RECENT","globalnav recent");
 define("_MI_IXTFRAMEWORK_GLOBALNAV_BLOCK_DAY","globalnav day");
 define("_MI_IXTFRAMEWORK_GLOBALNAV_BLOCK_RANDOM","globalnav random");
@@ -86,5 +85,8 @@ define("_MI_IXTFRAMEWORK_TOPLAYOUT_BLOCK_RANDOM","toplayout random");
 define("_MI_IXTFRAMEWORK_BOTLAYOUT_BLOCK_RECENT","botlayout recent");
 define("_MI_IXTFRAMEWORK_BOTLAYOUT_BLOCK_DAY","botlayout day");
 define("_MI_IXTFRAMEWORK_BOTLAYOUT_BLOCK_RANDOM","botlayout random");
+define("_MI_IXTFRAMEWORK_THEMES_BLOCK_RECENT","themes recent");
+define("_MI_IXTFRAMEWORK_THEMES_BLOCK_DAY","themes day");
+define("_MI_IXTFRAMEWORK_THEMES_BLOCK_RANDOM","themes random");
 
 ?>

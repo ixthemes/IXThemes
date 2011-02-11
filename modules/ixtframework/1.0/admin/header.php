@@ -21,8 +21,6 @@
  
 include "../../../include/cp_header.php";
 
-include_once XOOPS_ROOT_PATH."/class/template.php";
-
 include_once(XOOPS_ROOT_PATH."/class/xoopsmodule.php");
 include_once XOOPS_ROOT_PATH."/class/xoopstree.php";
 include_once XOOPS_ROOT_PATH."/class/xoopsformloader.php";
@@ -40,7 +38,7 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/pagelayout.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/slides.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/topic.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/assigns.php";
-include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/wigets.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/widgets.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/globalnav.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/preheader.php";
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/uitheme.php";
@@ -65,13 +63,11 @@ xoops_loadLanguage("admin", "system");
 xoops_loadLanguage("admin", $xoopsModule->getVar("dirname", "e"));
 xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
 
-$ixtframeworkTpl = new XoopsTpl();
-
 $pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "ixtframework");
 $slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "ixtframework");
 $topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
 $assignsHandler =& xoops_getModuleHandler("ixtframework_assigns", "ixtframework");
-$wigetsHandler =& xoops_getModuleHandler("ixtframework_wigets", "ixtframework");
+$widgetsHandler =& xoops_getModuleHandler("ixtframework_widgets", "ixtframework");
 $globalnavHandler =& xoops_getModuleHandler("ixtframework_globalnav", "ixtframework");
 $preheaderHandler =& xoops_getModuleHandler("ixtframework_preheader", "ixtframework");
 $uithemeHandler =& xoops_getModuleHandler("ixtframework_uitheme", "ixtframework");

@@ -68,16 +68,17 @@ function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "")
 				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/slides.php\"><span>_MI_IXTFRAMEWORK_MANAGER_SLIDES</span></a></li>
 				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/topic.php\"><span>_MI_IXTFRAMEWORK_MANAGER_TOPIC</span></a></li>
 				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/assigns.php\"><span>_MI_IXTFRAMEWORK_MANAGER_ASSIGNS</span></a></li>
-				<li id=\"$tblColors[5]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/wigets.php\"><span>_MI_IXTFRAMEWORK_MANAGER_WIGETS</span></a></li>
+				<li id=\"$tblColors[5]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/widgets.php\"><span>_MI_IXTFRAMEWORK_MANAGER_WIDGETS</span></a></li>
 				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/globalnav.php\"><span>_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV</span></a></li>
 				<li id=\"$tblColors[7]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/preheader.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PREHEADER</span></a></li>
 				<li id=\"$tblColors[8]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/uitheme.php\"><span>_MI_IXTFRAMEWORK_MANAGER_UITHEME</span></a></li>
 				<li id=\"$tblColors[9]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/fixskin.php\"><span>_MI_IXTFRAMEWORK_MANAGER_FIXSKIN</span></a></li>
 				<li id=\"$tblColors[10]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/toplayout.php\"><span>_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT</span></a></li>
 				<li id=\"$tblColors[11]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/botlayout.php\"><span>_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT</span></a></li>
+				<li id=\"$tblColors[12]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/themes.php\"><span>_MI_IXTFRAMEWORK_MANAGER_THEMES</span></a></li>
 				
-				<li id=\"$tblColors[12]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/permissions.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PERMISSIONS</span></a></li>
-				<li id=\"$tblColors[13]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/about.php\"><span>_MI_IXTFRAMEWORK_MANAGER_ABOUT</span></a></li>
+				<li id=\"$tblColors[13]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/permissions.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PERMISSIONS</span></a></li>
+				<li id=\"$tblColors[14]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/about.php\"><span>_MI_IXTFRAMEWORK_MANAGER_ABOUT</span></a></li>
 			</ul></div>";
 }
 

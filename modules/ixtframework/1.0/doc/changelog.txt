@@ -1,14 +1,46 @@
-*** Version 1.03 beta (2010-10-04) ***
+*** Version 1.03 final (2010-10-10) ***
 
-Improvements
-- New submodule THEMES IN SYSTEM has been created.
-- Link to XOOPS 2.3.3 demo on index page has been added.
-- Link to XOOPS 2.5.0 demo on index page has been added.
-- Actions icons from GIF to PNG has been updated.
+News and Improvements
+
+- Full support jGrowl redirect messages for XOOPS 2.4.x, XOOPS 2.5.x.
+- 4 module icons for support RMCommon has been included.
+- A CSS addon for RMCommon GUI has been included. (A correction for required elements in XOOPS forms)
+- jquery.prettyPhoto.js and tooltip.js for RMCommon GUI has been included.
+- A XOOPS preloads property is supported. (for XOOPS 2.4.x, XOOPS 2.5.x)
+- A Style for CSS3 Tooltips has been included. (for XOOPS 2.4.x)
+
+Bugs Fixed
+
+- Full text in tooltips.
+- A Samples of normal logo and big logo for ASSIGNS has been included. 
+- Disclosed IMG tags.
+
+
+*** Version 1.03 beta (2010-10-06) ***
+
+News and Improvements
+
+- A new THEMES submodule with prettyPhoto preview has been created.
+- A new PAGE LAYOUT submodule has been created.
+- A new SLIDES submodule has been created.
+- A new WIDGETS submodule has been created.
+- A new GLOBALNAV submodule has been created.
+- A new PREHEADER submodule has been created.
+- A new TOP CONTENT LAYOUT submodule has been created.
+- A new BOTTOM CONTENT LAYOUT submodule has been created.
+- A PREFERENCE submodule has been updated.
+- jquery.prettyPhoto.js and prettyPhoto.css has been added.
+- A Structure of module has been updated. (/css, /js, /doc added)
+- A Link to XOOPS 2.3.3 demo on index page has been added.
+- A Link to XOOPS 2.5.0 demo on index page has been added.
+- An actions icons has been updated (GIF to PNG).
 - This changelog.txt has been added.
 
+
 Bug Fixed
-- Link to IXThemes RSS Feed on index page.
+
+- A Link to IXThemes RSS Feed on index page has been updated.
+
 
 *** Version 1.02 beta (2010-10-01) ***
 
