@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -25,7 +25,7 @@
 	}
 
 	if (!class_exists("XoopsPersistableObjectHandler")) {
-		include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/object.php";
+		include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/object.php";
 	}
 
 	class ixtframework_wigets extends XoopsObject
@@ -76,7 +76,7 @@
 			$editor_configs["cols"] = 80;
 			$editor_configs["width"] = "100%";
 			$editor_configs["height"] = "400px";
-			$editor_configs["editor"] = $xoopsModuleConfig["IXTFrameWork_editor"];				
+			$editor_configs["editor"] = $xoopsModuleConfig["ixtframework_editor"];				
 			$form->addElement( new XoopsFormEditor(_AM_IXTFRAMEWORK_WIGETS_CONTENT, "wigets_content", $editor_configs), true );
 			$form->addElement(new XoopsFormSelectUser(_AM_IXTFRAMEWORK_WIGETS_SUBMITTER, "wigets_submitter", false, $this->getVar("wigets_submitter"), 1, false), true);
 			$form->addElement(new XoopsFormTextDateSelect(_AM_IXTFRAMEWORK_WIGETS_DATE_CREATED, "wigets_date_created", "", $this->getVar("wigets_date_created")));
@@ -91,7 +91,7 @@
 			return $form;
 		}
 	}
-	class IXTFrameWorkixtframework_wigetsHandler extends XoopsPersistableObjectHandler 
+	class ixtframeworkixtframework_wigetsHandler extends XoopsPersistableObjectHandler 
 	{
 
 		function __construct(&$db) 

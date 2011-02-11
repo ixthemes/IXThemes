@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -32,6 +32,7 @@ define("_MI_IXTFRAMEWORK_MANAGER_UITHEME","UI Theme");
 define("_MI_IXTFRAMEWORK_MANAGER_FIXSKIN","Fixed Skin");
 define("_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT","Top Content Layout");
 define("_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT","Bottom Content Layout");
+define("_MI_IXTFRAMEWORK_MANAGER_THEMES","Themes");
 
 define("_MI_IXTFRAMEWORK_MANAGER_ABOUT","About");
 define("_MI_IXTFRAMEWORK_MANAGER_PREFERENCES","Preferences");
@@ -46,6 +47,10 @@ define("_MI_IXTFRAMEWORK_TOPIC_IMG_MIMETYPES","MIME-types for topic_img");
 
 define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_SIZE","Max filesize of Logo image");
 define("_MI_IXTFRAMEWORK_ASSIGNS_LOGOS_MIMETYPES","MIME-types for Logo image");
+
+define("_MI_IXTFRAMEWORK_ASSIGNS_LIMIT","Number of assigns to display per page");
+
+define("_MI_IXTFRAMEWORK_THEMES_LIMIT","Number of themes to display per page");
 
 //Blocks
 define("_MI_IXTFRAMEWORK_PAGELAYOUT_BLOCK_RECENT","pagelayout recent");

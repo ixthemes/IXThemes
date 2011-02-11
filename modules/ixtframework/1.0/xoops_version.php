@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,37 +11,37 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
 	
 	$modversion["name"] = "IXTFrameWork";
-	$modversion["version"] = 1.01;
+	$modversion["version"] = 1.03;
 	$modversion["description"] = "Engine for management XOOPS themes by IXThemes. IXThemes is an implementation of innovative methods in the development of qualitative universality themes and templates for content management systems based on the XOOPS Web application platform.";
 	$modversion["author"] = "IXThemes Project";
 	$modversion["author_website_url"] = "http://ixthemes.org";
 	$modversion["author_website_name"] = "IXThemes Project";
 	$modversion["credits"] = "algalochkin, ixthemes, ixtdev, etc.";
-	$modversion["license"] = "GPL 3.0";
+	$modversion["license"] = "<a href=\"http://www.gnu.org/licenses/gpl.html\">GPL</a>, <a href=\"http://www.gnu.org/licenses/gpl-2.0.html\">General Public License 2.0</a>";
 	$modversion["release_info"] = "README";
-	$modversion["release_file"] = XOOPS_URL."/modules/IXTFrameWork/readme.txt";
+	$modversion["release_file"] = XOOPS_URL."/modules/ixtframework/readme.txt";
 	$modversion["manual"] = "MANUAL";
-	$modversion["manual_file"] = XOOPS_URL."/modules/IXTFrameWork/manual.txt";
+	$modversion["manual_file"] = XOOPS_URL."/modules/ixtframework/manual.txt";
 	$modversion["image"] = "images/ixtrfamework_slogo.png";
-	$modversion["dirname"] = "IXTFrameWork";
+	$modversion["dirname"] = "ixtframework";
 
 	//about
 	$modversion["demo_site_url"] = "http://xoops245demo.ixthemes.org";
 	$modversion["demo_site_name"] = "IXThemes Demo";
 	$modversion["module_website_url"] = "http://ixthemes.com";
 	$modversion["module_website_name"] = "IXThemes Modules";
-	$modversion["release"] = "30-09-2010";
-	$modversion["module_status"] = "alpha";
+	$modversion["release"] = "04-10-2010";
+	$modversion["module_status"] = "beta";
 	
 	// Admin things
 	$modversion["hasAdmin"] = 1;
@@ -70,9 +70,11 @@
 	// Scripts to run upon installation or update
 	$modversion["onInstall"] = "include/install.php";
 	//$modversion["onUpdate"] = "include/update.php";
+	
+	//Config
 	$i = 1;
 	include_once XOOPS_ROOT_PATH . "/class/xoopslists.php";
-	$modversion["config"][$i]["name"]        = "IXTFrameWork_editor";
+	$modversion["config"][$i]["name"]        = "ixtframework_editor";
 	$modversion["config"][$i]["title"]       = "_MI_IXTFRAMEWORK_EDITOR";
 	$modversion["config"][$i]["description"] = "";
 	$modversion["config"][$i]["formtype"]    = "select";
@@ -135,7 +137,25 @@
 										"jpe" => "image/jpeg",
 										"png" => "image/png");
 	$i++;
-					
+	
+	//Uploads : size assigns_maxrows
+	$modversion["config"][$i]["name"] = "assigns_limit";
+	$modversion["config"][$i]["title"] = "_MI_IXTFRAMEWORK_ASSIGNS_LIMIT";
+	$modversion["config"][$i]["description"] = "";
+	$modversion["config"][$i]["formtype"] = "textbox";
+	$modversion["config"][$i]["valuetype"] = "int";
+	$modversion["config"][$i]["default"] = "20";
+	$i++;
+
+	//Uploads : size themes_maxrows
+	$modversion["config"][$i]["name"] = "themes_limit";
+	$modversion["config"][$i]["title"] = "_MI_IXTFRAMEWORK_THEMES_LIMIT";
+	$modversion["config"][$i]["description"] = "";
+	$modversion["config"][$i]["formtype"] = "textbox";
+	$modversion["config"][$i]["valuetype"] = "int";
+	$modversion["config"][$i]["default"] = "20";
+	$i++;
+
 	//Blocks are not used jet
 	/*
 	$i = 1;

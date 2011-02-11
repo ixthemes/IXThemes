@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,18 +11,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  	
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/include/functions.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/include/functions.php";
 	
 function b_ixtframework_assigns($options) {
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/assigns.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/assigns.php";
 $myts =& MyTextSanitizer::getInstance();
 
 $assigns = array();
@@ -30,29 +30,29 @@ $type_block = $options[0];
 $nb_assigns = $options[1];
 $lenght_title = $options[2];
 
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/pagelayout.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/slides.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/topic.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/assigns.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/wigets.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/globalnav.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/preheader.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/uitheme.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/fixskin.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/toplayout.php";
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/botlayout.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/pagelayout.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/slides.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/topic.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/assigns.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/wigets.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/globalnav.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/preheader.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/uitheme.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/fixskin.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/toplayout.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/botlayout.php";
 
-$pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "IXTFrameWork");
-$slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "IXTFrameWork");
-$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "IXTFrameWork");
-$assignsHandler =& xoops_getModuleHandler("ixtframework_assigns", "IXTFrameWork");
-$wigetsHandler =& xoops_getModuleHandler("ixtframework_wigets", "IXTFrameWork");
-$globalnavHandler =& xoops_getModuleHandler("ixtframework_globalnav", "IXTFrameWork");
-$preheaderHandler =& xoops_getModuleHandler("ixtframework_preheader", "IXTFrameWork");
-$uithemeHandler =& xoops_getModuleHandler("ixtframework_uitheme", "IXTFrameWork");
-$fixskinHandler =& xoops_getModuleHandler("ixtframework_fixskin", "IXTFrameWork");
-$toplayoutHandler =& xoops_getModuleHandler("ixtframework_toplayout", "IXTFrameWork");
-$botlayoutHandler =& xoops_getModuleHandler("ixtframework_botlayout", "IXTFrameWork");
+$pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "ixtframework");
+$slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "ixtframework");
+$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
+$assignsHandler =& xoops_getModuleHandler("ixtframework_assigns", "ixtframework");
+$wigetsHandler =& xoops_getModuleHandler("ixtframework_wigets", "ixtframework");
+$globalnavHandler =& xoops_getModuleHandler("ixtframework_globalnav", "ixtframework");
+$preheaderHandler =& xoops_getModuleHandler("ixtframework_preheader", "ixtframework");
+$uithemeHandler =& xoops_getModuleHandler("ixtframework_uitheme", "ixtframework");
+$fixskinHandler =& xoops_getModuleHandler("ixtframework_fixskin", "ixtframework");
+$toplayoutHandler =& xoops_getModuleHandler("ixtframework_toplayout", "ixtframework");
+$botlayoutHandler =& xoops_getModuleHandler("ixtframework_botlayout", "ixtframework");
 
 $criteria = new CriteriaCompo();
 array_shift($options);
@@ -66,13 +66,11 @@ $criteria->add(new Criteria("assigns_topic", block_addCatSelect($options),"IN"))
 */
 switch ($type_block) 
 {
-	// pour le bloc: assigns recents
 	case "recent":
 		$criteria->add(new Criteria("assigns_online", 1));
 		$criteria->setSort("assigns_date_created");
 		$criteria->setOrder("DESC");
 	break;
-	// pour le bloc: assigns du jour
 	case "day":	
 		$criteria->add(new Criteria("assigns_online", 1));
 		$criteria->add(new Criteria("assigns_date_created", strtotime(date("Y/m/d")), ">="));
@@ -80,136 +78,136 @@ switch ($type_block)
 		$criteria->setSort("assigns_date_created");
 		$criteria->setOrder("ASC");
 	break;
-	// pour le bloc: assigns aléatoires
 	case "random":
 		$criteria->add(new Criteria("assigns_online", 1));
 		$criteria->setSort("RAND()");
 	break;
 }
 
-
 $criteria->setLimit($nb_assigns);
 $assigns_arr = $assignsHandler->getall($criteria);
-	foreach (array_keys($assigns_arr) as $i) 
-	{
-		$assigns[$i]["assigns_id"] = $assigns_arr[$i]->getVar("assigns_id");
-			$assigns[$i]["assigns_name"] = $assigns_arr[$i]->getVar("assigns_name");
+$k=0;
 
-$assigns[$i]["assigns_scrolblocks"] = explode(',',$assigns_arr[$i]->getVar("assigns_scrolblocks"));
+	foreach (array_keys($assigns_arr) as $i) 
+	{ $k++;
+		$assigns[$k]["assigns_id"] = $assigns_arr[$i]->getVar("assigns_id");
+			$assigns[$k]["assigns_name"] = $assigns_arr[$i]->getVar("assigns_name");
+
+$assigns[$k]["assigns_scrolblocks"] = explode(',',$assigns_arr[$i]->getVar("assigns_scrolblocks"));
 			
 $verif_assigns_jsenable = ( $assigns_arr[$i]->getVar("assigns_jsenable") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_jsenable"] = $verif_assigns_jsenable;
+$assigns[$k]["assigns_jsenable"] = $verif_assigns_jsenable;
 
 $globalnav =& $globalnavHandler->get($assigns_arr[$i]->getVar("assigns_globalnav"));
 $title_globalnav = $globalnav->getVar("globalnav_name");	
-$assigns[$i]["assigns_globalnav"] = $title_globalnav;
+$assigns[$k]["assigns_globalnav"] = $title_globalnav;
 
 $verif_assigns_widecontent = ( $assigns_arr[$i]->getVar("assigns_widecontent") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_widecontent"] = $verif_assigns_widecontent;
+$assigns[$k]["assigns_widecontent"] = $verif_assigns_widecontent;
 
 $preheader =& $preheaderHandler->get($assigns_arr[$i]->getVar("assigns_preheader"));
 $title_preheader = $preheader->getVar("preheader_name");	
-$assigns[$i]["assigns_preheader"] = $title_preheader;
+$assigns[$k]["assigns_preheader"] = $title_preheader;
 			
 $verif_assigns_extheader = ( $assigns_arr[$i]->getVar("assigns_extheader") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_extheader"] = $verif_assigns_extheader;
+$assigns[$k]["assigns_extheader"] = $verif_assigns_extheader;
 
 $verif_assigns_headerrss = ( $assigns_arr[$i]->getVar("assigns_headerrss") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_headerrss"] = $verif_assigns_headerrss;
+$assigns[$k]["assigns_headerrss"] = $verif_assigns_headerrss;
 
 $slides =& $slidesHandler->get($assigns_arr[$i]->getVar("assigns_slides"));
 $title_slides = $slides->getVar("slides_name");	
-$assigns[$i]["assigns_slides"] = $title_slides;
+$assigns[$k]["assigns_slides"] = $title_slides;
 
 $pagelayout =& $pagelayoutHandler->get($assigns_arr[$i]->getVar("assigns_layout"));
 $title_pagelayout = $pagelayout->getVar("pagelayout_name");	
-$assigns[$i]["assigns_layout"] = $title_pagelayout;
+$assigns[$k]["assigns_layout"] = $title_pagelayout;
 			
-$assigns[$i]["assigns_w0"] = $assigns_arr[$i]->getVar("assigns_w0")."%";
-$assigns[$i]["assigns_w1"] = $assigns_arr[$i]->getVar("assigns_w1")."%";
-$assigns[$i]["assigns_w2"] = $assigns_arr[$i]->getVar("assigns_w2")."%";
-$assigns[$i]["assigns_logos"] = "/uploads/ixtframework/assigns/assigns_logos/".$assigns_arr[$i]->getVar("assigns_logos");
-$assigns[$i]["assigns_logow"] = $assigns_arr[$i]->getVar("assigns_logow")."px";
-$assigns[$i]["assigns_logoh"] = $assigns_arr[$i]->getVar("assigns_logoh")."px";
+$assigns[$k]["assigns_w0"] = $assigns_arr[$i]->getVar("assigns_w0")."%";
+$assigns[$k]["assigns_w1"] = $assigns_arr[$i]->getVar("assigns_w1")."%";
+$assigns[$k]["assigns_w2"] = $assigns_arr[$i]->getVar("assigns_w2")."%";
+$assigns[$k]["assigns_logos"] = "/uploads/ixtframework/assigns/assigns_logos/".$assigns_arr[$i]->getVar("assigns_logos");
+$assigns[$k]["assigns_logow"] = $assigns_arr[$i]->getVar("assigns_logow")."px";
+$assigns[$k]["assigns_logoh"] = $assigns_arr[$i]->getVar("assigns_logoh")."px";
 
 $verif_assigns_ctrl0 = ( $assigns_arr[$i]->getVar("assigns_ctrl0") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_ctrl0"] = $verif_assigns_ctrl0;
+$assigns[$k]["assigns_ctrl0"] = $verif_assigns_ctrl0;
 
 $verif_assigns_ctrl1 = ( $assigns_arr[$i]->getVar("assigns_ctrl1") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_ctrl1"] = $verif_assigns_ctrl1;
+$assigns[$k]["assigns_ctrl1"] = $verif_assigns_ctrl1;
 
 $verif_assigns_ctrl2 = ( $assigns_arr[$i]->getVar("assigns_ctrl2") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_ctrl2"] = $verif_assigns_ctrl2;
+$assigns[$k]["assigns_ctrl2"] = $verif_assigns_ctrl2;
 
 $verif_assigns_extfooter = ( $assigns_arr[$i]->getVar("assigns_extfooter") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_extfooter"] = $verif_assigns_extfooter;
+$assigns[$k]["assigns_extfooter"] = $verif_assigns_extfooter;
 
-$assigns[$i]["assigns_ehblock"] = $assigns_arr[$i]->getVar("assigns_ehblock");
-$assigns[$i]["assigns_efblocks0"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks0"));
-$assigns[$i]["assigns_efblocks1"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks1"));
-$assigns[$i]["assigns_efblocks2"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks2"));
-$assigns[$i]["assigns_efblocks3"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks3"));
-$assigns[$i]["assigns_wblocks1"] = explode(',',$assigns_arr[$i]->getVar("assigns_wblocks1"));
-$assigns[$i]["assigns_wblocks2"] = explode(',',$assigns_arr[$i]->getVar("assigns_wblocks2"));
+$assigns[$k]["assigns_ehblock"] = $assigns_arr[$i]->getVar("assigns_ehblock");
+$assigns[$k]["assigns_efblocks0"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks0"));
+$assigns[$k]["assigns_efblocks1"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks1"));
+$assigns[$k]["assigns_efblocks2"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks2"));
+$assigns[$k]["assigns_efblocks3"] = explode(',',$assigns_arr[$i]->getVar("assigns_efblocks3"));
+$assigns[$k]["assigns_wblocks1"] = explode(',',$assigns_arr[$i]->getVar("assigns_wblocks1"));
+$assigns[$k]["assigns_wblocks2"] = explode(',',$assigns_arr[$i]->getVar("assigns_wblocks2"));
 
 $verif_assigns_footerrss = ( $assigns_arr[$i]->getVar("assigns_footerrss") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_footerrss"] = $verif_assigns_footerrss;
+$assigns[$k]["assigns_footerrss"] = $verif_assigns_footerrss;
 
 $uitheme =& $uithemeHandler->get($assigns_arr[$i]->getVar("assigns_uitheme"));
 $title_uitheme = $uitheme->getVar("uitheme_name");	
-$assigns[$i]["assigns_uitheme"] = $title_uitheme;
+$assigns[$k]["assigns_uitheme"] = $title_uitheme;
 			
 $verif_assigns_multiskin = ( $assigns_arr[$i]->getVar("assigns_multiskin") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_multiskin"] = $verif_assigns_multiskin;
+$assigns[$k]["assigns_multiskin"] = $verif_assigns_multiskin;
 
 $fixskin =& $fixskinHandler->get($assigns_arr[$i]->getVar("assigns_fixskin"));
 $title_fixskin = $fixskin->getVar("fixskin_name");	
-$assigns[$i]["assigns_fixskin"] = $title_fixskin;
+$assigns[$k]["assigns_fixskin"] = $title_fixskin;
 			
 $verif_assigns_blconcat = ( $assigns_arr[$i]->getVar("assigns_blconcat") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_blconcat"] = $verif_assigns_blconcat;
+$assigns[$k]["assigns_blconcat"] = $verif_assigns_blconcat;
 
 $verif_assigns_sb1style = ( $assigns_arr[$i]->getVar("assigns_sb1style") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_sb1style"] = $verif_assigns_sb1style;
+$assigns[$k]["assigns_sb1style"] = $verif_assigns_sb1style;
 
 $verif_assigns_sb2style = ( $assigns_arr[$i]->getVar("assigns_sb2style") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_sb2style"] = $verif_assigns_sb2style;
+$assigns[$k]["assigns_sb2style"] = $verif_assigns_sb2style;
 
 $verif_assigns_eftstyle = ( $assigns_arr[$i]->getVar("assigns_eftstyle") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_eftstyle"] = $verif_assigns_eftstyle;
+$assigns[$k]["assigns_eftstyle"] = $verif_assigns_eftstyle;
 
 $verif_assigns_sysbstyle = ( $assigns_arr[$i]->getVar("assigns_sysbstyle") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_sysbstyle"] = $verif_assigns_sysbstyle;
+$assigns[$k]["assigns_sysbstyle"] = $verif_assigns_sysbstyle;
 
 $verif_assigns_wide1style = ( $assigns_arr[$i]->getVar("assigns_wide1style") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_wide1style"] = $verif_assigns_wide1style;
+$assigns[$k]["assigns_wide1style"] = $verif_assigns_wide1style;
 
 $verif_assigns_wide2style = ( $assigns_arr[$i]->getVar("assigns_wide2style") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_wide2style"] = $verif_assigns_wide2style;
+$assigns[$k]["assigns_wide2style"] = $verif_assigns_wide2style;
 
 $verif_assigns_rtl = ( $assigns_arr[$i]->getVar("assigns_rtl") == 1 ) ? "yes" : "no";
-$assigns[$i]["assigns_rtl"] = $verif_assigns_rtl;
+$assigns[$k]["assigns_rtl"] = $verif_assigns_rtl;
 
 $toplayout =& $toplayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_top_order"));
 $title_toplayout = $toplayout->getVar("toplayout_name");	
-$assigns[$i]["assigns_content_top_order"] = $title_toplayout;
+$assigns[$k]["assigns_content_top_order"] = $title_toplayout;
 
 $botlayout =& $botlayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_bottom_order"));
 $title_botlayout = $botlayout->getVar("botlayout_name");	
-$assigns[$i]["assigns_content_bottom_order"] = $title_botlayout;
+$assigns[$k]["assigns_content_bottom_order"] = $title_botlayout;
 			
-			$assigns[$i]["assigns_submitter"] = $assigns_arr[$i]->getVar("assigns_submitter");
-			$assigns[$i]["assigns_date_created"] = $assigns_arr[$i]->getVar("assigns_date_created");
-			$assigns[$i]["assigns_online"] = $assigns_arr[$i]->getVar("assigns_online");
+			$assigns[$k]["assigns_submitter"] = $assigns_arr[$i]->getVar("assigns_submitter");
+			$assigns[$k]["assigns_date_created"] = $assigns_arr[$i]->getVar("assigns_date_created");
+			$assigns[$k]["assigns_online"] = $assigns_arr[$i]->getVar("assigns_online");
 		
 	}
 return $assigns;
 }
 
 function b_ixtframework_assigns_edit($options) {
-	include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/topic.php";
+	include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/topic.php";
 	
-	$topicHandler =& xoops_getModuleHandler("IXTFrameWork_topic", "IXTFrameWork");
+	$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
 	$criteria = new CriteriaCompo();
 	$criteria->setSort("topic_title");
 	$criteria->setOrder("ASC");

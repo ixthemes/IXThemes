@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,15 +11,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
-include_once("./header.php");
+//include_once("header.php");
+include_once dirname(__FILE__) . '/header.php';
+
 	
 xoops_cp_header();
 
@@ -30,9 +32,9 @@ if (isset($_REQUEST["op"])) {
 }
 
 if (!($op == "save_assigns") && !($op == "update_online_assigns") && !($op == "delete_assigns")) {
-//Menu admin
+//Admin menu with support old CMS version
 if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php") ) {
-IXTFrameWork_adminmenu(4, _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
+ixtframework_adminmenu(4, _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (4, _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
@@ -45,13 +47,30 @@ if (!(is_file(XOOPS_ROOT_PATH . '/themes/'.$curtheme.'/tpl/assigns.html'))) {
 } elseif (!(is_file(XOOPS_ROOT_PATH . '/themes/'.$curtheme.'/xoplugins/ixt09.php'))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_WARNINGNOTIXTTHEME4, $curtheme));
     echo '<br />';
+} else {
+    xoops_error(sprintf(_AM_IXTFRAMEWORK_WARNINGDEFTHEME, $curtheme));
+    echo '<br />';
 }
 
-//Sous menu
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/assigns.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+.mark {	background-color: #91EF88; }
+.mark td {	padding:20px 0 20px 0; }
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/assigns.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_ASSIGNS."</strong>
 	</div><br /><br>";
 }
+
 switch ($op) 
 {	
 	case "save_assigns":
@@ -96,7 +115,7 @@ switch ($op)
 		$obj->setVar("assigns_w2", $_REQUEST["assigns_w2"]);
 		//Form assigns_logos	
 		include_once XOOPS_ROOT_PATH."/class/uploader.php";
-		$uploaddir_assigns_logos = XOOPS_ROOT_PATH."/uploads/IXTFrameWork/assigns/assigns_logos/";
+		$uploaddir_assigns_logos = XOOPS_ROOT_PATH."/uploads/ixtframework/assigns/assigns_logos/";
 		$uploader_assigns_logos = new XoopsMediaUploader($uploaddir_assigns_logos, $xoopsModuleConfig["assigns_logos_mimetypes"], $xoopsModuleConfig["assigns_logos_size"], null, null);
 
 		if ($uploader_assigns_logos->fetchMedia("assigns_logos")) {
@@ -187,7 +206,6 @@ switch ($op)
 		$verif_assigns_online = ($_REQUEST["assigns_online"] == 1) ? "1" : "0";
 		$obj->setVar("assigns_online", $verif_assigns_online);
 		
-		
         if ($assignsHandler->insert($obj)) {
            redirect_header("assigns.php?op=show_list_assigns", 2, _AM_IXTFRAMEWORK_FORMOK);
         }
@@ -226,6 +244,7 @@ switch ($op)
 	if ($assignsHandler->insert($obj)) {
 		redirect_header("assigns.php", 3, _AM_IXTFRAMEWORK_FORMOK);
 	}
+//	$assignsHandler->insert($obj);
 	echo $obj->getHtmlErrors();
 	
 	break;
@@ -238,6 +257,18 @@ switch ($op)
 		$criteria->setOrder("ASC");
 		$numrows = $assignsHandler->getCount();
 		$assigns_arr = $assignsHandler->getall($criteria);
+		
+		$criteria = new CriteriaCompo();
+		$criteria->add(new Criteria("assigns_online", 1));
+		$criteria->setSort("assigns_date_created");
+		$criteria->setOrder("DESC");
+  $criteria->setLimit(1);
+		$curassigns_arr = $assignsHandler->getall($criteria);
+		foreach (array_keys($curassigns_arr) as $i) {
+ 		$curactassigns = $curassigns_arr[$i]->getVar("assigns_id");
+		}
+		
+		$assigns_limit = xoops_getModuleOption('assigns_limit', 'ixtframework');
 		
 			//Affichage du tableau
 			if ($numrows>0) 
@@ -302,145 +333,165 @@ switch ($op)
 					</tr>";
 						
 				$class = "odd";
+				$k = 0;
 				
 				foreach (array_keys($assigns_arr) as $i) 
 				{	
+				 $k++;
 					if ( $assigns_arr[$i]->getVar("topic_pid") == 0)
 					{
-						$class = ($class == "even") ? "odd" : "even";
-						echo "<tr class=\"".$class."\">";
-						
-						echo "<td rowspan=\"6\" align=\"center\">".$assigns_arr[$i]->getVar("assigns_name")."</td>";	
+$class = (($class == "even") || ($class == "mark")) ? "odd" : "even";
+if ($assigns_arr[$i]->getVar("assigns_id") == $curactassigns) {
+	$class = "mark";
+}
 
-     $online = $assigns_arr[$i]->getVar("assigns_online");
-					if( $online == 1 ) {
-						echo "<td rowspan=\"6\" align=\"center\"><a href=\"./assigns.php?op=update_online_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."&assigns_online=0\"><img src=\"./../images/deco/on.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
-					} else {
-						echo "<td rowspan=\"6\" align=\"center\"><a href=\"./assigns.php?op=update_online_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."&assigns_online=1\"><img src=\"./../images/deco/off.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+echo "<tr class=\"".$class."\">";
+
+if ($class == "mark") {
+echo "<td rowspan=\"6\" align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".str_replace(' ','_','Current Assigns Style').">".$assigns_arr[$i]->getVar("assigns_name")."</a></td>";	
+} else {
+echo "<td rowspan=\"6\" align=\"center\">".$assigns_arr[$i]->getVar("assigns_name")."</td>";	
+}
+
+$online = $assigns_arr[$i]->getVar("assigns_online");
+if( $online == 1 ) {
+echo "<td rowspan=\"6\" align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./assigns.php?op=update_online_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."&assigns_online=0\" title="._AM_IXTFRAMEWORK_ON."><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
+} else {
+echo "<td rowspan=\"6\" align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"./assigns.php?op=update_online_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."&assigns_online=1\" title="._AM_IXTFRAMEWORK_OFF."><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+}
+echo "<td rowspan=\"6\" align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"assigns.php?op=edit_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."\" title="._AM_IXTFRAMEWORK_EDIT."><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>&nbsp;<a style=\"text-decoration:none\" class=\"tooltip\" href=\"assigns.php?op=delete_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."\" title="._AM_IXTFRAMEWORK_DELETE."><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a></td>";
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_SCROLBLOCKS).">".$assigns_arr[$i]->getVar("assigns_scrolblocks")."</a></td>";	
+
+$verif_assigns_jsenable = ( $assigns_arr[$i]->getVar("assigns_jsenable") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_JSENABLE).">".$verif_assigns_jsenable."</a></td>";	
+
+$globalnav =& $globalnavHandler->get($assigns_arr[$i]->getVar("assigns_globalnav"));
+$title_globalnav = $globalnav->getVar("globalnav_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_GLOBALNAV).">".$title_globalnav."</a></td>";
+
+$verif_assigns_widecontent = ( $assigns_arr[$i]->getVar("assigns_widecontent") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_WIDECONTENT).">".$verif_assigns_widecontent."</a></td>";	
+
+$preheader =& $preheaderHandler->get($assigns_arr[$i]->getVar("assigns_preheader"));
+$title_preheader = $preheader->getVar("preheader_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_PREHEADER).">".$title_preheader."</a></td>";
+
+$verif_assigns_extheader = ( $assigns_arr[$i]->getVar("assigns_extheader") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EXTHEADER).">".$verif_assigns_extheader."</a></td>";	
+
+$verif_assigns_headerrss = ( $assigns_arr[$i]->getVar("assigns_headerrss") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_HEADERRSS).">".$verif_assigns_headerrss."</a></td>";	
+
+echo "</tr>";
+echo "<tr class=\"".$class."\">";
+
+$slides =& $slidesHandler->get($assigns_arr[$i]->getVar("assigns_slides"));
+$title_slides = $slides->getVar("slides_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_SLIDES).">".$title_slides."</a></td>";
+
+$pagelayout =& $pagelayoutHandler->get($assigns_arr[$i]->getVar("assigns_layout"));
+$title_pagelayout = $pagelayout->getVar("pagelayout_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_LAYOUT).">".$title_pagelayout."</a></td>";
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_W0).">".$assigns_arr[$i]->getVar("assigns_w0")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_W1).">".$assigns_arr[$i]->getVar("assigns_w1")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_W2).">".$assigns_arr[$i]->getVar("assigns_w2")."</a></td>";	
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_LOGOS)."><img src=\"".XOOPS_URL."/uploads/ixtframework/assigns/assigns_logos/".$assigns_arr[$i]->getVar("assigns_logos")."\" height=\"30px\" title=\"assigns_logos\" alt=\"assigns_logos\"></a></td>";	
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_LOGOW).">".$assigns_arr[$i]->getVar("assigns_logow")."</a></td>";	
+
+echo "</tr>";
+echo "<tr class=\"".$class."\">";
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_LOGOH).">".$assigns_arr[$i]->getVar("assigns_logoh")."</a></td>";	
+
+$verif_assigns_ctrl0 = ( $assigns_arr[$i]->getVar("assigns_ctrl0") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_CTRL0).">".$verif_assigns_ctrl0."</a></td>";	
+
+$verif_assigns_ctrl1 = ( $assigns_arr[$i]->getVar("assigns_ctrl1") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_CTRL1).">".$verif_assigns_ctrl1."</a></td>";	
+
+$verif_assigns_ctrl2 = ( $assigns_arr[$i]->getVar("assigns_ctrl2") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_CTRL2).">".$verif_assigns_ctrl2."</a></td>";	
+
+$verif_assigns_extfooter = ( $assigns_arr[$i]->getVar("assigns_extfooter") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EXTFOOTER).">".$verif_assigns_extfooter."</a></td>";	
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EHBLOCK).">".$assigns_arr[$i]->getVar("assigns_ehblock")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS0).">".$assigns_arr[$i]->getVar("assigns_efblocks0")."</a></td>";	
+
+echo "</tr>";
+echo "<tr class=\"".$class."\">";
+
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS1).">".$assigns_arr[$i]->getVar("assigns_efblocks1")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS2).">".$assigns_arr[$i]->getVar("assigns_efblocks2")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS3).">".$assigns_arr[$i]->getVar("assigns_efblocks3")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS1).">".$assigns_arr[$i]->getVar("assigns_wblocks1")."</a></td>";	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS2).">".$assigns_arr[$i]->getVar("assigns_wblocks2")."</a></td>";	
+
+$verif_assigns_footerrss = ( $assigns_arr[$i]->getVar("assigns_footerrss") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_FOOTERRSS).">".$verif_assigns_footerrss."</a></td>";	
+
+$uitheme =& $uithemeHandler->get($assigns_arr[$i]->getVar("assigns_uitheme"));
+$title_uitheme = $uitheme->getVar("uitheme_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_UITHEME).">".$title_uitheme."</a></td>";
+
+echo "</tr>";
+echo "<tr class=\"".$class."\">";
+
+$verif_assigns_multiskin = ( $assigns_arr[$i]->getVar("assigns_multiskin") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_MULTISKIN).">".$verif_assigns_multiskin."</a></td>";	
+
+$fixskin =& $fixskinHandler->get($assigns_arr[$i]->getVar("assigns_fixskin"));
+$title_fixskin = $fixskin->getVar("fixskin_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_FIXSKIN).">".$title_fixskin."</a></td>";
+
+$verif_assigns_blconcat = ( $assigns_arr[$i]->getVar("assigns_blconcat") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_BLCONCAT).">".$verif_assigns_blconcat."</a></td>";	
+
+$verif_assigns_sb1style = ( $assigns_arr[$i]->getVar("assigns_sb1style") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_SB1STYLE).">".$verif_assigns_sb1style."</a></td>";	
+
+$verif_assigns_sb2style = ( $assigns_arr[$i]->getVar("assigns_sb2style") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_SB2STYLE).">".$verif_assigns_sb2style."</a></td>";	
+
+$verif_assigns_eftstyle = ( $assigns_arr[$i]->getVar("assigns_eftstyle") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_EFTSTYLE).">".$verif_assigns_eftstyle."</a></td>";	
+
+$verif_assigns_sysbstyle = ( $assigns_arr[$i]->getVar("assigns_sysbstyle") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_SYSBSTYLE).">".$verif_assigns_sysbstyle."</a></td>";	
+
+echo "</tr>";
+echo "<tr class=\"".$class."\">";
+
+$verif_assigns_wide1style = ( $assigns_arr[$i]->getVar("assigns_wide1style") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_WIDE1STYLE).">".$verif_assigns_wide1style."</a></td>";	
+
+$verif_assigns_wide2style = ( $assigns_arr[$i]->getVar("assigns_wide2style") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_WIDE2STYLE).">".$verif_assigns_wide2style."</a></td>";	
+
+$verif_assigns_rtl = ( $assigns_arr[$i]->getVar("assigns_rtl") == 1 ) ? "yes" : "no";
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_RTL).">".$verif_assigns_rtl."</a></td>";	
+
+$toplayout =& $toplayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_top_order"));
+$title_toplayout = $toplayout->getVar("toplayout_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_TOP_ORDER).">".$title_toplayout."</a></td>";
+
+$botlayout =& $botlayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_bottom_order"));
+$title_botlayout = $botlayout->getVar("botlayout_name");	
+echo "<td align=\"center\"><a style=\"text-decoration:none\" class=\"tooltip\" href=\"javascript:\" title=".$assigns_arr[$i]->getVar("assigns_name")."::".str_replace(' ','_',_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_BOTTOM_ORDER).">".$title_botlayout."</a></td>";
+
+echo "<td align=\"center\">".XoopsUser::getUnameFromId($assigns_arr[$i]->getVar("assigns_submitter"),"S")."</td>";	
+echo "<td align=\"center\">".formatTimeStamp($assigns_arr[$i]->getVar("assigns_date_created"),"S")."</td>";	
+
+echo "</tr>";
+
+					if ($k == $assigns_limit) {
+						break;
 					}
-					echo "<td rowspan=\"6\" align=\"center\"><a href=\"assigns.php?op=edit_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."\"><img src=\"../images/deco/edit.gif\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>&nbsp;<a href=\"assigns.php?op=delete_assigns&assigns_id=".$assigns_arr[$i]->getVar("assigns_id")."\"><img src=\"../images/deco/delete.gif\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a></td>";
-					
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_scrolblocks")."</td>";	
-					
-					$verif_assigns_jsenable = ( $assigns_arr[$i]->getVar("assigns_jsenable") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_jsenable."</td>";	
-					
-						$globalnav =& $globalnavHandler->get($assigns_arr[$i]->getVar("assigns_globalnav"));
-						$title_globalnav = $globalnav->getVar("globalnav_name");	
-						echo "<td align=\"center\">".$title_globalnav."</td>";
-						
-					$verif_assigns_widecontent = ( $assigns_arr[$i]->getVar("assigns_widecontent") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_widecontent."</td>";	
-					
-						$preheader =& $preheaderHandler->get($assigns_arr[$i]->getVar("assigns_preheader"));
-						$title_preheader = $preheader->getVar("preheader_name");	
-						echo "<td align=\"center\">".$title_preheader."</td>";
-						
-					$verif_assigns_extheader = ( $assigns_arr[$i]->getVar("assigns_extheader") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_extheader."</td>";	
-					
-					$verif_assigns_headerrss = ( $assigns_arr[$i]->getVar("assigns_headerrss") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_headerrss."</td>";	
-					
-					echo "</tr>";
-					echo "<tr class=\"".$class."\">";
-					
-						$slides =& $slidesHandler->get($assigns_arr[$i]->getVar("assigns_slides"));
-						$title_slides = $slides->getVar("slides_name");	
-						echo "<td align=\"center\">".$title_slides."</td>";
-						
-						$pagelayout =& $pagelayoutHandler->get($assigns_arr[$i]->getVar("assigns_layout"));
-						$title_pagelayout = $pagelayout->getVar("pagelayout_name");	
-						echo "<td align=\"center\">".$title_pagelayout."</td>";
-						echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_w0")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_w1")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_w2")."</td>";	
-					echo "<td align=\"center\"><img src=\"".XOOPS_URL."/uploads/IXTFrameWork/assigns/assigns_logos/".$assigns_arr[$i]->getVar("assigns_logos")."\" height=\"30px\" title=\"assigns_logos\" alt=\"assigns_logos\"></td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_logow")."</td>";	
-					
-					echo "</tr>";
-					echo "<tr class=\"".$class."\">";
-					
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_logoh")."</td>";	
-					
-					$verif_assigns_ctrl0 = ( $assigns_arr[$i]->getVar("assigns_ctrl0") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_ctrl0."</td>";	
-					
-					$verif_assigns_ctrl1 = ( $assigns_arr[$i]->getVar("assigns_ctrl1") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_ctrl1."</td>";	
-					
-					$verif_assigns_ctrl2 = ( $assigns_arr[$i]->getVar("assigns_ctrl2") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_ctrl2."</td>";	
-					
-					$verif_assigns_extfooter = ( $assigns_arr[$i]->getVar("assigns_extfooter") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_extfooter."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_ehblock")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_efblocks0")."</td>";	
-					
-					echo "</tr>";
-					echo "<tr class=\"".$class."\">";
-					
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_efblocks1")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_efblocks2")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_efblocks3")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_wblocks1")."</td>";	
-					echo "<td align=\"center\">".$assigns_arr[$i]->getVar("assigns_wblocks2")."</td>";	
-					
-					$verif_assigns_footerrss = ( $assigns_arr[$i]->getVar("assigns_footerrss") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_footerrss."</td>";	
-					
-						$uitheme =& $uithemeHandler->get($assigns_arr[$i]->getVar("assigns_uitheme"));
-						$title_uitheme = $uitheme->getVar("uitheme_name");	
-						echo "<td align=\"center\">".$title_uitheme."</td>";
-						
-					echo "</tr>";
-					echo "<tr class=\"".$class."\">";
-						
-					$verif_assigns_multiskin = ( $assigns_arr[$i]->getVar("assigns_multiskin") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_multiskin."</td>";	
-					
-						$fixskin =& $fixskinHandler->get($assigns_arr[$i]->getVar("assigns_fixskin"));
-						$title_fixskin = $fixskin->getVar("fixskin_name");	
-						echo "<td align=\"center\">".$title_fixskin."</td>";
-						
-					$verif_assigns_blconcat = ( $assigns_arr[$i]->getVar("assigns_blconcat") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_blconcat."</td>";	
-					
-					$verif_assigns_sb1style = ( $assigns_arr[$i]->getVar("assigns_sb1style") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_sb1style."</td>";	
-					
-					$verif_assigns_sb2style = ( $assigns_arr[$i]->getVar("assigns_sb2style") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_sb2style."</td>";	
-					
-					$verif_assigns_eftstyle = ( $assigns_arr[$i]->getVar("assigns_eftstyle") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_eftstyle."</td>";	
-					
-					$verif_assigns_sysbstyle = ( $assigns_arr[$i]->getVar("assigns_sysbstyle") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_sysbstyle."</td>";	
-					
-					echo "</tr>";
-					echo "<tr class=\"".$class."\">";
-					
-					$verif_assigns_wide1style = ( $assigns_arr[$i]->getVar("assigns_wide1style") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_wide1style."</td>";	
-					
-					$verif_assigns_wide2style = ( $assigns_arr[$i]->getVar("assigns_wide2style") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_wide2style."</td>";	
-					
-					$verif_assigns_rtl = ( $assigns_arr[$i]->getVar("assigns_rtl") == 1 ) ? "yes" : "no";
-					echo "<td align=\"center\">".$verif_assigns_rtl."</td>";	
-					
-						$toplayout =& $toplayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_top_order"));
-						$title_toplayout = $toplayout->getVar("toplayout_name");	
-						echo "<td align=\"center\">".$title_toplayout."</td>";
-						
-						$botlayout =& $botlayoutHandler->get($assigns_arr[$i]->getVar("assigns_content_bottom_order"));
-						$title_botlayout = $botlayout->getVar("botlayout_name");	
-						echo "<td align=\"center\">".$title_botlayout."</td>";
-						echo "<td align=\"center\">".XoopsUser::getUnameFromId($assigns_arr[$i]->getVar("assigns_submitter"),"S")."</td>";	
-					echo "<td align=\"center\">".formatTimeStamp($assigns_arr[$i]->getVar("assigns_date_created"),"S")."</td>";	
-					
-						echo "</tr>";
+
 					}	
 				}
 				echo "</table><br><br>";

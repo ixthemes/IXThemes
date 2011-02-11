@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -25,7 +25,7 @@
 	}
 
 	if (!class_exists("XoopsPersistableObjectHandler")) {
-		include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/object.php";
+		include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/object.php";
 	}
 
 	class ixtframework_topic extends XoopsObject
@@ -73,7 +73,7 @@
 			
 			include_once(XOOPS_ROOT_PATH."/class/tree.php");
 			
-			$topicHandler =& xoops_getModuleHandler("IXTFrameWork_topic", "IXTFrameWork");
+			$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
 			$arr = $topicHandler->getall();
 			$mytree = new XoopsObjectTree($arr, "topic_id", "topic_pid");
 			$form->addElement(new XoopsFormLabel(_AM_IXTFRAMEWORK_TOPIC_PID, $mytree->makeSelBox("topic_pid", "topic_title","-", $this->getVar("topic_pid"),false)));
@@ -82,7 +82,7 @@
 			
 			$topic_img = $this->getVar("topic_img") ? $this->getVar("topic_img") : 'blank.gif';
 		
-			$uploadirectory_topic_img = '/uploads/IXTFrameWork/topic/topic_img';
+			$uploadirectory_topic_img = '/uploads/ixtframework/topic/topic_img';
 			$imgtray_topic_img = new XoopsFormElementTray(_AM_IXTFRAMEWORK_TOPIC_IMG,'<br />');
 			$imgpath_topic_img = sprintf(_AM_IXTFRAMEWORK_FORMIMAGE_PATH, $uploadirectory_topic_img);
 			$imageselect_topic_img = new XoopsFormSelect($imgpath_topic_img, 'topic_img', $topic_img);
@@ -115,7 +115,7 @@
 			return $form;
 		}
 	}
-	class IXTFrameWorkixtframework_topicHandler extends XoopsPersistableObjectHandler 
+	class ixtframeworkixtframework_topicHandler extends XoopsPersistableObjectHandler 
 	{
 
 		function __construct(&$db) 

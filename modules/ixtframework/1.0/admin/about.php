@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -24,27 +24,25 @@ include_once("./header.php");
 xoops_cp_header();
 
 if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-IXTFrameWork_adminmenu(13, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
-
-echo "<style>
-.CPbigTitle{
-	font-size: 20px;
-	color: #1E90FF;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 40px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
-</style>";
+ixtframework_adminmenu(13, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (13, _AM_IXTFRAMEWORK_MANAGER_ABOUT);
 }
 
-//menu
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/about.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_ABOUT."</strong>
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/about.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_ABOUT."</strong>
 </div><br />";
 
 $versioninfo =& $module_handler->get( $xoopsModule->getVar("mid") );
@@ -96,7 +94,7 @@ echo "<style type=\"text/css\">
 	</fieldset>
 <br clear=\"all\" />";
 
-$file = XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/changelog.txt";
+$file = XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/doc/changelog.txt";
 
 if ( is_readable( $file ) ){
 echo "<fieldset>

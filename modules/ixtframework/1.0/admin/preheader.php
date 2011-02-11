@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -30,15 +30,27 @@ if (isset($_REQUEST["op"])) {
 }
 
 if (!($op == "save_preheader") && !($op == "update_online_preheader") && !($op == "delete_preheader")) {
-//Menu admin
+//Admin menu with support old CMS version
 if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php") ) {
-IXTFrameWork_adminmenu(7, _AM_IXTFRAMEWORK_MANAGER_PREHEADER);
+ixtframework_adminmenu(7, _AM_IXTFRAMEWORK_MANAGER_PREHEADER);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (7, _AM_IXTFRAMEWORK_MANAGER_PREHEADER);
 }
-//Sous menu
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/assigns.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/assigns.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_PREHEADER."</strong>
 	</div><br /><br>";
 }
@@ -144,13 +156,13 @@ switch ($op)
 					$online = $preheader_arr[$i]->getVar("preheader_online");
 				
 					if( $online == 1 ) {
-						echo "<td align=\"center\"><a href=\"./preheader.php?op=update_online_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."&preheader_online=0\"><img src=\"./../images/deco/on.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
+						echo "<td align=\"center\"><a href=\"./preheader.php?op=update_online_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."&preheader_online=0\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
 					} else {
-						echo "<td align=\"center\"><a href=\"./preheader.php?op=update_online_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."&preheader_online=1\"><img src=\"./../images/deco/off.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+						echo "<td align=\"center\"><a href=\"./preheader.php?op=update_online_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."&preheader_online=1\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
 					}
 									echo "<td align=\"center\" width=\"10%\">
-										<a href=\"preheader.php?op=edit_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."\"><img src=\"../images/deco/edit.gif\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
-										<a href=\"preheader.php?op=delete_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."\"><img src=\"../images/deco/delete.gif\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
+										<a href=\"preheader.php?op=edit_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
+										<a href=\"preheader.php?op=delete_preheader&preheader_id=".$preheader_arr[$i]->getVar("preheader_id")."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
 									  </td>";
 						echo "</tr>";
 					}	

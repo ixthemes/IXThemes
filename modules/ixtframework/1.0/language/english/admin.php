@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  	
@@ -27,6 +27,9 @@ define("_AM_IXTFRAMEWORK_THEREARE_SLIDES","there are <span style=\"color: #ff000
 define("_AM_IXTFRAMEWORK_THEREARE_SLIDES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Slides enabled");
 define("_AM_IXTFRAMEWORK_THEREARE_TOPIC","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Topic in our database");
 define("_AM_IXTFRAMEWORK_THEREARE_TOPIC_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Topic enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Themes in our database");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Themes enabled");
+define("_AM_IXTFRAMEWORK_THEREARE_THEMES_DEFAULT","Default Theme is <span style='color: #ff0000; font-weight: bold'>%s</span>");
 define("_AM_IXTFRAMEWORK_THEREARE_ASSIGNS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Assigns in our database");
 define("_AM_IXTFRAMEWORK_THEREARE_ASSIGNS_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Assigns enabled");
 define("_AM_IXTFRAMEWORK_THEREARE_WIGETS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Wigets in our database");
@@ -48,6 +51,17 @@ define("_AM_IXTFRAMEWORK_MANAGER_ABOUT","About");
 define("_AM_IXTFRAMEWORK_MANAGER_PREFERENCES","Preferences");
 define("_AM_IXTFRAMEWORK_MANAGER_UPDATE","Update");
 define("_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS","Permissions");
+define("_AM_IXTFRAMEWORK_MANAGER_BUYTHEMES","Buy the Premium Theme");
+define("_AM_IXTFRAMEWORK_MANAGER_WHOISUSING","Who is Using");
+define("_AM_IXTFRAMEWORK_MANAGER_FINDTHEBESTTHEME","Find the Best Theme");
+define("_AM_IXTFRAMEWORK_MANAGER_SUBSCRIBERSS","Subscribe RSS");
+define("_AM_IXTFRAMEWORK_MANAGER_FOLLOWUS","Follow IXThemes");
+define("_AM_IXTFRAMEWORK_MANAGER_ANYQUESTIONS","Any Questions?");
+define("_AM_IXTFRAMEWORK_MANAGER_IUSEIT","I Use It");
+define("_AM_IXTFRAMEWORK_MANAGER_XOOPS233DEMO","Demo on XOOPS 2.3.3");
+define("_AM_IXTFRAMEWORK_MANAGER_XOOPS245DEMO","Demo on XOOPS 2.4.5");
+define("_AM_IXTFRAMEWORK_MANAGER_XOOPS250DEMO","Demo on XOOPS 2.5.0");
+define("_AM_IXTFRAMEWORK_MANAGER_THEMES","Themes in System");
 
 //Index
 define("_AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT","Page Layout");
@@ -170,6 +184,20 @@ define("_AM_IXTFRAMEWORK_GLOBALNAV_SUBMITTER","Submitter");
 define("_AM_IXTFRAMEWORK_GLOBALNAV_DATE_CREATED","Date_created");
 define("_AM_IXTFRAMEWORK_GLOBALNAV_ONLINE","Online");
 
+
+define("_AM_IXTFRAMEWORK_THEMES_ADD","Add theme");
+define("_AM_IXTFRAMEWORK_THEMES_EDIT","Edit theme");
+define("_AM_IXTFRAMEWORK_THEMES_ID","Id");
+define("_AM_IXTFRAMEWORK_THEMES_NAME","Name");
+define("_AM_IXTFRAMEWORK_THEMES_SHOT","Screenshot");
+define("_AM_IXTFRAMEWORK_THEMES_VERSION","Release");
+define("_AM_IXTFRAMEWORK_THEMES_DESCRIPTION","Description");
+define("_AM_IXTFRAMEWORK_THEMES_AUTHOR","Author");
+define("_AM_IXTFRAMEWORK_THEMES_COPYRIGHT","Copyright");
+define("_AM_IXTFRAMEWORK_THEMES_SUBMITTER","Submitter");
+define("_AM_IXTFRAMEWORK_THEMES_DATE_CREATED","Date_created");
+define("_AM_IXTFRAMEWORK_THEMES_ONLINE","Online");
+
 define("_AM_IXTFRAMEWORK_PREHEADER_ADD","Add preheader");
 define("_AM_IXTFRAMEWORK_PREHEADER_EDIT","Edit preheader");
 define("_AM_IXTFRAMEWORK_PREHEADER_ID","Id");
@@ -268,5 +296,6 @@ define("_AM_IXTFRAMEWORK_ABOUT_DISCLAIMER_TEXT","GPL Licensed - No Warranty");
 
 define('_AM_IXTFRAMEWORK_WARNINGNOTIXTTHEME', 'WARNING: Default theme on your site is %s. It is not Theme by IXThemes.<br />Please set default theme by IXThemes. (System : Preferences : General Settings : Default theme) + Relogin into Admin Side.');
 define('_AM_IXTFRAMEWORK_WARNINGNOTIXTTHEME4', 'WARNING: Default theme on your site is %s. It is not Release 4 Theme by IXThemes.<br />Please set default theme by IXThemes Release 4.<br />(System : Preferences : General Settings : Default theme) + Relogin into Admin Side.');
-
+define('_AM_IXTFRAMEWORK_WARNINGDEFTHEME', '<span class="green">INFO: Default theme on your site is %s.</span>');
+define('_AM_IXTFRAMEWORK_WARNINGDEFTHEME1', '<span class="green">INFO: Default theme on your site is %s. It is marked as a green background of row.</span>');
 ?>

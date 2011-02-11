@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -27,12 +27,25 @@ global $xoopsModule;
 
 //Apelle du menu admin
 if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-IXTFrameWork_adminmenu(0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
+ixtframework_adminmenu(0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
 }
 
+	//compte "total"
+	$count_themes = count(XoopsLists::getThemesList());
+	//compte "attente"
+	$themes_online = count($GLOBALS['xoopsConfig']['theme_set_allowed']);
+	$themes_default = $GLOBALS['xoopsConfig']['theme_set'];
+
+	//compte "total"
+	$count_assigns = $assignsHandler->getCount();
+	//compte "attente"
+	$criteria = new CriteriaCompo();
+	$criteria->add(new Criteria("assigns_online", 1));
+	$assigns_online = $assignsHandler->getCount($criteria);
+	
 	//compte "total"
 	$count_pagelayout = $pagelayoutHandler->getCount();
 	//compte "attente"
@@ -53,13 +66,6 @@ loadModuleAdminMenu (0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
 	$criteria = new CriteriaCompo();
 	$criteria->add(new Criteria("topic_online", 1));
 	$topic_online = $topicHandler->getCount($criteria);
-	
-	//compte "total"
-	$count_assigns = $assignsHandler->getCount();
-	//compte "attente"
-	$criteria = new CriteriaCompo();
-	$criteria->add(new Criteria("assigns_online", 1));
-	$assigns_online = $assignsHandler->getCount($criteria);
 	
 	//compte "total"
 	$count_wigets = $wigetsHandler->getCount();
@@ -110,15 +116,16 @@ loadModuleAdminMenu (0, _AM_IXTFRAMEWORK_MANAGER_INDEX);
 	$criteria->add(new Criteria("botlayout_online", 1));
 	$botlayout_online = $botlayoutHandler->getCount($criteria);
 	
-include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/menu.php";
+include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/menu.php";
 
-	$menu = new IXTFrameWorkMenu();
+	$menu = new ixtframeworkMenu();
 /*
  $menu->addItem("pagelayout", "pagelayout.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT);
-	$menu->addItem("slides", "slides.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_SLIDES);
+	$menu->addItem("slides", "slides.php", "../images/deco/slides.png", _AM_IXTFRAMEWORK_MANAGER_SLIDES);
 	$menu->addItem("topic", "topic.php", "../images/deco/topic.png", _AM_IXTFRAMEWORK_MANAGER_TOPIC);
 */
  $menu->addItem("assigns", "assigns.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
+	$menu->addItem("themes", "themes.php", "../images/deco/themes.png", _AM_IXTFRAMEWORK_MANAGER_THEMES);
 /*
  $menu->addItem("wigets", "wigets.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_WIGETS);
 	$menu->addItem("globalnav", "globalnav.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
@@ -128,12 +135,22 @@ include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/menu.php";
 	$menu->addItem("toplayout", "toplayout.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT);
 	$menu->addItem("botlayout", "botlayout.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_BOTLAYOUT);
 */
- $menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=IXTFrameWork", "../images/deco/update.png",  _AM_IXTFRAMEWORK_MANAGER_UPDATE);	
+ $menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=ixtframework", "../images/deco/update.png",  _AM_IXTFRAMEWORK_MANAGER_UPDATE);	
 //	$menu->addItem("permissions", "permissions.php", "../images/deco/permissions.png", _AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
 	$menu->addItem("preference", "../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$xoopsModule->getVar("mid")."&amp;&confcat_id=1", "../images/deco/pref.png", _AM_IXTFRAMEWORK_MANAGER_PREFERENCES);
 	$menu->addItem("about", "about.php", "../images/deco/about.png", _AM_IXTFRAMEWORK_MANAGER_ABOUT);
-	
-	echo $menu->getCSS();
+ $menu->addItem("buythemes", "http://shop.ixthemes.com", "../images/deco/shop.png", _AM_IXTFRAMEWORK_MANAGER_BUYTHEMES);
+	$menu->addItem("whoisusing", "http://ixthemes.org/modules/wflinks/viewcat.php?cid=3", "../images/deco/whoisusing.png", _AM_IXTFRAMEWORK_MANAGER_WHOISUSING);
+	$menu->addItem("findthebesttheme", "http://downloads.ixthemes.com/xoops", "../images/deco/findtheme.png", _AM_IXTFRAMEWORK_MANAGER_FINDTHEBESTTHEME);
+	$menu->addItem("subscriberss", "http://ixthemes.com/headlines/feed.rss", "../images/deco/subscriberss.png", _AM_IXTFRAMEWORK_MANAGER_SUBSCRIBERSS);
+	$menu->addItem("followus", "http://twitter.com/ixthemes", "../images/deco/followus.png", _AM_IXTFRAMEWORK_MANAGER_FOLLOWUS);
+	$menu->addItem("anyquestions", "http://ixthemes.org/modules/liaise/index.php?form_id=1", "../images/deco/help.png", _AM_IXTFRAMEWORK_MANAGER_ANYQUESTIONS);
+	$menu->addItem("iuseit", "http://www.ohloh.net/stack_entries/new?project_id=ixthemes&ref=WidgetProjectUsersLogo", "../images/deco/iuseit.png", _AM_IXTFRAMEWORK_MANAGER_IUSEIT);
+	$menu->addItem("xoops233demo", "http://xoops233demo.ixthemes.org", "../images/deco/xoopsdemo.png", _AM_IXTFRAMEWORK_MANAGER_XOOPS233DEMO, '', _AM_IXTFRAMEWORK_MANAGER_XOOPS233DEMO);
+	$menu->addItem("xoops245demo", "http://xoops245demo.ixthemes.org", "../images/deco/xoopsdemo.png", _AM_IXTFRAMEWORK_MANAGER_XOOPS245DEMO, '', _AM_IXTFRAMEWORK_MANAGER_XOOPS245DEMO);
+	$menu->addItem("xoops250demo", "http://xoops250demo.ixthemes.org", "../images/deco/xoopsdemo.png", _AM_IXTFRAMEWORK_MANAGER_XOOPS250DEMO, '', _AM_IXTFRAMEWORK_MANAGER_XOOPS250DEMO);
+
+echo $menu->getCSS();
 	
 	
 $curtheme = $GLOBALS['xoopsConfig']['theme_set'];
@@ -145,12 +162,35 @@ if (!(is_file(XOOPS_ROOT_PATH . '/themes/'.$curtheme.'/tpl/assigns.html'))) {
     echo '<br />';
 }
 
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_INDEX."</strong></div><br />
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_INDEX."</strong></div><br />
 		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
 			<tr>
-				<td valign=\"top\">".$menu->render()."</td>
-				<td valign=\"top\" width=\"60%\">";
-				
+				<td style=\"vertical-align:top;\">".$menu->render()."</td>
+				<td style=\"vertical-align:top;\" width=\"60%\"><div>";
+
+					echo "<fieldset>
+						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_THEMES."</legend>
+						<br />";
+						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES, $count_themes);
+						echo "<br /><br />";
+						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_ONLINE, $themes_online);
+						echo "<br /><br />";
+						printf(_AM_IXTFRAMEWORK_THEREARE_THEMES_DEFAULT, $themes_default);
+						echo "<br />
+					</fieldset><br /><br />";
+
 					echo "<fieldset>
 						<legend class=\"CPmediumTitle\">"._AM_IXTFRAMEWORK_MANAGER_ASSIGNS."</legend>
 						<br />";
@@ -250,7 +290,7 @@ echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/ind
 						echo "<br />
 					</fieldset><br /><br />";
 					
-				echo "</td>
+				echo "</div></td>
 			</tr>
 		</table>
 <br /><br />

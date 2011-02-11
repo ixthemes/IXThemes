@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -29,16 +29,27 @@ if( !empty($_POST["submit"]) )
 xoops_cp_header();
 
 global $xoopsDB;
-
+//Admin menu with support old CMS version
 if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php"))	{
-IXTFrameWork_adminmenu(12,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
+ixtframework_adminmenu(12,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (12,_AM_IXTFRAMEWORK_MANAGER_PERMISSIONS);
 }
 
-//menu
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/permissions.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/permissions.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_PERMISSIONS."</strong>
 	</div><br />";
 
@@ -66,18 +77,18 @@ $module_id = $xoopsModule->getVar("mid");
 	{
 		case 1:
 			$title_of_form = _AM_IXTFRAMEWORK_PERMISSIONS_ACCESS;
-			$perm_name = "IXTFrameWork_access";
+			$perm_name = "ixtframework_access";
 			$perm_desc = "";
 			break;
 		case 2:
 			$title_of_form = _AM_IXTFRAMEWORK_PERMISSIONS_SUBMIT;
-			$perm_name = "IXTFrameWork_submit";
+			$perm_name = "ixtframework_submit";
 			$perm_desc = "";
 			break;
 	}
 	
 	$permform = new XoopsGroupPermForm($title_of_form, $module_id, $perm_name, $perm_desc, "admin/permissions.php");
-	$xt = new XoopsTopic( $xoopsDB -> prefix("IXTFrameWork_topic") );
+	$xt = new XoopsTopic( $xoopsDB -> prefix("ixtframework_topic") );
 	$alltopics =& $xt->getTopicsList();
 	
 	foreach ($alltopics as $topic_id => $topic) 

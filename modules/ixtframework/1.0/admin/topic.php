@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -30,15 +30,27 @@ if (isset($_REQUEST["op"])) {
 }
 
 if (!($op == "save_topic") && !($op == "update_online_topic") && !($op == "delete_topic")) {
-//Menu admin
+//Admin menu with support old CMS version
 if ( !is_readable(XOOPS_ROOT_PATH . "/Frameworks/art/functions.admin.php") ) {
-IXTFrameWork_adminmenu(3, _AM_IXTFRAMEWORK_MANAGER_TOPIC);
+ixtframework_adminmenu(3, _AM_IXTFRAMEWORK_MANAGER_TOPIC);
 } else {
 include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
 loadModuleAdminMenu (3, _AM_IXTFRAMEWORK_MANAGER_TOPIC);
 }
-//Sous menu
-echo "<div class=\"CPbigTitle\" style=\"background-image: url(../images/deco/topic.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+
+echo "<style>
+.cpbigtitle{
+	font-size: 20px;
+	color: #1E90FF;
+	background: no-repeat left top;
+	font-weight: bold;
+	height: 50px;
+	vertical-align: middle;
+	padding: 10px 0 0 50px;
+	border-bottom: 3px solid #1E90FF;
+}
+</style>";
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/topic.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_TOPIC."</strong>
 	</div><br /><br>";
 }
@@ -62,7 +74,7 @@ switch ($op)
 		$obj->setVar("topic_desc", $_REQUEST["topic_desc"]);
 		//Form topic_img	
 		include_once XOOPS_ROOT_PATH."/class/uploader.php";
-		$uploaddir_topic_img = XOOPS_ROOT_PATH."/uploads/IXTFrameWork/topic/topic_img/";
+		$uploaddir_topic_img = XOOPS_ROOT_PATH."/uploads/ixtframework/topic/topic_img/";
 		$uploader_topic_img = new XoopsMediaUploader($uploaddir_topic_img, $xoopsModuleConfig["topic_img_mimetypes"], $xoopsModuleConfig["topic_img_size"], null, null);
 
 		if ($uploader_topic_img->fetchMedia("topic_img")) {
@@ -142,10 +154,10 @@ switch ($op)
 		$topic_arr = $topicHandler->getall($criteria);
 		
 			//Fonction qui permet afficher les catégories enfants
-			function IXTFrameWork_display_children($topic_id = 0, $topic_arr, $prefix = "", $order = "", &$class) 
+			function ixtframework_display_children($topic_id = 0, $topic_arr, $prefix = "", $order = "", &$class) 
 			{   
-				$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "IXTFrameWork");
-				$prefix = $prefix."<img src=\"".XOOPS_URL."/modules/IXTFrameWork/images/deco/arrow.gif\">";
+				$topicHandler =& xoops_getModuleHandler("ixtframework_topic", "ixtframework");
+				$prefix = $prefix."<img src=\"".XOOPS_URL."/modules/ixtframework/images/deco/arrow.gif\">";
 				foreach (array_keys($topic_arr) as $i) 
 				{
 					$topic_id = $topic_arr[$i]->getVar("topic_id");
@@ -154,20 +166,20 @@ switch ($op)
 					$topic_weight = $topic_arr[$i]->getVar("topic_weight");
 					echo "<tr class=\"".$class."\">";
 					echo "<td align=\"left\">".$prefix."&nbsp;".$topic_arr[$i]->getVar("topic_title")."</td>";	
-						echo "<td align=\"center\"><img src=\"".XOOPS_URL."/uploads/IXTFrameWork/topic/topic_img/".$topic_arr[$i]->getVar("topic_img")."\" height=\"30px\" title=\"topic_img\" alt=\"topic_img\"></td>";	
+						echo "<td align=\"center\"><img src=\"".XOOPS_URL."/uploads/ixtframework/topic/topic_img/".$topic_arr[$i]->getVar("topic_img")."\" height=\"30px\" title=\"topic_img\" alt=\"topic_img\"></td>";	
 					echo "<td align=\"center\">".$topic_arr[$i]->getVar("topic_weight")."</td>";	
 					echo "<td align=\"center\"><span style=\"background-color:".$topic_arr[$i]->getVar("topic_color")."\">&nbsp;&nbsp;&nbsp;</span> -> ".$topic_arr[$i]->getVar("topic_color")."</td>";	
 					
 					$online = $topic_arr[$i]->getVar("topic_online");
 				
 					if( $online == 1 ) {
-						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=0\"><img src=\"./../images/deco/on.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
+						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=0\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
 					} else {
-						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=1\"><img src=\"./../images/deco/off.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=1\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
 					}
 								echo "<td align=\"center\" width=\"10%\">
-									<a href=\"topic.php?op=edit_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/edit.gif\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
-									<a href=\"topic.php?op=delete_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/delete.gif\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
+									<a href=\"topic.php?op=edit_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
+									<a href=\"topic.php?op=delete_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
 								</td>                 
 						</tr>";
 					$class = ($class == "even") ? "odd" : "even";
@@ -179,7 +191,7 @@ switch ($op)
 					$num_pid = $topicHandler->getCount();
 					if ( $num_pid != 0 )
 					{
-						IXTFrameWork_display_children($topic_id, $topic_pid, $prefix, $order, $class);
+						ixtframework_display_children($topic_id, $topic_pid, $prefix, $order, $class);
 					}
 				}
 			}
@@ -198,7 +210,7 @@ switch ($op)
 							<th align=\"center\" width=\"10%\">"._AM_IXTFRAMEWORK_FORMACTION."</th>		
 						</tr>";
 				$class = "odd";
-				$prefix = "<img src=\"".XOOPS_URL."/modules/IXTFrameWork/images/deco/arrow.gif\">";
+				$prefix = "<img src=\"".XOOPS_URL."/modules/ixtframework/images/deco/arrow.gif\">";
 				foreach (array_keys($topic_arr) as $i) 
 				{               
 					if ( $topic_arr[$i]->getVar("topic_pid") == 0 )
@@ -209,20 +221,20 @@ switch ($op)
 						$topic_weight = $topic_arr[$i]->getVar("topic_weight");
 						echo "<tr class=\"".$class."\">";
 						echo "<td align=\"left\">".$prefix."&nbsp;".$topic_arr[$i]->getVar("topic_title")."</td>";	
-						echo "<td align=\"center\"><img src=\"".XOOPS_URL."/uploads/IXTFrameWork/topic/topic_img/".$topic_arr[$i]->getVar("topic_img")."\" height=\"30px\" title=\"topic_img\" alt=\"topic_img\"></td>";	
+						echo "<td align=\"center\"><img src=\"".XOOPS_URL."/uploads/ixtframework/topic/topic_img/".$topic_arr[$i]->getVar("topic_img")."\" height=\"30px\" title=\"topic_img\" alt=\"topic_img\"></td>";	
 					echo "<td align=\"center\">".$topic_arr[$i]->getVar("topic_weight")."</td>";	
 					echo "<td align=\"center\"><span style=\"background-color:".$topic_arr[$i]->getVar("topic_color")."\">&nbsp;&nbsp;&nbsp;</span> -> ".$topic_arr[$i]->getVar("topic_color")."</td>";	
 					
 					$online = $topic_arr[$i]->getVar("topic_online");
 				
 					if( $online == 1 ) {
-						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=0\"><img src=\"./../images/deco/on.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
+						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=0\"><img src=\"./../images/deco/1.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_ON."\" title=\""._AM_IXTFRAMEWORK_ON."\"></a></td>";	
 					} else {
-						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=1\"><img src=\"./../images/deco/off.gif\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
+						echo "<td align=\"center\"><a href=\"./topic.php?op=update_online_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."&topic_online=1\"><img src=\"./../images/deco/0.png\" border=\"0\" alt=\""._AM_IXTFRAMEWORK_OFF."\" title=\""._AM_IXTFRAMEWORK_OFF."\"></a></td>";
 					}
 								echo "<td align=\"center\" width=\"10%\">
-									<a href=\"topic.php?op=edit_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/edit.gif\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
-									<a href=\"topic.php?op=delete_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/delete.gif\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
+									<a href=\"topic.php?op=edit_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/edit.png\" alt=\""._AM_IXTFRAMEWORK_EDIT."\" title=\""._AM_IXTFRAMEWORK_EDIT."\"></a>
+									<a href=\"topic.php?op=delete_topic&topic_id=".$topic_arr[$i]->getVar("topic_id")."\"><img src=\"../images/deco/delete.png\" alt=\""._AM_IXTFRAMEWORK_DELETE."\" title=\""._AM_IXTFRAMEWORK_DELETE."\"></a>
 								</td>                 
 						</tr>";
 						$class = ($class == "even") ? "odd" : "even";
@@ -235,7 +247,7 @@ switch ($op)
 						
 						if ( $num_pid != 0)
 						{
-							IXTFrameWork_display_children($topic_id, $topic_pid, $prefix, "topic_title", $class);
+							ixtframework_display_children($topic_id, $topic_pid, $prefix, "topic_title", $class);
 						}
 					}
 				}

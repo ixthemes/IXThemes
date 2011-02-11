@@ -1,6 +1,6 @@
 <?php
 /**
- * IXTFrameWork - MODULE FOR XOOPS AND IMPRESS CMS
+ * ixtframework - MODULE FOR XOOPS CONTENT MANAGEMENT SYSTEM
  * Copyright (c) IXThemes Project (http://ixthemes.org)
  *
  * You may not change or alter any portion of this comment or credits
@@ -11,11 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright       IXThemes Project (http://ixthemes.org)
- * @license         GPL 3.0
- * @package         IXTFrameWork
+ * @license         GPL 2.0
+ * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.00:
+ * Version : 1.03:
  * ****************************************************************************
  */
  
@@ -25,7 +25,7 @@
 	}
 
 	if (!class_exists("XoopsPersistableObjectHandler")) {
-		include_once XOOPS_ROOT_PATH."/modules/IXTFrameWork/class/object.php";
+		include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/object.php";
 	}
 
 	class ixtframework_assigns extends XoopsObject
@@ -112,7 +112,7 @@
 			$check_assigns_jsenable->addOption(1, " ");
 			$form->addElement($check_assigns_jsenable);
 			
-			$globalnavHandler =& xoops_getModuleHandler("IXTFrameWork_globalnav", "IXTFrameWork");
+			$globalnavHandler =& xoops_getModuleHandler("ixtframework_globalnav", "ixtframework");
 			$globalnav_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_GLOBALNAV, "assigns_globalnav", $this->getVar("assigns_globalnav"));
 			$globalnav_select->addOptionArray($globalnavHandler->getList());
 			$form->addElement($globalnav_select, true);
@@ -121,7 +121,7 @@
 			$check_assigns_widecontent->addOption(1, " ");
 			$form->addElement($check_assigns_widecontent);
 			
-			$preheaderHandler =& xoops_getModuleHandler("IXTFrameWork_preheader", "IXTFrameWork");
+			$preheaderHandler =& xoops_getModuleHandler("ixtframework_preheader", "ixtframework");
 			$preheader_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_PREHEADER, "assigns_preheader", $this->getVar("assigns_preheader"));
 			$preheader_select->addOptionArray($preheaderHandler->getList());
 			$form->addElement($preheader_select, true);
@@ -134,12 +134,12 @@
 			$check_assigns_headerrss->addOption(1, " ");
 			$form->addElement($check_assigns_headerrss);
 			
-			$slidesHandler =& xoops_getModuleHandler("IXTFrameWork_slides", "IXTFrameWork");
+			$slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "ixtframework");
 			$slides_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_SLIDES, "assigns_slides", $this->getVar("assigns_slides"));
 			$slides_select->addOptionArray($slidesHandler->getList());
 			$form->addElement($slides_select, true);
 			
-			$pagelayoutHandler =& xoops_getModuleHandler("IXTFrameWork_pagelayout", "IXTFrameWork");
+			$pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "ixtframework");
 			$pagelayout_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_LAYOUT, "assigns_layout", $this->getVar("assigns_layout"));
 			$pagelayout_select->addOptionArray($pagelayoutHandler->getList());
 			$form->addElement($pagelayout_select, true);
@@ -149,7 +149,7 @@
 			
 			$assigns_logos = $this->getVar("assigns_logos") ? $this->getVar("assigns_logos") : 'blank.gif';
 		
-			$uploadirectory_assigns_logos = '/uploads/IXTFrameWork/assigns/assigns_logos';
+			$uploadirectory_assigns_logos = '/uploads/ixtframework/assigns/assigns_logos';
 			$imgtray_assigns_logos = new XoopsFormElementTray(_AM_IXTFRAMEWORK_ASSIGNS_LOGOS,'<br />');
 			$imgpath_assigns_logos = sprintf(_AM_IXTFRAMEWORK_FORMIMAGE_PATH, $uploadirectory_assigns_logos);
 			$imageselect_assigns_logos = new XoopsFormSelect($imgpath_assigns_logos, 'assigns_logos', $assigns_logos);
@@ -197,7 +197,7 @@
 			$check_assigns_footerrss->addOption(1, " ");
 			$form->addElement($check_assigns_footerrss);
 			
-			$uithemeHandler =& xoops_getModuleHandler("IXTFrameWork_uitheme", "IXTFrameWork");
+			$uithemeHandler =& xoops_getModuleHandler("ixtframework_uitheme", "ixtframework");
 			$uitheme_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_UITHEME, "assigns_uitheme", $this->getVar("assigns_uitheme"));
 			$uitheme_select->addOptionArray($uithemeHandler->getList());
 			$form->addElement($uitheme_select, true);
@@ -206,7 +206,7 @@
 			$check_assigns_multiskin->addOption(1, " ");
 			$form->addElement($check_assigns_multiskin);
 			
-			$fixskinHandler =& xoops_getModuleHandler("IXTFrameWork_fixskin", "IXTFrameWork");
+			$fixskinHandler =& xoops_getModuleHandler("ixtframework_fixskin", "ixtframework");
 			$fixskin_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_FIXSKIN, "assigns_fixskin", $this->getVar("assigns_fixskin"));
 			$fixskin_select->addOptionArray($fixskinHandler->getList());
 			$form->addElement($fixskin_select, true);
@@ -243,12 +243,12 @@
 			$check_assigns_rtl->addOption(1, " ");
 			$form->addElement($check_assigns_rtl);
 			
-			$toplayoutHandler =& xoops_getModuleHandler("IXTFrameWork_toplayout", "IXTFrameWork");
+			$toplayoutHandler =& xoops_getModuleHandler("ixtframework_toplayout", "ixtframework");
 			$toplayout_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_TOP_ORDER, "assigns_content_top_order", $this->getVar("assigns_content_top_order"));
 			$toplayout_select->addOptionArray($toplayoutHandler->getList());
 			$form->addElement($toplayout_select, true);
 			
-			$botlayoutHandler =& xoops_getModuleHandler("IXTFrameWork_botlayout", "IXTFrameWork");
+			$botlayoutHandler =& xoops_getModuleHandler("ixtframework_botlayout", "ixtframework");
 			$botlayout_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_CONTENT_BOTTOM_ORDER, "assigns_content_bottom_order", $this->getVar("assigns_content_bottom_order"));
 			$botlayout_select->addOptionArray($botlayoutHandler->getList());
 			$form->addElement($botlayout_select, true);
@@ -265,7 +265,7 @@
 			return $form;
 		}
 	}
-	class IXTFrameWorkixtframework_assignsHandler extends XoopsPersistableObjectHandler 
+	class ixtframeworkixtframework_assignsHandler extends XoopsPersistableObjectHandler 
 	{
 
 		function __construct(&$db) 
