@@ -1,0 +1,16 @@
+	
+<table class="outer">
+	<{foreachq item=wigets from=$block}>
+		<tr class = "<{cycle values = "even,odd"}>">
+			<td><{$wigets.wigets_id}>;
+					<{$wigets.wigets_name}>;
+					<{$wigets.wigets_title}>;
+					<{$wigets.wigets_content}>;
+					<{$wigets.wigets_submitter}>;
+					<{$wigets.wigets_date_created}>;
+					<{$wigets.wigets_online}>;
+					</td>
+		</tr>
+	<{/foreach}>
+</table>
+
