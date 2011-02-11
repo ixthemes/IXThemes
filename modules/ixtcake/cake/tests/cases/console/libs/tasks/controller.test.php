@@ -68,12 +68,12 @@ if (!$imported) {
 	define('ARTICLE_MODEL_CREATED', true);
 	App::import('Core', 'Model');
 
-	class Article extends Model {
+/* algalochkin: Cannot redeclare class Article in modules\ixtcake\cake\tests\cases\libs\model\models.php */
+	class Article1 extends Model {
 		var $name = 'Article';
 		var $hasMany = array('Comment');
 		var $hasAndBelongsToMany = array('Tag');
 	}
-
 }
 
 /**

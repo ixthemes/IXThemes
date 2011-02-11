@@ -15,16 +15,16 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  	
 
-function ixtframework_dummy() {
+function ixtcake_dummy() {
 }
 
 /***************Blocks***************/
-function block_addCatSelect($cats) {
+function block_addixtcakeCatSelect($cats) {
 	if(is_array($cats)) 
 	{
 		$cat_sql = "(".current($cats);

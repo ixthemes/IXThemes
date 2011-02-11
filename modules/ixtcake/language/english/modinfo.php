@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -24,8 +24,8 @@ define("_MI_IXTCAKE_DESC","IXTCake is a module for integration CakePHP RAD Syste
 
 //Menu
 define("_MI_IXTCAKE_MANAGER_INDEX","Index");
-define("_MI_IXTCAKE_MANAGER_APPTESTGROUPS","App Test Groups");
-define("_MI_IXTCAKE_MANAGER_CORETESTGROUPS","Core Test Groups");
+define("_MI_IXTCAKE_MANAGER_APPTESTGROUPS","Apptestgroups");
+define("_MI_IXTCAKE_MANAGER_CORETESTGROUPS","Coretestgroups");
 
 define("_MI_IXTCAKE_MANAGER_ABOUT","About");
 define("_MI_IXTCAKE_MANAGER_PREFERENCES","Preferences");
@@ -36,11 +36,11 @@ define("_MI_IXTCAKE_MANAGER_PERMISSIONS","Permissions");
 define("_MI_IXTCAKE_EDITOR","Editor");
 
 //Blocks
-define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_RECENT","apptestgroups recent");
-define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_DAY","apptestgroups day");
-define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_RANDOM","apptestgroups random");
-define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_RECENT","coretestgroups recent");
-define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_DAY","coretestgroups day");
-define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_RANDOM","coretestgroups random");
+define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_RECENT","App Test Groups");
+//define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_DAY","apptestgroups day");
+//define("_MI_IXTCAKE_APPTESTGROUPS_BLOCK_RANDOM","apptestgroups random");
+define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_RECENT","Core Test Groups");
+//define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_DAY","coretestgroups day");
+//define("_MI_IXTCAKE_CORETESTGROUPS_BLOCK_RANDOM","coretestgroups random");
 
 ?>

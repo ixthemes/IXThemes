@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -67,12 +67,13 @@ td { vertical-align:top; )
 /* ixtFINISH mark and table */
 </style>";
 
-/*
+/* current default theme */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
 xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGFREE, ""));
 echo "<br />";
 
+/* list only allowed themes */
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
@@ -84,7 +85,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGDEFTHEME1, $curtheme));
     echo "<br />";
 }
-*/
+
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
@@ -104,7 +105,7 @@ echo "<script type=\"text/javascript\" charset=\"utf-8\">
 	});
 </script>";
 
-echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/tests.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/coretestgroups.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTCAKE_MANAGER_CORETESTGROUPS."</strong>
 	</div><br /><br>";
 }

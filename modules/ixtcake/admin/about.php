@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
@@ -70,7 +70,7 @@ echo "<style type=\"text/css\">
 				<img src=\"".XOOPS_URL."/modules/".$xoopsModule->getVar("dirname")."/".$versioninfo->getInfo("image")."\" alt=\"\" hspace=\"10\" vspace=\"0\" /></a>\n
 				<div style=\"padding: 5px;\"><strong>".$versioninfo->getInfo("name")." version ".$versioninfo->getInfo("version")."</strong></div>\n
 				<label>"._AM_IXTCAKE_ABOUT_DESC.":</label><text>".$versioninfo->getInfo("description")."</text><br />
-    <label>"._AM_IXTCAKE_ABOUT_RELEASEDATE.":</label><text>".$versioninfo->getInfo("release")."</text><br />
+				<label>"._AM_IXTCAKE_ABOUT_RELEASEDATE.":</label><text>".$versioninfo->getInfo("release")."</text><br />
 				<label>"._AM_IXTCAKE_ABOUT_AUTHOR.":</label><text>".$versioninfo->getInfo("author")."</text><br />
 				<label>"._AM_IXTCAKE_ABOUT_CREDITS.":</label><text>".$versioninfo->getInfo("credits")."</text><br />
 				<label>"._AM_IXTCAKE_ABOUT_LICENSE.":</label><text><a href=\"".$versioninfo->getInfo("license_file")."\" target=\"_blank\" >".$versioninfo->getInfo("license")."</a></text>\n

@@ -15,13 +15,13 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  
  $modversion = array();
 	$modversion["name"] = _MI_IXTCAKE_NAME;
-	$modversion["version"] = 1.03;
+	$modversion["version"] = 1.04;
 	$modversion["description"] = _MI_IXTCAKE_DESC;
 	$modversion["author"] = "IXThemes Project";
 	$modversion["author_website_url"] = "http://ixthemes.org";
@@ -132,5 +132,57 @@
 	$i++;
 	
 	// Blocks
-	$i = 1;		
+	$i = 1;
+	$modversion["blocks"][$i]["file"] = "blocks_apptestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_APPTESTGROUPS_BLOCK_RECENT;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_apptestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_apptestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "recent|25|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_apptestgroups_block_recent.html";
+/*	
+	$i++;
+	$modversion["blocks"][$i]["file"] = "blocks_apptestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_APPTESTGROUPS_BLOCK_DAY;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_apptestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_apptestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "day|5|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_apptestgroups_block_day.html";
+	$i++;
+	$modversion["blocks"][$i]["file"] = "blocks_apptestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_APPTESTGROUPS_BLOCK_RANDOM;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_apptestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_apptestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "random|5|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_apptestgroups_block_random.html";
+*/	
+	$i++;
+	$modversion["blocks"][$i]["file"] = "blocks_coretestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_CORETESTGROUPS_BLOCK_RECENT;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_coretestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_coretestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "recent|25|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_coretestgroups_block_recent.html";
+/*	
+	$i++;
+	$modversion["blocks"][$i]["file"] = "blocks_coretestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_CORETESTGROUPS_BLOCK_DAY;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_coretestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_coretestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "day|5|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_coretestgroups_block_day.html";
+	$i++;
+	$modversion["blocks"][$i]["file"] = "blocks_coretestgroups.php";
+	$modversion["blocks"][$i]["name"] = _MI_IXTCAKE_CORETESTGROUPS_BLOCK_RANDOM;
+	$modversion["blocks"][$i]["description"] = "";
+	$modversion["blocks"][$i]["show_func"] = "b_ixtcake_coretestgroups";
+	$modversion["blocks"][$i]["edit_func"] = "b_ixtcake_coretestgroups_edit";
+	$modversion["blocks"][$i]["options"] = "random|5|25|0";
+	$modversion["blocks"][$i]["template"] = "ixtcake_coretestgroups_block_random.html";
+	$i++;		
+*/
 ?>

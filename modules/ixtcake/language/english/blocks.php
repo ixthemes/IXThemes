@@ -15,10 +15,15 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.03:
+ * Version : 1.04:
  * ****************************************************************************
  */
  	
+define("_MB_IXTCAKE_APPTESTGROUPS_DISPLAY","Display");
+define("_MB_IXTCAKE_APPTESTGROUPS_TITLELENGTH","Lenght of Title");
+define("_MB_IXTCAKE_APPTESTGROUPS_CATTODISPLAY","Cat to display");
+define("_MB_IXTCAKE_APPTESTGROUPS_ALLCAT","All cat");
+
 
 		define("_MB_IXTCAKE_APPTESTGROUPS_ID","Id");
 		
@@ -32,6 +37,11 @@
 		
 		define("_MB_IXTCAKE_APPTESTGROUPS_ONLINE","Online");
 		
+define("_MB_IXTCAKE_CORETESTGROUPS_DISPLAY","Display");
+define("_MB_IXTCAKE_CORETESTGROUPS_TITLELENGTH","Lenght of Title");
+define("_MB_IXTCAKE_CORETESTGROUPS_CATTODISPLAY","Cat to display");
+define("_MB_IXTCAKE_CORETESTGROUPS_ALLCAT","All cat");
+
 
 		define("_MB_IXTCAKE_CORETESTGROUPS_ID","Id");
 		
