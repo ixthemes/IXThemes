@@ -1,0 +1,21 @@
+<h1><{$smarty.const._AM_IXTFRAMEWORK_THCAT_ELECONFIG|replace:'%s':$element}></h1>
+<form name="ixtform" method="post" action="thcat.php">
+ <div id="ixt-form-container">
+<{*
+  <{if ($ixt_show=='theme')}>
+   <{php}> $theme->get_config($current_settings); <{/php}>
+  <{else}>
+   <{php}> $plugin->get_config($current_settings); <{/php}>
+  <{/if}>
+*}>
+  <div class="field_item">
+   <div class="caption">&nbsp;</div>
+   <div class="content">
+    <input type="submit" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_SAVECONF}>" class="button" />
+    <input type="button" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_CANCEL}>" class="button" onclick="history.go(-1)" />
+   </div>
+  </div>
+ </div>
+ <input type="hidden" name="op" value="save_settings" />
+ <input type="hidden" name="element" value="<{$element}>" />
+</form>

@@ -1,0 +1,69 @@
+<{* Current Theme *}>
+<h1 class="ixt-thcat-titles"><{$smarty.const._AM_IXTFRAMEWORK_THCAT_CURACTTHEME}></h1>
+<div id="ixt-current-theme">
+ <div class="theme_info">
+  <{if ($theme_info.screenshot)}>
+   <img class="screenshot" src='<{$theme_url}>/<{$theme_info.screenshot}>' alt='<{$theme_info.name}>' />
+  <{else}>
+   <img class="screenshot" src='<{$xoops_url}>/modules/ixtframework/images/deco/noshot.png' alt='<{$theme_info.name}>' />
+  <{/if}>
+  <h3><{$theme_info.name}>&nbsp;Rel.&nbsp;<{$theme_info.version}></h3>
+  <{$theme_info.description}>
+  <div class="theme_data">
+   <strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_RELEASE}></strong>:&nbsp;<{$theme_info.version}><br />
+   <strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_AUTHOR}></strong>:&nbsp;<a target='_blank' href='<{$theme_info.url}>'><{$theme_info.author}></a><br />
+   <{if ($theme_info.demo1)}><strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO}></strong>:&nbsp;<a target='_blank' href='<{$theme_info.demo1}>'><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO1}></a><br /><{/if}>
+   <{if ($theme_info.demo2)}><strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO}></strong>:&nbsp;<a target='_blank' href='<{$theme_info.demo2}>'><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO2}></a><br /><{/if}>
+   <{if ($theme_info.demo3)}><strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO}></strong>:&nbsp;<a target='_blank' href='<{$theme_info.demo3}>'><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO3}></a><br /><{/if}>
+   <strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_COPYRIGHT}></strong>:&nbsp;<{$theme_info.copyright}><br />
+   <strong><{$smarty.const._AM_IXTFRAMEWORK_THCAT_LICENSE}></strong>:&nbsp;<{$theme_info.license}>
+  </div>
+  <{if (!$not_valid)}>
+   <div class="theme_buttons">
+    <input type="submit" onclick="location='assigns.php'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_SETTINGS}>" class="formButton" />
+<{*
+    <a class="formButton" href="assigns.php"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_SETTINGS}></span></a>
+    <a class="formButton" href="?op=config"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_SETTINGS}></span></a>
+
+    <a class="formButton" href="?op=url"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_VISITWEB}></span></a>
+    <a class="formButton" href="?op=more"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_MORETHEMES}></span></a>
+*}>
+    <input type="submit" onclick="location='thcat.php?op=url'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_VISITWEB}>" class="formButton" />
+    <input type="submit" onclick="location='themes.php'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_MORETHEMES}>" class="formButton" />
+   </div>
+  <{/if}>
+ </div>
+</div>
+<br />
+<{* Other Themes *}>
+<h1 class="ixt-thcat-titles"><{$smarty.const._AM_IXTFRAMEWORK_THCAT_OTHERTHEMES}></h1>
+<div id="ixt-other-themes">
+ <{foreach item=theme from=$themes}>
+  <div class="other_theme_item"> <a rel="prettyPhoto" class="tooltip" title="Preview '<{$theme.info.dir}>' theme" href='<{$xoops_url}>/themes/<{$theme.info.dir}>/<{$theme.info.screenshot}>'><img class="screenshot" src='<{$xoops_url}>/themes/<{$theme.info.dir}>/<{$theme.info.screenshot}>' alt='<{$theme.info.name}>' /></a>
+   <h2><{$theme.info.name}></h2>
+   <{if ($theme.valid)}>
+    <{$smarty.const._AM_IXTFRAMEWORK_THCAT_BY}>&nbsp;<a href='<{$theme.info.url}>'><{$theme.info.author}></a><br />
+    <span class="descs"><{$theme.info.description|truncate:70}></span><br />
+    <div class="theme_buttons">
+<{*    
+     <a class="formButton" href="?op=install-theme&amp;theme=<{$theme.info.dir}>"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_ACTIVATE}></span></a>
+     <a class="formButton" target="_blank" href="<{$theme.info.demo}>"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO}></span></a>
+*}>
+     <input type="submit" onclick="location='thcat.php?op=install-theme&amp;theme=<{$theme.info.dir}>'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_ACTIVATE}>" class="formButton" />
+     <input type="submit" onclick="location='<{$theme.info.demo}>'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_DEMO}>" class="formButton" />
+    </div>
+   <{else}>
+    <{$smarty.const._AM_IXTFRAMEWORK_THCAT_BY}>&nbsp;<{$theme.info.author}><br />
+    <span class="descs"><{$theme.info.description|truncate:70}></span><br />
+    <div class="theme_buttons">
+<{*    
+     <a class="formButton" href="?op=install-normal&amp;theme=<{$theme.info.dir}>"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_ACTIVATE}></span></a>
+     <a class="formButton" href="themes.php"><span><{$smarty.const._AM_IXTFRAMEWORK_THCAT_MORETHEMES}></span></a> 
+*}>
+     <input type="submit" onclick="location='thcat.php?op=install-normal&amp;theme=<{$theme.info.dir}>'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_ACTIVATE}>" class="formButton" />
+     <input type="submit" onclick="location='themes.php'" value="<{$smarty.const._AM_IXTFRAMEWORK_THCAT_MORETHEMES}>" class="formButton" />
+    </div>
+   <{/if}>
+  </div>
+ <{/foreach}>
+</div>
