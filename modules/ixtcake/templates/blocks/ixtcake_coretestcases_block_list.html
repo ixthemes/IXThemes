@@ -1,0 +1,8 @@
+<{* you can adjust this template as you need	*}>
+<ul>
+	<{foreachq item=coretestcases from=$block}>
+			<li>
+					<a href="<{php }>echo XOOPS_URL;<{/php }>/modules/ixtcake/<{$coretestcases.coretestcases_path}>"><{$coretestcases.coretestcases_name}></a>
+			</li>
+	<{/foreach}>
+</ul>

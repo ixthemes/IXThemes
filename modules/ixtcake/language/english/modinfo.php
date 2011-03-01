@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  
@@ -24,6 +24,7 @@ define("_MI_IXTCAKE_DESC","IXTCake is a module for integration CakePHP RAD Syste
 
 //Menu
 define("_MI_IXTCAKE_MANAGER_INDEX","Index");
+define("_MI_IXTCAKE_MANAGER_DASHBOARD","Dashboard");
 define("_MI_IXTCAKE_MANAGER_APPTESTGROUPS","App Test Groups");
 define("_MI_IXTCAKE_MANAGER_CORETESTGROUPS","Core Test Groups");
 define("_MI_IXTCAKE_MANAGER_APPTESTCASES","App Test Cases");

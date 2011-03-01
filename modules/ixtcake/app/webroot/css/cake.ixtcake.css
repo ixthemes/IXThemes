@@ -146,13 +146,13 @@ pre { color: #000; background: #f0f0f0; padding: 1em; }
 /*
 pre.cake-debug { background: #ffcc00; font-size: 120%; line-height: 140%; margin-top: 1em; overflow: auto; position: relative; }
 */
-pre.cake-debug { width:96%; background: #ffcc00; margin-top: 1em; overflow:scroll; position: relative; }
+pre.cake-debug { width:96%; background:none; margin-top: 1em; overflow:scroll; position: relative; }
 div.cake-stack-trace { background: #fff; color: #333; margin: 0px; padding: 6px; font-size: 120%; line-height: 140%; overflow: auto; position: relative; }
 div.cake-code-dump pre { position: relative; overflow: auto; }
 div.cake-stack-trace pre, div.cake-code-dump pre { color: #000; background-color: #F0F0F0; margin: 0px; padding: 1em; overflow: auto; }
 div.cake-code-dump pre, div.cake-code-dump pre code { clear: both; font-size: 12px; line-height: 15px; margin: 4px 2px; padding: 4px; overflow: auto; }
 div.cake-code-dump span.code-highlight { background-color: #ff0; padding: 4px; }
-div.code-coverage-results div.code-line { padding-left:5px; display:block; margin-left:10px; }
+div.code-coverage-results div.code-line { width:98%; padding-left:5px; display:block; margin-left:10px; }
 div.code-coverage-results div.uncovered span.content { background:#ecc; }
 div.code-coverage-results div.covered span.content { background:#cec; }
 div.code-coverage-results div.ignored span.content { color:#aaa; }

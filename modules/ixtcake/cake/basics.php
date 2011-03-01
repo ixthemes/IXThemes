@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Basic Cake functionality.
  *
@@ -343,7 +344,7 @@ if (!function_exists('array_combine')) {
 	}
 
 /**
- * Print_r convenience function, which prints out <PRE> tags around
+ * Print_r convenience function, which prints out <pre> tags around
  * the output of given array. Similar to debug().
  *
  * @see	debug()
@@ -643,6 +644,9 @@ if (!function_exists('file_put_contents')) {
  * @return mixed translated string if $return is false string will be echoed
  * @link http://book.cakephp.org/view/1121/__
  */
+	
+/* algalochkin insert this for rmcommon compatibility*/
+if (!function_exists('__')) {
 	function __($singular, $return = false) {
 		if (!$singular) {
 			return;
@@ -657,6 +661,7 @@ if (!function_exists('file_put_contents')) {
 			return I18n::translate($singular);
 		}
 	}
+}
 
 /**
  * Returns correct plural form of message identified by $singular and $plural for count $count.
@@ -1013,3 +1018,5 @@ if (!function_exists('file_put_contents')) {
 		}
 		return $val2;
 	}
+
+?>

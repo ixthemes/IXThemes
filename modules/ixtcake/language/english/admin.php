@@ -15,12 +15,13 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  	
 //Menu
 define("_AM_IXTCAKE_MANAGER_INDEX","Index");
+define("_AM_IXTCAKE_MANAGER_DASHBOARD","Dashboard");
 define("_AM_IXTCAKE_THEREARE_APPTESTGROUPS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> App Test Groups in our database");
 define("_AM_IXTCAKE_THEREARE_APPTESTGROUPS_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> App Test Groups enabled");
 define("_AM_IXTCAKE_THEREARE_CORETESTGROUPS","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Core Test Groups in our database");

@@ -15,13 +15,13 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  
  $modversion = array();
 	$modversion["name"] = _MI_IXTCAKE_NAME;
-	$modversion["version"] = 1.05;
+	$modversion["version"] = 1.06;
 	$modversion["description"] = _MI_IXTCAKE_DESC;
 	$modversion["author"] = "IXThemes Project";
 	$modversion["author_website_url"] = "http://ixthemes.org";
@@ -35,12 +35,18 @@
 	$modversion["image"] = "images/ixtcake_slogo.png";
 	$modversion["dirname"] = "ixtcake";
 
+	//rmcommon support
+ $modversion['icon16'] = "images/icons/icon16.png";
+ $modversion['icon24'] = 'images/icons/icon24.png';
+ $modversion['icon32'] = 'images/icons/icon32.png';
+ $modversion['icon48'] = 'images/icons/icon48.png';
+
 	// About
 	$modversion["demo_site_url"] = "http://xoops250demo.ixthemes.org";
 	$modversion["demo_site_name"] = "IXThemes Demo";
 	$modversion["module_website_url"] = "http://ixthemes.com";
 	$modversion["module_website_name"] = "IXThemes Modules";
-	$modversion["release"] = "2010/11/1";
+	$modversion["release"] = "2010/12/20";
 	$modversion["module_status"] = "final";
 	
 	// Admin
@@ -48,7 +54,6 @@
 	
 	$modversion["adminindex"] = "admin/index.php";
 	$modversion["adminmenu"] = "admin/menu.php";
-	
 	
 	// Mysql
 	$modversion["sqlfile"]["mysql"] = "sql/mysql.sql";
@@ -100,7 +105,6 @@
 	$modversion["tables"][$i] = "ixtcake_translated_items";
 	$i++;
 	$modversion["tables"][$i] = "ixtcake_users";
-	
 	
 	// Scripts to run upon installation or update
 	$modversion["onInstall"] = "include/install.php";

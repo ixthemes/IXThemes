@@ -66,7 +66,6 @@
  *
  * And uncomment the App.baseUrl below:
  */
-	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 	Configure::write('App.baseUrl', env('SCRIPT_NAME'));
 
 /**
@@ -168,7 +167,7 @@
 	Configure::write('Session.cookie', 'CAKEPHP');
 
 /**
- * Session time out time (in minutes).
+ * Session time out time (in seconds).
  * Actual value depends on 'Security.level' setting.
  */
 	Configure::write('Session.timeout', '120');
@@ -180,7 +179,8 @@
 
 /**
  * When set to false, HTTP_USER_AGENT will not be checked
- * in the session
+ * in the session. You might want to set the value to false, when dealing with
+ * older versions of IE, Chrome Frame or certain web-browsing devices and AJAX
  */
 	Configure::write('Session.checkAgent', true);
 

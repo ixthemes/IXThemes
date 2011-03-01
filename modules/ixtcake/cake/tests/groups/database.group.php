@@ -44,9 +44,8 @@ class DatabaseGroupTest extends TestSuite {
  * @return void
  */
 	function DatabaseGroupTest() {
-// algalochkin: cake_schema test	must be disabled in helper group test, you can run it as individual test
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'db_acl');
-//		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'cake_schema');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'cake_schema');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'connection_manager');
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'libs' . DS . 'model' . DS . 'datasources' . DS . 'dbo_source');
 	}

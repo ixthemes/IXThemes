@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  
@@ -31,12 +31,46 @@ if (isset($_REQUEST["op"])) {
 
 if (!($op == "save_coretestgroups") && !($op == "update_online_coretestgroups") && !($op == "delete_coretestgroups")) {
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtcake_adminmenu(2, _AM_IXTCAKE_MANAGER_CORETESTGROUPS);
+if (!ixtcake_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtcake_adminmenu(2, _AM_IXTCAKE_MANAGER_CORETESTGROUPS);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (2, _AM_IXTCAKE_MANAGER_CORETESTGROUPS);
+	}
+	if (class_exists('XoopsPreload')) {
+		// since XOOPS 2.4.x
+		$xoopsPreload =& XoopsPreload::getInstance();
+		$xoopsPreload->triggerEvent('ixtcake.admin');
+  $xoopsPreload->triggerEvent('ixtcake.jgrowlredirect');
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (2, _AM_IXTCAKE_MANAGER_CORETESTGROUPS);
+ define('RMCLOCATION','coretestgroups'); // for menubar item hover
+ ixtcake_rmtoolbar();
+	echo "
+	<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+	<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
+	";
+	echo "<script type=\"text/javascript\" charset=\"utf-8\">
+		$(document).ready(function(){
+			$(\"a[rel^=prettyPhoto]\").prettyPhoto({
+				animationSpeed: \"normal\",
+				padding: 40,
+				opacity: 0.35,
+				showTitle: true,
+				allowresize: true,
+				counter_separator_label: \"/\",
+				theme: \"light_rounded\"
+			});
+		});
+	</script>";
+	echo "<style>
+	/* Correction RMCommon GUI for required elements in XOOPS form */
+	div.xoops-form-element-caption .caption-marker { display:none; }
+	div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+	</style>
+	";
 }
 
 echo "<style>
@@ -66,51 +100,27 @@ echo "<style>
 td { vertical-align:top; )
 /* ixtFINISH mark and table */
 </style>";
-
+/*
 xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGFREE, ""));
 echo "<br />";
-
-echo "
-<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
-<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
-";
-
-echo "<script type=\"text/javascript\" charset=\"utf-8\">
-	$(document).ready(function(){
-		$(\"a[rel^=prettyPhoto]\").prettyPhoto({
-			animationSpeed: \"normal\",
-			padding: 40,
-			opacity: 0.35,
-			showTitle: true,
-			allowresize: true,
-			counter_separator_label: \"/\",
-			theme: \"light_rounded\"
-		});
-	});
-</script>";
+*/
 
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/coretestgroups.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTCAKE_MANAGER_CORETESTGROUPS."</strong>
 	</div><br /><br>";
 }
-echo "<style>
-/* Correction RMCommon GUI for required elements in XOOPS form */
-div.xoops-form-element-caption .caption-marker { display:none; }
-div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
-</style>
-";
 
 switch ($op) 
 {	
 	case "save_coretestgroups":
 		if ( !$GLOBALS["xoopsSecurity"]->check() ) {
-           redirect_header("coretestgroups.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
-        }
-        if (isset($_REQUEST["coretestgroups_id"])) {
-           $obj =& $coretestgroupsHandler->get($_REQUEST["coretestgroups_id"]);
-        } else {
-           $obj =& $coretestgroupsHandler->create();
-        }
+					redirect_header("coretestgroups.php", 3, implode(",", $GLOBALS["xoopsSecurity"]->getErrors()));
+		}
+		if (isset($_REQUEST["coretestgroups_id"])) {
+					$obj =& $coretestgroupsHandler->get($_REQUEST["coretestgroups_id"]);
+		} else {
+					$obj =& $coretestgroupsHandler->create();
+		}
 		
 		//Form coretestgroups_name
 		$obj->setVar("coretestgroups_name", $_REQUEST["coretestgroups_name"]);
@@ -124,12 +134,11 @@ switch ($op)
 		$verif_coretestgroups_online = ($_REQUEST["coretestgroups_online"] == 1) ? "1" : "0";
 		$obj->setVar("coretestgroups_online", $verif_coretestgroups_online);
 		
-		
-        if ($coretestgroupsHandler->insert($obj)) {
-           redirect_header("coretestgroups.php?op=show_list_coretestgroups", 2, _AM_IXTCAKE_FORMOK);
-        }
-        echo $obj->getHtmlErrors();
-        $form =& $obj->getForm();
+		if ($coretestgroupsHandler->insert($obj)) {
+					redirect_header("coretestgroups.php?op=show_list_coretestgroups", 2, _AM_IXTCAKE_FORMOK);
+		}
+		echo $obj->getHtmlErrors();
+		$form =& $obj->getForm();
 	break;
 	
 	case "edit_coretestgroups":
@@ -224,6 +233,7 @@ switch ($op)
 echo "<br /><br />
 <div align=\"center\"><a href=\"http://ixthemes.org\" target=\"_blank\"><img width=\"120px\" src=\"http://ixthemes.org/images/logo.png\" alt=\"IXThemes\" title=\"IXThemes\"></a></div>
 ";
+
 xoops_cp_footer();
 	
 ?>

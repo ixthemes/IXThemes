@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  
@@ -23,12 +23,46 @@ include_once("./header.php");
 
 xoops_cp_header();
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtcake_adminmenu(5, _AM_IXTCAKE_MANAGER_ABOUT);
+if (!ixtcake_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtcake_adminmenu(5, _AM_IXTCAKE_MANAGER_ABOUT);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (5, _AM_IXTCAKE_MANAGER_ABOUT);
+	}
+	if (class_exists('XoopsPreload')) {
+		// since XOOPS 2.4.x
+		$xoopsPreload =& XoopsPreload::getInstance();
+		$xoopsPreload->triggerEvent('ixtcake.admin');
+  $xoopsPreload->triggerEvent('ixtcake.jgrowlredirect');
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (5, _AM_IXTCAKE_MANAGER_ABOUT);
+ define('RMCLOCATION','about'); // for menubar item hover
+ ixtcake_rmtoolbar();
+	echo "
+	<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+	<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
+	";
+	echo "<script type=\"text/javascript\" charset=\"utf-8\">
+		$(document).ready(function(){
+			$(\"a[rel^=prettyPhoto]\").prettyPhoto({
+				animationSpeed: \"normal\",
+				padding: 40,
+				opacity: 0.35,
+				showTitle: true,
+				allowresize: true,
+				counter_separator_label: \"/\",
+				theme: \"light_rounded\"
+			});
+		});
+	</script>";
+	echo "<style>
+	/* Correction RMCommon GUI for required elements in XOOPS form */
+	div.xoops-form-element-caption .caption-marker { display:none; }
+	div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+	</style>
+	";
 }
 
 echo "<style>

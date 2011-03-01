@@ -15,27 +15,62 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.05:
+ * Version : 1.06:
  * ****************************************************************************
  */
  
 include_once("./header.php");
+include_once(XOOPS_ROOT_PATH.'/modules/ixtcake/class/menu.php');
 
 xoops_cp_header();
 
 global $xoopsModule;
 
-// algalochkin: Admin menu with support old CMS version or icms
-if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-ixtcake_adminmenu(0, _AM_IXTCAKE_MANAGER_INDEX);
+if (!ixtcake_isrmcommon()) {
+	// algalochkin: Admin menu with support old CMS version or icms
+	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
+	ixtcake_adminmenu(0, _AM_IXTCAKE_MANAGER_INDEX);
+	} else {
+	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
+	loadModuleAdminMenu (0, _AM_IXTCAKE_MANAGER_INDEX);
+	}
+	if (class_exists('XoopsPreload')) {
+		// since XOOPS 2.4.x
+		$xoopsPreload =& XoopsPreload::getInstance();
+		$xoopsPreload->triggerEvent('ixtcake.admin');
+  $xoopsPreload->triggerEvent('ixtcake.jgrowlredirect');
+	}
 } else {
-include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-loadModuleAdminMenu (0, _AM_IXTCAKE_MANAGER_INDEX);
+ define('RMCLOCATION','dashboard'); // for menubar item hover
+ ixtcake_rmtoolbar();
+	echo "
+	<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
+	<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
+	";
+	echo "<script type=\"text/javascript\" charset=\"utf-8\">
+		$(document).ready(function(){
+			$(\"a[rel^=prettyPhoto]\").prettyPhoto({
+				animationSpeed: \"normal\",
+				padding: 40,
+				opacity: 0.35,
+				showTitle: true,
+				allowresize: true,
+				counter_separator_label: \"/\",
+				theme: \"light_rounded\"
+			});
+		});
+	</script>";
+	echo "<style>
+	/* Correction RMCommon GUI for required elements in XOOPS form */
+	div.xoops-form-element-caption .caption-marker { display:none; }
+	div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+	</style>
+	";
 }
 
-	$count_themes = count(XoopsLists::getThemesList());
-	$themes_online = count($GLOBALS["xoopsConfig"]["theme_set_allowed"]);
-	$themes_default = $GLOBALS["xoopsConfig"]["theme_set"];
+//	$count_themes = count(XoopsLists::getThemesList());
+//	$themes_online = count($GLOBALS["xoopsConfig"]["theme_set_allowed"]);
+//	$themes_default = $GLOBALS["xoopsConfig"]["theme_set"];
 
 	$count_apptestgroups = $apptestgroupsHandler->getCount();
 	$criteria = new CriteriaCompo();
@@ -57,8 +92,6 @@ loadModuleAdminMenu (0, _AM_IXTCAKE_MANAGER_INDEX);
 	$criteria->add(new Criteria("coretestcases_online", 1));
 	$coretestcases_online = $coretestcasesHandler->getCount($criteria);
 	
-include_once XOOPS_ROOT_PATH."/modules/ixtcake/class/menu.php";
-
 	$menu = new ixtcakeMenu();
 	
  $menu->addItem("buythemes", "http://shop.ixthemes.com", "../images/deco/shop.png", _AM_IXTCAKE_MANAGER_BUYTHEMES);
@@ -105,28 +138,11 @@ echo "<style>
 td { vertical-align:top; )
 /* ixtFINISH mark and table */
 </style>";
-	
+
+/*	
 xoops_error(sprintf(_AM_IXTCAKE_MANAGER_WARNINGFREE, ""));
 echo "<br />";
-
-echo "
-<link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
-<script type=\"text/javascript\" src=\"../js/jquery.prettyPhoto.js\" charset=\"utf-8\"></script>
-";
-
-echo "<script type=\"text/javascript\" charset=\"utf-8\">
-	$(document).ready(function(){
-		$(\"a[rel^=prettyPhoto]\").prettyPhoto({
-			animationSpeed: \"normal\",
-			padding: 40,
-			opacity: 0.35,
-			showTitle: true,
-			allowresize: true,
-			counter_separator_label: \"/\",
-			theme: \"light_rounded\"
-		});
-	});
-</script>";
+*/
 
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTCAKE_MANAGER_INDEX."</strong></div><br />
 		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
@@ -135,7 +151,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 				<td valign=\"top\" width=\"60%\">";
 			
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_APPTESTGROUPS."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"apptestgroups.php\">"._AM_IXTCAKE_MANAGER_APPTESTGROUPS."</a></legend>
 						<br />";
 						printf(_AM_IXTCAKE_THEREARE_APPTESTGROUPS, $count_apptestgroups);
 						echo "<br /><br />";
@@ -144,7 +160,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_CORETESTGROUPS."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"coretestgroups.php\">"._AM_IXTCAKE_MANAGER_CORETESTGROUPS."</a></legend>
 						<br />";
 						printf(_AM_IXTCAKE_THEREARE_CORETESTGROUPS, $count_coretestgroups);
 						echo "<br /><br />";
@@ -153,7 +169,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_APPTESTCASES."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"apptestcases.php\">"._AM_IXTCAKE_MANAGER_APPTESTCASES."</a></legend>
 						<br />";
 						printf(_AM_IXTCAKE_THEREARE_APPTESTCASES, $count_apptestcases);
 						echo "<br /><br />";
@@ -162,7 +178,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 					</fieldset><br /><br />";
 					
 					echo "<fieldset>
-						<legend class=\"CPmediumTitle\">"._AM_IXTCAKE_MANAGER_CORETESTCASES."</legend>
+						<legend class=\"CPmediumTitle\"><a href=\"coretestcases.php\">"._AM_IXTCAKE_MANAGER_CORETESTCASES."</a></legend>
 						<br />";
 						printf(_AM_IXTCAKE_THEREARE_CORETESTCASES, $count_coretestcases);
 						echo "<br /><br />";
@@ -176,6 +192,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 <br /><br />
 <div align=\"center\"><a href=\"http://ixthemes.org\" target=\"_blank\"><img width=\"120px\" src=\"http://ixthemes.org/images/logo.png\" alt=\"IXThemes\" title=\"IXThemes\"></a></div>
 ";
+
 xoops_cp_footer();
 
 ?>
