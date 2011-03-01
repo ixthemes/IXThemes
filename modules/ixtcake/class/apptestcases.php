@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  
@@ -23,13 +23,6 @@
 	if (!defined("XOOPS_ROOT_PATH")) {
 		die("XOOPS root path not defined");
 	}
-
-// algalochkin : this need for support xoops2.0.x or icms1.1 ONLY
-/*
-if (!class_exists("XoopsPersistableObjectHandler")) {
-  include_once XOOPS_ROOT_PATH."/modules/ixtcreate/class/object.php";
-}
-*/
 
 	class ixtcake_apptestcases extends XoopsObject
 	{ 
@@ -83,6 +76,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			return $form;
 		}
 	}
+if (class_exists("XoopsPersistableObjectHandler")) {
 	class ixtcakeixtcake_apptestcasesHandler extends XoopsPersistableObjectHandler 
 	{
 
@@ -92,5 +86,17 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 		}
 
 	}
-	
+} else {
+    // algalochkin : this need for support icms1.2 ONLY
+	class ixtcakeixtcake_apptestcasesHandler extends IcmsPersistableObjectHandler 
+	{
+
+		function __construct(&$db) 
+		{
+			parent::__construct($db, "ixtcake_apptestcases", "ixtcake_apptestcases", "apptestcases_id", "apptestcases_name", "");
+		}
+
+	}
+}
+
 ?>

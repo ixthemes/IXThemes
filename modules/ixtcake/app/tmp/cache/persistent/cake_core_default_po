@@ -1,0 +1,23 @@
+1298881088
+a:3:{s:11:"LC_MESSAGES";a:9:{s:13:"Plural Rule 1";s:15:"Po (translated)";s:6:"%d = 1";a:3:{i:0;s:23:"%d is 1 (po translated)";i:1;s:25:"%d is 2-4 (po translated)";i:2;s:34:"%d everything else (po translated)";}s:110:"This is a multiline translation
+broken up over multiple lines.
+This is the third line.
+This is the forth line.";s:123:"This is a multiline translation
+broken up over multiple lines.
+This is the third line.
+This is the forth line. (translated)";s:21:"No Translation needed";s:0:"";s:4:"test";a:4:{i:0;s:15:"test translated";i:1;s:15:"test translated";i:2;s:0:"";i:3;s:0:"";}s:17:"valid
+second line";a:2:{i:0;s:13:"v
+second line";i:1;s:14:"vs
+second line";}s:117:"%d = 1
+This is a multiline translation
+broken up over multiple lines.
+This is the third line.
+This is the forth line.";a:2:{i:0;s:118:"%d is 1
+This is a multiline translation
+broken up over multiple lines.
+This is the third line.
+This is the forth line.";i:1;s:120:"%d is 2-4
+This is a multiline translation
+broken up over multiple lines.
+This is the third line.
+This is the forth line.";}s:25:"this is a "quoted string"";s:38:"this is a "quoted string" (translated)";s:9:"%plural-c";s:40:"nplurals=3;plural=n==1?0:n>=2&&n<=4?1:2;";}s:11:"LC_MONETARY";a:2:{s:13:"Plural Rule 1";s:24:"Monetary Po (translated)";s:9:"%plural-c";s:40:"nplurals=3;plural=n==1?0:n>=2&&n<=4?1:2;";}s:7:"LC_TIME";a:13:{s:5:"abday";a:7:{i:0;s:3:"Sun";i:1;s:3:"Mon";i:2;s:3:"Tue";i:3;s:3:"Wed";i:4;s:3:"Thu";i:5;s:3:"Fri";i:6;s:3:"Sat";}s:3:"day";a:7:{i:0;s:6:"Sunday";i:1;s:6:"Monday";i:2;s:7:"Tuesday";i:3;s:9:"Wednesday";i:4;s:8:"Thursday";i:5;s:6:"Friday";i:6;s:8:"Saturday";}s:4:"week";a:3:{i:0;s:1:"7";i:1;s:8:"19971130";i:2;s:1:"7";}s:13:"first_weekday";s:1:"1";s:13:"first_workday";s:1:"2";s:5:"abmon";a:12:{i:0;s:3:"Jan";i:1;s:3:"Feb";i:2;s:3:"Mar";i:3;s:3:"Apr";i:4;s:3:"May";i:5;s:3:"Jun";i:6;s:3:"Jul";i:7;s:3:"Aug";i:8;s:3:"Sep";i:9;s:3:"Oct";i:10;s:3:"Nov";i:11;s:3:"Dec";}s:3:"mon";a:12:{i:0;s:7:"January";i:1;s:8:"February";i:2;s:5:"March";i:3;s:5:"April";i:4;s:3:"May";i:5;s:4:"June";i:6;s:4:"July";i:7;s:6:"August";i:8;s:9:"September";i:9;s:7:"October";i:10;s:8:"November";i:11;s:8:"December";}s:7:"d_t_fmt";s:17:"%a %d %b %Y %r %Z";s:5:"d_fmt";s:8:"%m/%d/%Y";s:5:"t_fmt";s:2:"%r";s:10:"t_fmt_ampm";s:11:"%I:%M:%S %p";s:5:"am_pm";a:2:{i:0;s:2:"AM";i:1;s:2:"PM";}s:8:"date_fmt";s:23:"%a %b %e %H:%M:%S %Z %Y";}}

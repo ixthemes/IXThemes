@@ -1,0 +1,2 @@
+1298881087
+a:1:{s:11:"LC_MESSAGES";a:5:{s:13:"Plural Rule 1";s:27:"Plural Rule 14 (translated)";s:6:"%d = 1";a:3:{i:0;s:25:"%d ends in 1 (translated)";i:1;s:25:"%d ends in 2 (translated)";i:2;s:31:"%d everything else (translated)";}s:9:"%plural-c";s:40:"nplurals=3;plural=n%10==1?0:n%10==2?1:2;";s:25:"Plural Rule 1 (from core)";s:37:"Plural Rule 14 (from core translated)";s:18:"%d = 1 (from core)";a:3:{i:0;s:35:"%d ends in 1 (from core translated)";i:1;s:35:"%d ends in 2 (from core translated)";i:2;s:41:"%d everything else (from core translated)";}}}

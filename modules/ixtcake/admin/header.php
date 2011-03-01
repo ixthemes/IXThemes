@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  
@@ -51,9 +51,16 @@ if ( $xoopsUser ) {
 }
 
 // Include language file
-xoops_loadLanguage("admin", "system");
-xoops_loadLanguage("admin", $xoopsModule->getVar("dirname", "e"));
-xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
+if (function_exists("xoops_loadLanguage")) {
+ xoops_loadLanguage("admin", "system");
+ xoops_loadLanguage("admin", $xoopsModule->getVar("dirname", "e"));
+ xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ icms_loadLanguageFile("system", "admin");
+ icms_loadLanguageFile('ixtcake', "admin");
+ icms_loadLanguageFile('ixtcake', "modinfo");
+}
 
 $apptestgroupsHandler =& xoops_getModuleHandler("ixtcake_apptestgroups", "ixtcake");
 $coretestgroupsHandler =& xoops_getModuleHandler("ixtcake_coretestgroups", "ixtcake");

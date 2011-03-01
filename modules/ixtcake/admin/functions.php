@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
 
@@ -35,7 +35,8 @@ function ixtcake_isrmcommon() {
 function ixtcake_adminmenu ($currentoption = 0, $breadcrumb = "") 
 {   
 	global $xoopsModule, $xoopsConfig; 
-
+	$myts =& MyTextSanitizer::getInstance();
+/*
 	echo "
 		<style type=\"text/css\">
 		#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
@@ -52,23 +53,25 @@ function ixtcake_adminmenu ($currentoption = 0, $breadcrumb = "")
 		#buttonbar a:hover span { background-position:100% -150px; }
 		</style>
     ";
-		
+*/		
 	$tblColors = Array();
 	$tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = "";
 	$tblColors[$currentoption] = "current";
 	if (file_exists("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/modinfo.php")) {
 		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/modinfo.php");
+		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/admin.php");
 	} else {
-		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/english/modinfo.php");
+//		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/english/modinfo.php");
+		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/english/modinfo.php");
+		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/english/admin.php");
 	}
 	
-	echo "<div id=\"buttontop\">
+	echo "<div id=\"wrap\"><div id=\"buttontop\">
 			<table style=\"width: 100%; padding: 0;\" cellspacing=\"0\">
 				<tr>
 					<td style=\"font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\">
-					  <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">_AM_IXTCAKE_GENERALSET</a> 
-					| <a href=\"".XOOPS_URL."/modules/ixtcake/index.php\">_AM_IXTCAKE_GOINDEX</a> 
-					| <a href=\"".XOOPS_URL."/modules/ixtcake/admin/upgrade.php\">_AM_IXTCAKE_UPGRADE</a> 
+					  <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">"._AM_IXTCAKE_MANAGER_PREFERENCES."</a> 
+					| <a href=\"".XOOPS_URL."/modules/ixtcake/index.php\">"._AM_IXTCAKE_MANAGER_GOTOMODULE."</a> 
 					</td>
 					<td style=\"font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>".$myts->displayTarea($xoopsModule->name())."</b></td>
 				</tr>
@@ -76,13 +79,13 @@ function ixtcake_adminmenu ($currentoption = 0, $breadcrumb = "")
 		  </div>
 	
 		  <div id=\"buttonbar\">
-			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/index.php\"><span>_MI_IXTCAKE_MANAGER_INDEX</span></a></li>
-				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestgroups.php\"><span>_MI_IXTCAKE_MANAGER_APPTESTGROUPS</span></a></li>
-				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestgroups.php\"><span>_MI_IXTCAKE_MANAGER_CORETESTGROUPS</span></a></li>
-				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestcases.php\"><span>_MI_IXTCAKE_MANAGER_APPTESTCASES</span></a></li>
-				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestcases.php\"><span>_MI_IXTCAKE_MANAGER_CORETESTCASES</span></a></li>
-				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/about.php\"><span>_MI_IXTCAKE_MANAGER_ABOUT</span></a></li>
-			</ul></div>";
+			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/index.php\"><span>"._MI_IXTCAKE_MANAGER_INDEX."</span></a></li>
+				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestgroups.php\"><span>"._MI_IXTCAKE_MANAGER_APPTESTGROUPS."</span></a></li>
+				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestgroups.php\"><span>"._MI_IXTCAKE_MANAGER_CORETESTGROUPS."</span></a></li>
+				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/apptestcases.php\"><span>"._MI_IXTCAKE_MANAGER_APPTESTCASES."</span></a></li>
+				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/coretestcases.php\"><span>"._MI_IXTCAKE_MANAGER_CORETESTCASES."</span></a></li>
+				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtcake/admin/about.php\"><span>"._MI_IXTCAKE_MANAGER_ABOUT."</span></a></li>
+			</ul></div></div>";
 }
 
 // For RMCommon Utility
@@ -91,7 +94,7 @@ function ixtcake_rmtoolbar(){
 	RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_DASHBOARD, './index.php', '../images/deco/icon_index_16.png', 'dashboard');
 	RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_APPTESTGROUPS, './apptestgroups.php', '../images/deco/icon_apptestgroups_16.png', 'apptestgroups');
 	RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_CORETESTGROUPS, './coretestgroups.php', '../images/deco/icon_coretestgroups_16.png', 'coretestgroups');
- RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_APPTESTCASES, './apptestcases.php', '../images/deco/icon_apptestcases_16.png', 'apptestcases');
+    RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_APPTESTCASES, './apptestcases.php', '../images/deco/icon_apptestcases_16.png', 'apptestcases');
 	RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_CORETESTCASES, './coretestcases.php', '../images/deco/icon_coretestcases_16.png', 'coretestcases');
 	RMTemplate::get()->add_tool(_MI_IXTCAKE_MANAGER_ABOUT, './about.php', '../images/deco/icon_about_16.png', 'about');
  

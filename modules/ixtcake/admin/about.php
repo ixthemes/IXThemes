@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  
@@ -66,10 +66,14 @@ if (!ixtcake_isrmcommon()) {
 }
 
 echo "<style>
-.cpbigtitle{ font-size: 20px; color: #1E90FF; background: no-repeat left top; font-weight: bold; height: 50px; vertical-align: middle; padding: 10px 0 0 50px; border-bottom: 3px solid #1E90FF; }
+.cpbigtitle{ float:left; width:95%; font-size: 20px; color: #1E90FF; background: no-repeat left top; font-weight: bold; height: 50px; vertical-align: middle; padding: 10px 0 0 50px; border-bottom: 3px solid #1E90FF; }
+.cleared { float: none; clear: both; margin: 0; padding: 0; border: none; font-size: 1px; }
+fieldset {margin: .5em;padding: 1em;border: 1px solid #333;color: #000;background-color: #f0f0f0;-moz-border-radius: 6px;-webkit-border-radius: 6px;-khtml-border-radius: 6px;border-radius: 6px;}
+legend {padding: .5em;font-size: 1.1em;font-weight: bolder;}
+label, .caption-text {margin-bottom: .5em;padding-right: .5em;font-weight: bold;}
 </style>";
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/about.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTCAKE_MANAGER_ABOUT."</strong>
-</div><br />";
+</div><div class=\"cleared\"></div><br /><br />";
 
 $versioninfo =& $module_handler->get( $xoopsModule->getVar("mid") );
 

@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  	
@@ -47,15 +47,21 @@ switch ($type_block)
 
 
 $criteria->setLimit($nb_apptestgroups);
-$apptestgroups_arr = $apptestgroupsHandler->getall($criteria);
+if (class_exists("XoopsPersistableObjectHandler")) {
+ $apptestgroups_arr = $apptestgroupsHandler->getAll($criteria);
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ $apptestgroups_arr = $apptestgroupsHandler->getObjects($criteria, false, true);
+}
+
 	foreach (array_keys($apptestgroups_arr) as $i) 
 	{
 	 	$apptestgroups[$i]["apptestgroups_id"] = $apptestgroups_arr[$i]->getVar("apptestgroups_id");
-			$apptestgroups[$i]["apptestgroups_name"] = $apptestgroups_arr[$i]->getVar("apptestgroups_name");
-			$apptestgroups[$i]["apptestgroups_path"] = $apptestgroups_arr[$i]->getVar("apptestgroups_path");
-			$apptestgroups[$i]["apptestgroups_submitter"] = $apptestgroups_arr[$i]->getVar("apptestgroups_submitter");
-			$apptestgroups[$i]["apptestgroups_date_created"] = $apptestgroups_arr[$i]->getVar("apptestgroups_date_created");
-			$apptestgroups[$i]["apptestgroups_online"] = $apptestgroups_arr[$i]->getVar("apptestgroups_online");
+		$apptestgroups[$i]["apptestgroups_name"] = $apptestgroups_arr[$i]->getVar("apptestgroups_name");
+		$apptestgroups[$i]["apptestgroups_path"] = $apptestgroups_arr[$i]->getVar("apptestgroups_path");
+		$apptestgroups[$i]["apptestgroups_submitter"] = $apptestgroups_arr[$i]->getVar("apptestgroups_submitter");
+		$apptestgroups[$i]["apptestgroups_date_created"] = $apptestgroups_arr[$i]->getVar("apptestgroups_date_created");
+		$apptestgroups[$i]["apptestgroups_online"] = $apptestgroups_arr[$i]->getVar("apptestgroups_online");
 		
 	}
 return $apptestgroups;

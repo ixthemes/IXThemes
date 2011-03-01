@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  	
@@ -47,15 +47,21 @@ switch ($type_block)
 
 
 $criteria->setLimit($nb_coretestgroups);
-$coretestgroups_arr = $coretestgroupsHandler->getall($criteria);
+if (class_exists("XoopsPersistableObjectHandler")) {
+ $coretestgroups_arr = $coretestgroupsHandler->getAll($criteria);
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ $coretestgroups_arr = $coretestgroupsHandler->getObjects($criteria, false, true);
+}
+
 	foreach (array_keys($coretestgroups_arr) as $i) 
 	{
 	 	$coretestgroups[$i]["coretestgroups_id"] = $coretestgroups_arr[$i]->getVar("coretestgroups_id");
-			$coretestgroups[$i]["coretestgroups_name"] = $coretestgroups_arr[$i]->getVar("coretestgroups_name");
-			$coretestgroups[$i]["coretestgroups_path"] = $coretestgroups_arr[$i]->getVar("coretestgroups_path");
-			$coretestgroups[$i]["coretestgroups_submitter"] = $coretestgroups_arr[$i]->getVar("coretestgroups_submitter");
-			$coretestgroups[$i]["coretestgroups_date_created"] = $coretestgroups_arr[$i]->getVar("coretestgroups_date_created");
-			$coretestgroups[$i]["coretestgroups_online"] = $coretestgroups_arr[$i]->getVar("coretestgroups_online");
+		$coretestgroups[$i]["coretestgroups_name"] = $coretestgroups_arr[$i]->getVar("coretestgroups_name");
+		$coretestgroups[$i]["coretestgroups_path"] = $coretestgroups_arr[$i]->getVar("coretestgroups_path");
+		$coretestgroups[$i]["coretestgroups_submitter"] = $coretestgroups_arr[$i]->getVar("coretestgroups_submitter");
+		$coretestgroups[$i]["coretestgroups_date_created"] = $coretestgroups_arr[$i]->getVar("coretestgroups_date_created");
+		$coretestgroups[$i]["coretestgroups_online"] = $coretestgroups_arr[$i]->getVar("coretestgroups_online");
 		
 	}
 return $coretestgroups;

@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  	
@@ -47,15 +47,21 @@ switch ($type_block)
 
 
 $criteria->setLimit($nb_coretestcases);
-$coretestcases_arr = $coretestcasesHandler->getall($criteria);
+if (class_exists("XoopsPersistableObjectHandler")) {
+ $coretestcases_arr = $coretestcasesHandler->getAll($criteria);
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ $coretestcases_arr = $coretestcasesHandler->getObjects($criteria, false, true);
+}
+
 	foreach (array_keys($coretestcases_arr) as $i) 
 	{
 	 	$coretestcases[$i]["coretestcases_id"] = $coretestcases_arr[$i]->getVar("coretestcases_id");
-			$coretestcases[$i]["coretestcases_name"] = $coretestcases_arr[$i]->getVar("coretestcases_name");
-			$coretestcases[$i]["coretestcases_path"] = $coretestcases_arr[$i]->getVar("coretestcases_path");
-			$coretestcases[$i]["coretestcases_submitter"] = $coretestcases_arr[$i]->getVar("coretestcases_submitter");
-			$coretestcases[$i]["coretestcases_date_created"] = $coretestcases_arr[$i]->getVar("coretestcases_date_created");
-			$coretestcases[$i]["coretestcases_online"] = $coretestcases_arr[$i]->getVar("coretestcases_online");
+		$coretestcases[$i]["coretestcases_name"] = $coretestcases_arr[$i]->getVar("coretestcases_name");
+		$coretestcases[$i]["coretestcases_path"] = $coretestcases_arr[$i]->getVar("coretestcases_path");
+		$coretestcases[$i]["coretestcases_submitter"] = $coretestcases_arr[$i]->getVar("coretestcases_submitter");
+		$coretestcases[$i]["coretestcases_date_created"] = $coretestcases_arr[$i]->getVar("coretestcases_date_created");
+		$coretestcases[$i]["coretestcases_online"] = $coretestcases_arr[$i]->getVar("coretestcases_online");
 		
 	}
 return $coretestcases;

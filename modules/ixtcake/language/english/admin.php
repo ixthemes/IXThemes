@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  	
@@ -30,10 +30,10 @@ define("_AM_IXTCAKE_THEREARE_APPTESTCASES","there are <span style=\"color: #ff00
 define("_AM_IXTCAKE_THEREARE_APPTESTCASES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> App Test Cases enabled");
 define("_AM_IXTCAKE_THEREARE_CORETESTCASES","there are <span style=\"color: #ff0000; font-weight: bold\">%s</span> Core Test Cases in our database");
 define("_AM_IXTCAKE_THEREARE_CORETESTCASES_ONLINE","there are <span style='color: #ff0000; font-weight: bold'>%s</span> Core Test Cases enabled");
-
+define("_AM_IXTCAKE_MANAGER_GOTOMODULE","Go to module");
 define("_AM_IXTCAKE_MANAGER_ABOUT","About");
 define("_AM_IXTCAKE_MANAGER_PREFERENCES","Preferences");
-define("_AM_IXTCAKE_MANAGER_UPDATE","Update");
+define("_AM_IXTCAKE_MANAGER_UPDATE","Update module");
 define("_AM_IXTCAKE_MANAGER_PERMISSIONS","Permissions");
 define("_AM_IXTCAKE_MANAGER_BUYTHEMES","Buy the Premium Theme");
 define("_AM_IXTCAKE_MANAGER_WHOISUSING","Who is Using");

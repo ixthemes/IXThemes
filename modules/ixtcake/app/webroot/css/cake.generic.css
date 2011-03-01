@@ -142,11 +142,12 @@ input[type=submit]:hover, div.actions ul li a:hover, td.actions a:hover { backgr
 /** Related **/
 div.related { clear: both; display: block; }
 /** Debugging **/
-pre { color: #000; background: #f0f0f0; padding: 1em; }
+pre { color: #000; background: none; padding: 1em; }
 /*
+pre { color: #000; background: #f0f0f0; padding: 1em; }
 pre.cake-debug { background: #ffcc00; font-size: 120%; line-height: 140%; margin-top: 1em; overflow: auto; position: relative; }
 */
-pre.cake-debug { width:96%; background: #ffcc00; margin-top: 1em; overflow:scroll; position: relative; }
+pre.cake-debug { width:96%; background: none; margin-top: 1em; overflow:scroll; position: relative; }
 div.cake-stack-trace { background: #fff; color: #333; margin: 0px; padding: 6px; font-size: 120%; line-height: 140%; overflow: auto; position: relative; }
 div.cake-code-dump pre { position: relative; overflow: auto; }
 div.cake-stack-trace pre, div.cake-code-dump pre { color: #000; background-color: #F0F0F0; margin: 0px; padding: 1em; overflow: auto; }

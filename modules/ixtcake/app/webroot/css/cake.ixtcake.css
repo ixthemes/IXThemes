@@ -142,8 +142,9 @@ input[type=submit]:hover, div.actions ul li a:hover, td.actions a:hover { backgr
 /** Related **/
 div.related { clear: both; display: block; }
 /** Debugging **/
-pre { color: #000; background: #f0f0f0; padding: 1em; }
+pre { color: #000; background: none; padding: 1em; }
 /*
+pre { color: #000; background: #f0f0f0; padding: 1em; }
 pre.cake-debug { background: #ffcc00; font-size: 120%; line-height: 140%; margin-top: 1em; overflow: auto; position: relative; }
 */
 pre.cake-debug { width:96%; background:none; margin-top: 1em; overflow:scroll; position: relative; }
@@ -153,9 +154,9 @@ div.cake-stack-trace pre, div.cake-code-dump pre { color: #000; background-color
 div.cake-code-dump pre, div.cake-code-dump pre code { clear: both; font-size: 12px; line-height: 15px; margin: 4px 2px; padding: 4px; overflow: auto; }
 div.cake-code-dump span.code-highlight { background-color: #ff0; padding: 4px; }
 div.code-coverage-results div.code-line { width:98%; padding-left:5px; display:block; margin-left:10px; }
-div.code-coverage-results div.uncovered span.content { background:#ecc; }
-div.code-coverage-results div.covered span.content { background:#cec; }
-div.code-coverage-results div.ignored span.content { color:#aaa; }
+div.code-coverage-results div.uncovered span.content { background:#ecc; filter: alpha(opacity=60); -moz-opacity:0.60; opacity:0.60; }
+div.code-coverage-results div.covered span.content { background:#cec; filter: alpha(opacity=60); -moz-opacity:0.60; opacity:0.60; }
+div.code-coverage-results div.ignored span.content { color:#aaa; filter: alpha(opacity=60); -moz-opacity:0.60; opacity:0.60; }
 div.code-coverage-results span.line-num { color:#666; display:block; float:left; width:20px; text-align:right; margin-right:5px; }
 div.code-coverage-results span.line-num strong { color:#666; }
 div.code-coverage-results div.start { border:1px solid #aaa; border-width:1px 1px 0px 1px; margin-top:30px; padding-top:5px; }

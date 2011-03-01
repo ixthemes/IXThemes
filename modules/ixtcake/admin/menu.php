@@ -15,7 +15,7 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
 include_once(XOOPS_ROOT_PATH.'/modules/ixtcake/admin/functions.php');
@@ -23,7 +23,7 @@ include_once(XOOPS_ROOT_PATH.'/modules/ixtcake/admin/functions.php');
 
 $adminmenu = array(); 
 
-if (ixtcake_isrmcommon()) {
+if (function_exists('ixtcake_isrmcommon') && ixtcake_isrmcommon()) {
 	
 $adminmenu[0]["title"] = _MI_IXTCAKE_MANAGER_DASHBOARD;
 $adminmenu[0]["link"] = "admin/index.php";

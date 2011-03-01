@@ -1,7 +1,0 @@
-2010-12-16 05:01:05 Error: Testing LogError() basic function
-2010-12-16 05:01:05 Error: Testing with multi-line string
-2010-12-16 05:01:07 Warning: Warning (2): Invalid argument supplied for foreach() in [K:\wamp\portals\x250\htdocs\kernel\object.php, line 215]
-2010-12-16 05:04:03 Warning: Warning (2): Invalid argument supplied for foreach() in [K:\wamp\portals\x250\htdocs\kernel\object.php, line 215]
-2010-12-16 05:06:40 Warning: Warning (2): Invalid argument supplied for foreach() in [K:\wamp\portals\x250\htdocs\kernel\object.php, line 215]
-2010-12-16 05:07:13 Warning: Warning (2): Invalid argument supplied for foreach() in [K:\wamp\portals\x250\htdocs\kernel\object.php, line 215]
-2010-12-16 05:07:32 Warning: Warning (2): Invalid argument supplied for foreach() in [K:\wamp\portals\x250\htdocs\kernel\object.php, line 215]

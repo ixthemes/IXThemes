@@ -74,7 +74,7 @@ class CakeHtmlReporter extends CakeBaseReporter {
 	function paintTestMenu() {
 		$groups = $this->baseUrl() . '?show=groups';
 		$cases = $this->baseUrl() . '?show=cases';
-		$plugins = App::objects('plugin');
+		$plugins = App::objects('plugin', null, false);
 		sort($plugins);
 		include CAKE_TESTS_LIB . 'templates' . DS . 'menu.php';
 	}
@@ -224,8 +224,8 @@ class CakeHtmlReporter extends CakeBaseReporter {
 		$show = $this->_queryString($show);
 		$query = $this->_queryString($query);
 
-		echo "<p><a href='" . $this->baseUrl() . $show . "'>Run more tests</a> | <a href='" . $this->baseUrl() . $query . "&show_passes=1'>Show Passes</a> | \n";
-		echo " <a href='" . $this->baseUrl() . $query . "&amp;code_coverage=true'>Analyze Code Coverage</a></p>\n";
+		echo "<p><a href='" . $this->baseUrl() . $show . "' class='ixt-button'>Run more tests</a> | <a href='" . $this->baseUrl() . $query . "&show_passes=1' class='ixt-button'>Show Passes</a> | \n";
+		echo " <a href='" . $this->baseUrl() . $query . "&amp;code_coverage=true' class='ixt-button'>Analyze Code Coverage</a></p>\n";
 	}
 
 /**

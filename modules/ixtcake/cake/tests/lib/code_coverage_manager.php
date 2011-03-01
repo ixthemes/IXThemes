@@ -635,7 +635,7 @@ class CodeCoverageManager {
 		$manager =& CodeCoverageManager::getInstance();
 		$codeCoverage = $manager->__calcCoverage($lineCount, $coveredCount);
 		return $report = '<h2>Code Coverage: ' . $codeCoverage . '%</h2>
-						<div class="code-coverage-results"><pre class="cake-debug">' . $report . '</pre></div>';
+						<div class="code-coverage-results"><pre>' . $report . '</pre></div>';
 	}
 
 /**

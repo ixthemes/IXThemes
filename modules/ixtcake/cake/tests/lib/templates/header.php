@@ -50,23 +50,24 @@
 			ul.tests li.error,
 			ul.tests li.skipped,
 			ul.tests li.fail {
-				background: #fff2f2 url(<?php echo $baseDir; ?>img/test-fail-icon.png) 5px 5px no-repeat;
+/*				background: #fff2f2 url(<?php echo $baseDir; ?>img/test-fail-icon.png) 5px 5px no-repeat; */
+				background: url(<?php echo $baseDir; ?>img/test-fail-icon.png) 5px 5px no-repeat;
 				border-top: 1px dotted red;
 				border-bottom: 1px dotted red;
 				padding:5px 10px 2px 25px;
 			}
 			ul.tests li.pass {
-				background-color: #f2fff2;
+/*				background-color: #f2fff2; */
 				background-image: url(<?php echo $baseDir; ?>img/test-pass-icon.png);
 				border-color:green;
 			}
 			ul.tests li.skipped {
-				background-color: #edf1ff;
+/*				background-color: #edf1ff; */
 				background-image: url(<?php echo $baseDir; ?>img/test-skip-icon.png);
 				border-color:navy;
 			}
 			ul.tests li.error {
-				background-color: #ffffe5;
+/*				background-color: #ffffe5; */
 				background-image: url(<?php echo $baseDir; ?>img/test-error-icon.png);
 				border-color: #DF6300;
 			}

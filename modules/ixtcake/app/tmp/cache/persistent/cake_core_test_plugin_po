@@ -1,0 +1,2 @@
+1298881088
+a:2:{s:11:"LC_MESSAGES";a:3:{s:13:"Plural Rule 1";s:27:"Plural Rule 1 (from plugin)";s:6:"%d = 1";a:2:{i:0;s:20:"%d = 1 (from plugin)";i:1;s:27:"%d = 0 or > 1 (from plugin)";}s:9:"%plural-c";s:23:"nplurals=2;plural=n!=1;";}s:11:"LC_MONETARY";a:3:{s:13:"Plural Rule 1";s:36:"Monetary Plural Rule 1 (from plugin)";s:6:"%d = 1";a:2:{i:0;s:29:"Monetary %d = 1 (from plugin)";i:1;s:36:"Monetary %d = 0 or > 1 (from plugin)";}s:9:"%plural-c";s:23:"nplurals=2;plural=n!=1;";}}

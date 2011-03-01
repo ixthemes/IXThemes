@@ -15,13 +15,13 @@
  * @package         
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.06:
+ * Version : 1.07:
  * ****************************************************************************
  */
  
  $modversion = array();
 	$modversion["name"] = _MI_IXTCAKE_NAME;
-	$modversion["version"] = 1.06;
+	$modversion["version"] = 1.07;
 	$modversion["description"] = _MI_IXTCAKE_DESC;
 	$modversion["author"] = "IXThemes Project";
 	$modversion["author_website_url"] = "http://ixthemes.org";
@@ -46,7 +46,7 @@
 	$modversion["demo_site_name"] = "IXThemes Demo";
 	$modversion["module_website_url"] = "http://ixthemes.com";
 	$modversion["module_website_name"] = "IXThemes Modules";
-	$modversion["release"] = "2010/12/20";
+	$modversion["release"] = "2011/02/27";
 	$modversion["module_status"] = "final";
 	
 	// Admin

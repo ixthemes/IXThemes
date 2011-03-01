@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Basic Cake functionality.
  *
@@ -344,7 +343,7 @@ if (!function_exists('array_combine')) {
 	}
 
 /**
- * Print_r convenience function, which prints out <pre> tags around
+ * Print_r convenience function, which prints out <PRE> tags around
  * the output of given array. Similar to debug().
  *
  * @see	debug()
@@ -447,7 +446,7 @@ if (!function_exists('array_combine')) {
 				if (defined('SERVER_IIS') && SERVER_IIS === true) {
 					return str_replace('\\\\', '\\', env('PATH_TRANSLATED'));
 				}
-			break;
+				break;
 			case 'DOCUMENT_ROOT':
 				$name = env('SCRIPT_NAME');
 				$filename = env('SCRIPT_FILENAME');
@@ -456,20 +455,31 @@ if (!function_exists('array_combine')) {
 					$offset = 4;
 				}
 				return substr($filename, 0, strlen($filename) - (strlen($name) + $offset));
-			break;
+				break;
 			case 'PHP_SELF':
 				return str_replace(env('DOCUMENT_ROOT'), '', env('SCRIPT_FILENAME'));
-			break;
+				break;
 			case 'CGI_MODE':
 				return (PHP_SAPI === 'cgi');
-			break;
+				break;
 			case 'HTTP_BASE':
 				$host = env('HTTP_HOST');
-				if (substr_count($host, '.') !== 1) {
-					return preg_replace('/^([^.])*/i', null, env('HTTP_HOST'));
+				$parts = explode('.', $host);
+				$count = count($parts);
+
+				if ($count === 1) {
+					return '.' . $host;
+				} elseif ($count === 2) {
+					return '.' . $host;
+				} elseif ($count === 3) {
+					$gTLD = array('aero', 'asia', 'biz', 'cat', 'com', 'coop', 'edu', 'gov', 'info', 'int', 'jobs', 'mil', 'mobi', 'museum', 'name', 'net', 'org', 'pro', 'tel', 'travel', 'xxx');
+					if (in_array($parts[1], $gTLD)) {
+						return '.' . $host;
+					}
 				}
-			return '.' . $host;
-			break;
+				array_shift($parts);
+				return '.' . implode('.', $parts);
+				break;
 		}
 		return null;
 	}
@@ -644,9 +654,7 @@ if (!function_exists('file_put_contents')) {
  * @return mixed translated string if $return is false string will be echoed
  * @link http://book.cakephp.org/view/1121/__
  */
-	
-/* algalochkin insert this for rmcommon compatibility*/
-if (!function_exists('__')) {
+// algalochkin: comment this function for use with RMCommon Utilities
 	function __($singular, $return = false) {
 		if (!$singular) {
 			return;
@@ -661,7 +669,6 @@ if (!function_exists('__')) {
 			return I18n::translate($singular);
 		}
 	}
-}
 
 /**
  * Returns correct plural form of message identified by $singular and $plural for count $count.
@@ -1018,5 +1025,3 @@ if (!function_exists('__')) {
 		}
 		return $val2;
 	}
-
-?>
