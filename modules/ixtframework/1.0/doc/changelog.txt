@@ -1,3 +1,12 @@
+*** Version 1.0.5 (2011-03-03) ***
+
+News and Improvements
+
+- Compatibility with ImpressCMS 1.2.4 in view mode has been added, 
+- Small mistakes in style of submodules has been resolved, 
+- Possibility of settings of the blocks lists for a slide show has been added, 
+- The submodule widgets has been excluded, 
+
 *** Version 1.04 final (2010-12-20) ***
 
 News and Improvements

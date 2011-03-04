@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  	
@@ -74,7 +74,7 @@ define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME", "<span class=\"green\">INFO: 
 define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1", "<span class=\"green\">INFO: Active theme on the user side is %s. It is marked as a green background of row in the <strong>Themes</strong> table.</span>");
 define("_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE", "<span class=\"green\">INFO: This module is delivered to you absolutely FREE.<br />Developers of this module are NEVER will demand a money from you.<br />However you CAN SUPPORT the further developing of this module if you will purchase one of PREMIUM THEMES in <a class=\"tooltip\" title=\"Get PREMIUM Theme NOW!!!\" href=\"http://shop.ixthemes.com\" target=\"_blank\">IXTHEMES SHOP</a>. Thanks!</span>");
 define("_AM_IXTFRAMEWORK_MANAGER_NOTSUPPORTED", "Sorry, but %s property is NOT SUPPORTED in this Release.");
-define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFASSIGNS", "<span class=\"green\">INFO: Current ASSIGNS style is <strong>%s</strong>. It is marked as a green background of row in an ASSIGNS table.</span>");
+define("_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFASSIGNS", "<span class=\"green\">INFO: Current ASSIGNS style is <strong>%s</strong>. It is marked as a green background of row in an ASSIGNS table.<br />These settings influence on all themes above 3.9 Release selectable on the user side. For other releases you can edit a file assigns.html</span>");
 
 //Index
 define("_AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT","Page Layout");
@@ -281,7 +281,8 @@ define("_AM_IXTFRAMEWORK_ASSIGNS_ADD","Add assigns");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EDIT","Edit assigns");
 define("_AM_IXTFRAMEWORK_ASSIGNS_ID","Id");
 define("_AM_IXTFRAMEWORK_ASSIGNS_NAME","Style Name");
-define("_AM_IXTFRAMEWORK_ASSIGNS_SCROLBLOCKS","List of Preset Scrolling Blocks (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_SCROLBLOCKS","Blocks curtailed at loading (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_SLBLOCKS","SlideShow Blocks (,)<br/>(custom, system or from theme xoplugins)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_JSENABLE","Enable JavaScripts");
 define("_AM_IXTFRAMEWORK_ASSIGNS_GLOBALNAV","Global Navigation Variant");
 define("_AM_IXTFRAMEWORK_ASSIGNS_WIDECONTENT","Enable Full Wide Content");
@@ -290,26 +291,26 @@ define("_AM_IXTFRAMEWORK_ASSIGNS_EXTHEADER","Enable Expanded Header");
 define("_AM_IXTFRAMEWORK_ASSIGNS_HEADERRSS","Enable RSS in Header");
 define("_AM_IXTFRAMEWORK_ASSIGNS_SLIDES","SlideShow Scenario");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LAYOUT","Page Layout");
-define("_AM_IXTFRAMEWORK_ASSIGNS_W0","Content Width (%)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_W1","Content + Sidebar1 Width (%)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_W2","Content + Sidebar2 Width (%)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_W0","Content Width (%)<br />(in the future releases)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_W1","Content + Sidebar1 Width (%)<br />(in the future releases)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_W2","Content + Sidebar2 Width (%)<br />(in the future releases)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOS","Logo Image");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOW","Width of Logo Image (px)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_LOGOH","Height of Logo Image (px)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL0","Enable Control Area0");
 define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL1","Enable Control Area1");
 define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL2","Enable Control Area2");
-define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL3","Enable Control Area3");
+define("_AM_IXTFRAMEWORK_ASSIGNS_CTRL3","Enable Control Area3<br />(Chameleon Mode)<br />in DEV versions");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EXTFOOTER","Enable Expanded Footer");
 define("_AM_IXTFRAMEWORK_ASSIGNS_EHBLOCK","Widget in Expanded Header (one only)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS0","List of Widgets in Expanded Footer Block0 (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS1","List of Widgets in Expanded Footer Block1 (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS2","List of Widgets in Expanded Footer Block2 (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS3","List of Widgets in Expanded Footer Block3 (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS1","List of Widgets in Top Wide Area (,)");
-define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS2","List of Widgets in Bottom Wide Area (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS0","Widgets in Expanded Footer Block0 (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS1","Widgets in Expanded Footer Block1 (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS2","Widgets in Expanded Footer Block2 (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_EFBLOCKS3","Widgets in Expanded Footer Block3 (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS1","Widgets in Top Wide Area (,)");
+define("_AM_IXTFRAMEWORK_ASSIGNS_WBLOCKS2","Widgets in Bottom Wide Area (,)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_FOOTERRSS","Enable RSS in Footer");
-define("_AM_IXTFRAMEWORK_ASSIGNS_UITHEME","UI Theme");
+define("_AM_IXTFRAMEWORK_ASSIGNS_UITHEME","UI Theme<br />(in the future releases)");
 define("_AM_IXTFRAMEWORK_ASSIGNS_MULTISKIN","Enable Multiskin");
 define("_AM_IXTFRAMEWORK_ASSIGNS_FIXSKIN","Fixskin Name");
 define("_AM_IXTFRAMEWORK_ASSIGNS_BLCONCAT","Enable Sidebars Concatenation");

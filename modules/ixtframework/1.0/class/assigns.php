@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -40,6 +40,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$this->initVar("assigns_id",XOBJ_DTYPE_INT,null,false,8);
 			$this->initVar("assigns_name",XOBJ_DTYPE_TXTBOX,null,false);
 			$this->initVar("assigns_scrolblocks",XOBJ_DTYPE_TXTBOX,null,false);
+			$this->initVar("assigns_slblocks",XOBJ_DTYPE_TXTBOX,null,false);
 			$this->initVar("assigns_jsenable",XOBJ_DTYPE_INT,null,false,1);
 			$this->initVar("assigns_globalnav",XOBJ_DTYPE_INT,null,false, 1);
 			$this->initVar("assigns_widecontent",XOBJ_DTYPE_INT,null,false,1);
@@ -111,6 +112,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			
 			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_NAME, "assigns_name", 50, 255, $this->getVar("assigns_name")), true);
 			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_SCROLBLOCKS, "assigns_scrolblocks", 50, 255, $this->getVar("assigns_scrolblocks")), false);
+			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_SLBLOCKS, "assigns_slblocks", 50, 255, $this->getVar("assigns_slblocks")), false);
 			 $assigns_jsenable = $this->isNew() ? 1 : $this->getVar("assigns_jsenable");
 			$check_assigns_jsenable = new XoopsFormCheckBox(_AM_IXTFRAMEWORK_ASSIGNS_JSENABLE, "assigns_jsenable", $assigns_jsenable);
 			$check_assigns_jsenable->addOption(1, " ");
@@ -147,9 +149,12 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$pagelayout_select = new XoopsFormSelect(_AM_IXTFRAMEWORK_ASSIGNS_LAYOUT, "assigns_layout", $this->getVar("assigns_layout"));
 			$pagelayout_select->addOptionArray($pagelayoutHandler->getList());
 			$form->addElement($pagelayout_select, true);
-			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W0, "assigns_w0", 50, 255, $this->getVar("assigns_w0")), true);
-			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W1, "assigns_w1", 50, 255, $this->getVar("assigns_w1")), true);
-			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W2, "assigns_w2", 50, 255, $this->getVar("assigns_w2")), true);
+//			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W0, "assigns_w0", 50, 255, $this->getVar("assigns_w0")), true);
+//			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W1, "assigns_w1", 50, 255, $this->getVar("assigns_w1")), true);
+//			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W2, "assigns_w2", 50, 255, $this->getVar("assigns_w2")), true);
+			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W0, "assigns_w0", 50, 255, 55), true);
+			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W1, "assigns_w1", 50, 255, 75), true);
+			$form->addElement(new XoopsFormText(_AM_IXTFRAMEWORK_ASSIGNS_W2, "assigns_w2", 50, 255, 80), true);
 			
 			$assigns_logos = $this->getVar("assigns_logos") ? $this->getVar("assigns_logos") : 'blank.gif';
 		
@@ -273,14 +278,24 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			return $form;
 		}
 	}
+	
+if (class_exists("XoopsPersistableObjectHandler")) {
 	class ixtframeworkixtframework_assignsHandler extends XoopsPersistableObjectHandler 
 	{
-
 		function __construct(&$db) 
 		{
 			parent::__construct($db, "ixtframework_assigns", "ixtframework_assigns", "assigns_id", "assigns_name");
 		}
-
 	}
+} else {
+    // algalochkin : this need for support icms1.2 ONLY
+	class ixtframeworkixtframework_assignsHandler extends IcmsPersistableObjectHandler 
+	{
+		function __construct(&$db) 
+		{
+			parent::__construct($db, "ixtframework_assigns", "ixtframework_assigns", "assigns_id", "assigns_name", "");
+		}
+	}
+}
 	
 ?>

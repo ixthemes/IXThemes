@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -25,7 +25,8 @@ xoops_cp_header();
 
 global $xoopsModule;
 
-if (ixtframework_isrmcommon()) {
+if (ixtframework_isrmcommon() || !(class_exists('XoopsPreload'))) {
+// impresscms 1.2 or rmcommon utilities
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -53,14 +54,18 @@ echo "<style>
 /* Correction RMCommon GUI for required elements in XOOPS form */
 div.xoops-form-element-caption .caption-marker { display:none; }
 div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+/* Correction for icms default theme */
+div#icms-page { padding-left:0; margin-left:0; width:98%; }
+div#icms-content { padding-left:0; margin-left:0; width:100%; }
+span {line-height:1;}
 </style>
 ";
 } else {
 	if (class_exists('XoopsPreload')) {
-		// since XOOPS 2.4.x
-		$xoopsPreload =& XoopsPreload::getInstance();
-		$xoopsPreload->triggerEvent('ixtframework.admin');
-  $xoopsPreload->triggerEvent('ixtframework.jgrowlredirect');
+	 // since XOOPS 2.4.x
+	 $xoopsPreload =& XoopsPreload::getInstance();
+	 $xoopsPreload->triggerEvent('ixtframework.admin');
+     $xoopsPreload->triggerEvent('ixtframework.jgrowlredirect');
 	}
 }
 
@@ -102,10 +107,10 @@ if (!ixtframework_isrmcommon()) {
 	$criteria->add(new Criteria("assigns_online", 1));
 	$assigns_online = $assignsHandler->getCount($criteria);
 	
-	$count_widgets = $widgetsHandler->getCount();
-	$criteria = new CriteriaCompo();
-	$criteria->add(new Criteria("widgets_online", 1));
-	$widgets_online = $widgetsHandler->getCount($criteria);
+//	$count_widgets = $widgetsHandler->getCount();
+//	$criteria = new CriteriaCompo();
+//	$criteria->add(new Criteria("widgets_online", 1));
+//	$widgets_online = $widgetsHandler->getCount($criteria);
 	
 	$count_globalnav = $globalnavHandler->getCount();
 	$criteria = new CriteriaCompo();
@@ -140,17 +145,17 @@ if (!ixtframework_isrmcommon()) {
 include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/menu.php";
 
 	$menu = new ixtframeworkMenu();
- $menu->addItem("buythemes", "http://shop.ixthemes.com", "../images/deco/shop.png", _AM_IXTFRAMEWORK_MANAGER_BUYTHEMES);
+    $menu->addItem("buythemes", "http://shop.ixthemes.com", "../images/deco/shop.png", _AM_IXTFRAMEWORK_MANAGER_BUYTHEMES);
 	$menu->addItem("about", "about.php", "../images/deco/about.png", _AM_IXTFRAMEWORK_MANAGER_ABOUT);
 	$menu->addItem("preference", "../../system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$xoopsModule->getVar("mid")."&amp;&confcat_id=1", "../images/deco/pref.png", _AM_IXTFRAMEWORK_MANAGER_PREFERENCES);
 	$menu->addItem("update", "../../system/admin.php?fct=modulesadmin&op=update&module=ixtframework", "../images/deco/update.png",  _AM_IXTFRAMEWORK_MANAGER_UPDATE);	
- $menu->addItem("assigns", "assigns.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
+    $menu->addItem("assigns", "assigns.php", "../images/deco/assigns.png", _AM_IXTFRAMEWORK_MANAGER_ASSIGNS);
 	$menu->addItem("themes", "themes.php", "../images/deco/themes.png", _AM_IXTFRAMEWORK_MANAGER_THEMES);
 	$menu->addItem("thcat", "thcat.php", "../images/deco/themes.png", _AM_IXTFRAMEWORK_MANAGER_THEMESCAT);
- $menu->addItem("pagelayout", "pagelayout.php", "../images/deco/pagelayout.png", _AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT);
+    $menu->addItem("pagelayout", "pagelayout.php", "../images/deco/pagelayout.png", _AM_IXTFRAMEWORK_MANAGER_PAGELAYOUT);
 	$menu->addItem("slides", "slides.php", "../images/deco/slides.png", _AM_IXTFRAMEWORK_MANAGER_SLIDES);
 //	$menu->addItem("topic", "topic.php", "../images/deco/topic.png", _AM_IXTFRAMEWORK_MANAGER_TOPIC);
-	$menu->addItem("widgets", "widgets.php", "../images/deco/widgets.png", _AM_IXTFRAMEWORK_MANAGER_WIDGETS);
+//	$menu->addItem("widgets", "widgets.php", "../images/deco/widgets.png", _AM_IXTFRAMEWORK_MANAGER_WIDGETS);
 	$menu->addItem("globalnav", "globalnav.php", "../images/deco/globalnav.png", _AM_IXTFRAMEWORK_MANAGER_GLOBALNAV);
 	$menu->addItem("preheader", "preheader.php", "../images/deco/preheader.png", _AM_IXTFRAMEWORK_MANAGER_PREHEADER);
 //	$menu->addItem("uitheme", "uitheme.php", "../images/deco/uitheme.png", _AM_IXTFRAMEWORK_MANAGER_UITHEME);
@@ -162,7 +167,7 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/menu.php";
 	$menu->addItem("findthebesttheme", "http://downloads.ixthemes.com/xoops", "../images/deco/findtheme.png", _AM_IXTFRAMEWORK_MANAGER_FINDTHEBESTTHEME);
 	$menu->addItem("subscriberss", "http://ixthemes.com/headlines/feed.rss", "../images/deco/subscriberss.png", _AM_IXTFRAMEWORK_MANAGER_SUBSCRIBERSS);
 	$menu->addItem("followus", "http://twitter.com/ixthemes", "../images/deco/followus.png", _AM_IXTFRAMEWORK_MANAGER_FOLLOWUS);
-	$menu->addItem("anyquestions", "http://ixthemes.org/modules/liaise/index.php?form_id=1", "../images/deco/help.png", _AM_IXTFRAMEWORK_MANAGER_ANYQUESTIONS);
+	$menu->addItem("anyquestions", "http://ixthemes.com/modules/liaise/index.php?form_id=1", "../images/deco/help.png", _AM_IXTFRAMEWORK_MANAGER_ANYQUESTIONS);
 	$menu->addItem("iuseit", "http://www.ohloh.net/stack_entries/new?project_id=ixthemes&ref=WidgetProjectUsersLogo", "../images/deco/iuseit.png", _AM_IXTFRAMEWORK_MANAGER_IUSEIT);
 	$menu->addItem("xoops233demo", "http://xoops233demo.ixthemes.org", "../images/deco/xoopsdemo.png", _AM_IXTFRAMEWORK_MANAGER_XOOPS233DEMO);
 	$menu->addItem("xoops245demo", "http://xoops245demo.ixthemes.org", "../images/deco/xoopsdemo.png", _AM_IXTFRAMEWORK_MANAGER_XOOPS245DEMO);
@@ -171,16 +176,11 @@ include_once XOOPS_ROOT_PATH."/modules/ixtframework/class/menu.php";
 	echo $menu->getCSS();
 	
 echo "<style>
-.cpbigtitle{
-	font-size: 20px;
-	color: #1E90FF;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 50px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
+.cpbigtitle{ float:left; width:95%; font-size: 20px; color: #1E90FF; background: no-repeat left top; font-weight: bold; height: 50px; vertical-align: middle; padding: 10px 0 0 50px; border-bottom: 3px solid #1E90FF; }
+.cleared { float: none; clear: both; margin: 0; padding: 0; border: none; font-size: 1px; }
+fieldset {margin: .5em;padding: 1em;border: 1px solid #333;color: #000;background-color: #f0f0f0;-moz-border-radius: 6px;-webkit-border-radius: 6px;-khtml-border-radius: 6px;border-radius: 6px;}
+legend {padding: .5em;font-size: 1.1em;font-weight: bolder;}
+label, .caption-text {margin-bottom: .5em;padding-right: .5em;font-weight: bold;}
 /* ixtSTART colors */
 .red { background-color:transparent; color:#ff0000; }
 .blue { background-color:transparent; color:#0000ff; }
@@ -201,30 +201,26 @@ td { vertical-align:top; )
 /* current selected theme on user side */
 $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 
-//xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGFREE, ""));
-//echo "<br />";
-
 /* list only allowed themes */
+echo "<div class=\"cleared\"></div><br />";
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME, $curtheme));
-    echo "<br />";
 } elseif (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme."/xoplugins/ixt09.php"))) {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGNOTIXTTHEME4, $curtheme));
-    echo "<br />";
 } else {
     xoops_error(sprintf(_AM_IXTFRAMEWORK_MANAGER_WARNINGDEFTHEME1, $curtheme));
-    echo "<br />";
 }
+//echo "<br />";
 
-if (ixtframework_isrmcommon()) {
-echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_DASHBOARD."</strong></div><br />
+if (function_exists('ixtframework_isrmcommon') && ixtframework_isrmcommon()) {
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_DASHBOARD."</strong></div><div class=\"cleared\"></div><br /><br />
 		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
 			<tr>
 				<td valign=\"top\">".$menu->render()."</td>
 				<td valign=\"top\" width=\"50%\">";
 } else {
-echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_INDEX."</strong></div><br />
+echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/index.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\"><strong>"._AM_IXTFRAMEWORK_MANAGER_INDEX."</strong></div><div class=\"cleared\"></div><br /><br />
 		<table width=\"100%\" border=\"0\" cellspacing=\"10\" cellpadding=\"4\">
 			<tr>
 				<td valign=\"top\">".$menu->render()."</td>
@@ -269,7 +265,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 						printf(_AM_IXTFRAMEWORK_THEREARE_SLIDES_ONLINE, $slides_online);
 						echo "<br />
 					</fieldset><br /><br />";
-					
+/*					
 					echo "<fieldset>
 						<legend class=\"CPmediumTitle\"><a href=\"widgets.php\">"._AM_IXTFRAMEWORK_MANAGER_WIDGETS."</a></legend>
 						<br />";
@@ -278,7 +274,7 @@ echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/ind
 						printf(_AM_IXTFRAMEWORK_THEREARE_WIDGETS_ONLINE, $widgets_online);
 						echo "<br />
 					</fieldset><br /><br />";
-					
+*/					
 					echo "<fieldset>
 						<legend class=\"CPmediumTitle\"><a href=\"globalnav.php\">"._AM_IXTFRAMEWORK_MANAGER_GLOBALNAV."</a></legend>
 						<br />";

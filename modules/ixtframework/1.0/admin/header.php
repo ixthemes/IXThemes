@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -61,9 +61,16 @@ if ( $xoopsUser ) {
 }
 
 // Include language file
-xoops_loadLanguage("admin", "system");
-xoops_loadLanguage("admin", $xoopsModule->getVar("dirname", "e"));
-xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
+if (function_exists("xoops_loadLanguage")) {
+  xoops_loadLanguage("admin", "system");
+  xoops_loadLanguage("admin", $xoopsModule->getVar("dirname", "e"));
+  xoops_loadLanguage("modinfo", $xoopsModule->getVar("dirname", "e"));
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ icms_loadLanguageFile("system", "admin");
+ icms_loadLanguageFile('ixtframework', "admin");
+ icms_loadLanguageFile('ixtframework', "modinfo");
+}
 
 $pagelayoutHandler =& xoops_getModuleHandler("ixtframework_pagelayout", "ixtframework");
 $slidesHandler =& xoops_getModuleHandler("ixtframework_slides", "ixtframework");

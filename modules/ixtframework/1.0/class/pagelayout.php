@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -82,14 +82,24 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			return $form;
 		}
 	}
+	
+if (class_exists("XoopsPersistableObjectHandler")) {
 	class ixtframeworkixtframework_pagelayoutHandler extends XoopsPersistableObjectHandler 
 	{
-
 		function __construct(&$db) 
 		{
 			parent::__construct($db, "ixtframework_pagelayout", "ixtframework_pagelayout", "pagelayout_id", "pagelayout_name");
 		}
-
 	}
-	
+} else {
+    // algalochkin : this need for support icms1.2 ONLY
+	class ixtframeworkixtframework_pagelayoutHandler extends IcmsPersistableObjectHandler 
+	{
+		function __construct(&$db) 
+		{
+			parent::__construct($db, "ixtframework_pagelayout", "ixtframework_pagelayout", "pagelayout_id", "pagelayout_name", "");
+		}
+	}
+}
+
 ?>

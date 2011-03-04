@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
 
@@ -192,7 +192,8 @@ function ixtframework_isrmcommon() {
 function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "") 
 {   
 	global $xoopsModule, $xoopsConfig; 
-
+	$myts =& MyTextSanitizer::getInstance();
+/*
 	echo "
 		<style type=\"text/css\">
 		#buttontop { float:left; width:100%; background: #e7e7e7; font-size:93%; line-height:normal; border-top: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; margin: 0; }
@@ -209,23 +210,22 @@ function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "")
 		#buttonbar a:hover span { background-position:100% -150px; }
 		</style>
     ";
-		
+*/		
 	$tblColors = Array();
-	$tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = "";
+	$tblColors[0] = $tblColors[1] = $tblColors[2] = $tblColors[3] = $tblColors[4] = $tblColors[5] = $tblColors[6] = $tblColors[7] = $tblColors[8] = $tblColors[9] = $tblColors[10] = $tblColors[11] = "";
 	$tblColors[$currentoption] = "current";
 	if (file_exists("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/modinfo.php")) {
 		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/".$xoopsConfig["language"]."/modinfo.php");
 	} else {
-		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/english/modinfo.php");
+		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/english/modinfo.php");
+		include_once("".XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname")."/language/english/admin.php");
 	}
 	
 	echo "<div id=\"buttontop\">
 			<table style=\"width: 100%; padding: 0;\" cellspacing=\"0\">
 				<tr>
 					<td style=\"font-size: 10px; text-align: left; color: #2F5376; padding: 0 6px; line-height: 18px;\">
-					  <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">_AM_IXTFRAMEWORK_GENERALSET</a> 
-					| <a href=\"".XOOPS_URL."/modules/ixtframework/index.php\">_AM_IXTFRAMEWORK_GOINDEX</a> 
-					| <a href=\"".XOOPS_URL."/modules/ixtframework/admin/upgrade.php\">_AM_IXTFRAMEWORK_UPGRADE</a> 
+					  <a class=\"nobutton\" href=\"".XOOPS_URL."/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=".$myts->displayTarea($xoopsModule->getVar("mid"))."\">"._AM_IXTFRAMEWORK_MANAGER_PREFERENCES."</a> 
 					</td>
 					<td style=\"font-size: 10px; text-align: right; color: #2F5376; padding: 0 6px; line-height: 18px;\"><b>".$myts->displayTarea($xoopsModule->name())."</b></td>
 				</tr>
@@ -233,22 +233,20 @@ function ixtframework_adminmenu ($currentoption = 0, $breadcrumb = "")
 		  </div>
 	
 		  <div id=\"buttonbar\">
-			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/index.php\"><span>_MI_IXTFRAMEWORK_MANAGER_INDEX</span></a></li>
-				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/pagelayout.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT</span></a></li>
-				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/slides.php\"><span>_MI_IXTFRAMEWORK_MANAGER_SLIDES</span></a></li>
-				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/topic.php\"><span>_MI_IXTFRAMEWORK_MANAGER_TOPIC</span></a></li>
-				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/assigns.php\"><span>_MI_IXTFRAMEWORK_MANAGER_ASSIGNS</span></a></li>
-				<li id=\"$tblColors[5]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/widgets.php\"><span>_MI_IXTFRAMEWORK_MANAGER_WIDGETS</span></a></li>
-				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/globalnav.php\"><span>_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV</span></a></li>
-				<li id=\"$tblColors[7]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/preheader.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PREHEADER</span></a></li>
-				<li id=\"$tblColors[8]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/uitheme.php\"><span>_MI_IXTFRAMEWORK_MANAGER_UITHEME</span></a></li>
-				<li id=\"$tblColors[9]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/fixskin.php\"><span>_MI_IXTFRAMEWORK_MANAGER_FIXSKIN</span></a></li>
-				<li id=\"$tblColors[10]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/toplayout.php\"><span>_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT</span></a></li>
-				<li id=\"$tblColors[11]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/botlayout.php\"><span>_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT</span></a></li>
-				<li id=\"$tblColors[12]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/themes.php\"><span>_MI_IXTFRAMEWORK_MANAGER_THEMES</span></a></li>
-				
-				<li id=\"$tblColors[13]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/permissions.php\"><span>_MI_IXTFRAMEWORK_MANAGER_PERMISSIONS</span></a></li>
-				<li id=\"$tblColors[14]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/about.php\"><span>_MI_IXTFRAMEWORK_MANAGER_ABOUT</span></a></li>
+			<ul><li id=\"$tblColors[0]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/index.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_INDEX."</span></a></li>
+				<li id=\"$tblColors[1]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/assigns.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_ASSIGNS."</span></a></li>
+				<li id=\"$tblColors[2]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/themes.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_THEMES."</span></a></li>
+				<li id=\"$tblColors[3]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/thcat.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_THEMESCAT."</span></a></li>
+				<li id=\"$tblColors[4]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/pagelayout.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT."</span></a></li>
+				<li id=\"$tblColors[5]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/slides.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_SLIDES."</span></a></li>
+<!--
+				<li id=\"$tblColors[6]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/widgets.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_WIDGETS."</span></a></li>
+-->
+				<li id=\"$tblColors[7]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/globalnav.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_GLOBALNAV."</span></a></li>
+				<li id=\"$tblColors[8]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/preheader.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_PREHEADER."</span></a></li>
+				<li id=\"$tblColors[9]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/toplayout.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT."</span></a></li>
+				<li id=\"$tblColors[10]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/botlayout.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT."</span></a></li>
+				<li id=\"$tblColors[11]\"><a href=\"".XOOPS_URL."/modules/ixtframework/admin/about.php\"><span>"._MI_IXTFRAMEWORK_MANAGER_ABOUT."</span></a></li>
 			</ul></div>";
 }
 
@@ -259,16 +257,16 @@ function ixtframework_rmtoolbar(){
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_ASSIGNS, './assigns.php', '../images/deco/icon_assigns_16.png', 'assigns');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_THEMES, './themes.php', '../images/deco/icon_themes_16.png', 'themes');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_THEMESCAT, './thcat.php', '../images/deco/icon_themes_16.png', 'thcat');
- RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT, './pagelayout.php', '../images/deco/icon_pagelayout_16.png', 'pagelayout');
+    RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_PAGELAYOUT, './pagelayout.php', '../images/deco/icon_pagelayout_16.png', 'pagelayout');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_SLIDES, './slides.php', '../images/deco/icon_slides_16.png', 'slides');
-	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_WIDGETS, './widgets.php', '../images/deco/icon_widgets_16.png', 'widgets');
+//	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_WIDGETS, './widgets.php', '../images/deco/icon_widgets_16.png', 'widgets');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_GLOBALNAV, './globalnav.php', '../images/deco/icon_globalnav_16.png', 'globalnav');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_PREHEADER, './preheader.php', '../images/deco/icon_preheader_16.png', 'preheader');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_TOPLAYOUT, './toplayout.php', '../images/deco/icon_toplayout_16.png', 'toplayout');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_BOTLAYOUT, './botlayout.php', '../images/deco/icon_botlayout_16.png', 'botlayout');
 	RMTemplate::get()->add_tool(_MI_IXTFRAMEWORK_MANAGER_ABOUT, './about.php', '../images/deco/icon_about_16.png', 'about');
  
-	RMTemplate::get()->set_help('http://ixthemes.org/modules/liaise/index.php?form_id=1');
+	RMTemplate::get()->set_help('http://ixthemes.com/modules/liaise/index.php?form_id=1');
 
 }
 

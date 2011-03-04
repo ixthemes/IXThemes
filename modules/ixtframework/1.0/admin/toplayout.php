@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -29,7 +29,8 @@ if (isset($_REQUEST["op"])) {
 	@$op = "show_list_toplayout";
 }
 
-if (ixtframework_isrmcommon()) {
+if (ixtframework_isrmcommon() || !(class_exists('XoopsPreload'))) {
+// impresscms 1.2 or rmcommon utilities
 echo "
 <link rel=\"stylesheet\" href=\"../css/prettyPhoto.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
 <link rel=\"stylesheet\" href=\"../css/jgrowl.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />
@@ -57,26 +58,30 @@ echo "<style>
 /* Correction RMCommon GUI for required elements in XOOPS form */
 div.xoops-form-element-caption .caption-marker { display:none; }
 div.xoops-form-element-caption-required .caption-marker {	background-color:inherit;	padding-left:2px;	color:#ff0000; }
+/* Correction for icms default theme */
+div#icms-page { padding-left:0; margin-left:0; width:98%; }
+div#icms-content { padding-left:0; margin-left:0; width:100%; }
+span {line-height:1;}
 </style>
 ";
 } else {
 	if (class_exists('XoopsPreload')) {
-		// since XOOPS 2.4.x
-		$xoopsPreload =& XoopsPreload::getInstance();
-		$xoopsPreload->triggerEvent('ixtframework.admin');
-  $xoopsPreload->triggerEvent('ixtframework.jgrowlredirect');
+	 // since XOOPS 2.4.x
+	 $xoopsPreload =& XoopsPreload::getInstance();
+	 $xoopsPreload->triggerEvent('ixtframework.admin');
+     $xoopsPreload->triggerEvent('ixtframework.jgrowlredirect');
 	}
 }
 
 if (!($op == "save_toplayout") && !($op == "update_online_toplayout") && !($op == "delete_toplayout")) {
 
-if (ixtframework_isrmcommon()) {
+if (!ixtframework_isrmcommon()) {
 	// algalochkin: Admin menu with support old CMS version or icms
 	if ( !is_readable(XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php"))	{
-	ixtframework_adminmenu(10, _AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT);
+	ixtframework_adminmenu(9, _AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT);
 	} else {
 	include_once XOOPS_ROOT_PATH."/Frameworks/art/functions.admin.php";
-	loadModuleAdminMenu (10, _AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT);
+	loadModuleAdminMenu (9, _AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT);
 	}
 } else {
  define('RMCLOCATION','toplayout'); // for menubar item hover
@@ -84,16 +89,11 @@ if (ixtframework_isrmcommon()) {
 }
 
 echo "<style>
-.cpbigtitle{
-	font-size: 20px;
-	color: #1E90FF;
-	background: no-repeat left top;
-	font-weight: bold;
-	height: 50px;
-	vertical-align: middle;
-	padding: 10px 0 0 50px;
-	border-bottom: 3px solid #1E90FF;
-}
+.cpbigtitle{ float:left; width:95%; font-size: 20px; color: #1E90FF; background: no-repeat left top; font-weight: bold; height: 50px; vertical-align: middle; padding: 10px 0 0 50px; border-bottom: 3px solid #1E90FF; }
+.cleared { float: none; clear: both; margin: 0; padding: 0; border: none; font-size: 1px; }
+fieldset {margin: .5em;padding: 1em;border: 1px solid #333;color: #000;background-color: #f0f0f0;-moz-border-radius: 6px;-webkit-border-radius: 6px;-khtml-border-radius: 6px;border-radius: 6px;}
+legend {padding: .5em;font-size: 1.1em;font-weight: bolder;}
+label, .caption-text {margin-bottom: .5em;padding-right: .5em;font-weight: bold;}
 /* ixtSTART colors */
 .red { background-color:transparent; color:#ff0000; }
 .blue { background-color:transparent; color:#0000ff; }
@@ -118,6 +118,7 @@ $curtheme = $GLOBALS["xoopsConfig"]["theme_set"];
 //echo "<br />";
 
 /* list only allowed themes */
+echo "<div class=\"cleared\"></div><br />";
 /*
 $themesallowed = $GLOBALS["xoopsConfig"]["theme_set_allowed"];
 if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
@@ -133,7 +134,7 @@ if (!(is_file(XOOPS_THEME_PATH . "/" . $curtheme . "/tpl/assigns.html"))) {
 */
 echo "<div class=\"cpbigtitle\" style=\"background-image: url(../images/deco/toplayout.png); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
 		<strong>"._AM_IXTFRAMEWORK_MANAGER_TOPLAYOUT."</strong>
-	</div><br /><br>";
+	</div><div class=\"cleared\"></div><br /><br />";
 }
 
 switch ($op) 
@@ -167,7 +168,17 @@ switch ($op)
 	break;
 	
 	case "edit_toplayout":
+//	    if (!empty($_POST['toplayout_id'])) {
+//         $tlid = ($_POST['toplayout_id']);
+ //       }
+
 		$obj = $toplayoutHandler->get($_REQUEST["toplayout_id"]);
+//        $tlid = isset($_GET['toplayout_id']) ? intval($_GET['toplayout_id']) : 0 ;
+//        $tlid = isset($_POST['toplayout_id']) ? intval($_POST['toplayout_id']) : 0 ;
+//		$obj = $toplayoutHandler->get($tlid);
+//		$obj = $toplayoutHandler->get('2');
+//	    $obj->setNew(false);
+
 		$form = $obj->getForm();
 	break;
 	
@@ -208,9 +219,13 @@ switch ($op)
 		$criteria->setSort("toplayout_id");
 		$criteria->setOrder("ASC");
 		$numrows = $toplayoutHandler->getCount();
-		$toplayout_arr = $toplayoutHandler->getall($criteria);
-		
-			//Affichage du tableau
+        if (class_exists("XoopsPersistableObjectHandler")) {
+		 $toplayout_arr = $toplayoutHandler->getall($criteria);
+		} else {
+		 // algalochkin : this need for support icms1.2 ONLY
+		 $toplayout_arr = $toplayoutHandler->getObjects($criteria, false, true);
+		}
+
 			if ($numrows>0) 
 			{			
 				echo "<table width=\"100%\" cellspacing=\"1\" class=\"outer\">

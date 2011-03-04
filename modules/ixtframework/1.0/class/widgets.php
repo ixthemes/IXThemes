@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -25,6 +25,8 @@
 	}
 
 // algalochkin : this need for support xoops2.0.x or icms1.1 ONLY
+include_once XOOPS_ROOT_PATH."/class/xoopsform/formeditor.php";
+
 /*
 if (!class_exists("XoopsPersistableObjectHandler")) {
   include_once XOOPS_ROOT_PATH."/modules/ixtcreate/class/object.php";
@@ -79,7 +81,7 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			$editor_configs["cols"] = 80;
 			$editor_configs["width"] = "100%";
 			$editor_configs["height"] = "400px";
-			$editor_configs["editor"] = $xoopsModuleConfig["ixtframework_editor"];				
+			$editor_configs["editor"] = $xoopsModuleConfig["ixtframework_editor"];	
 			$form->addElement( new XoopsFormEditor(_AM_IXTFRAMEWORK_WIDGETS_CONTENT, "widgets_content", $editor_configs), true );
 			$form->addElement(new XoopsFormSelectUser(_AM_IXTFRAMEWORK_WIDGETS_SUBMITTER, "widgets_submitter", false, $this->getVar("widgets_submitter"), 1, false), true);
 			$form->addElement(new XoopsFormTextDateSelect(_AM_IXTFRAMEWORK_WIDGETS_DATE_CREATED, "widgets_date_created", "", $this->getVar("widgets_date_created")));
@@ -94,14 +96,23 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			return $form;
 		}
 	}
+	
+if (class_exists("XoopsPersistableObjectHandler")) {
 	class ixtframeworkixtframework_widgetsHandler extends XoopsPersistableObjectHandler 
 	{
-
 		function __construct(&$db) 
 		{
 			parent::__construct($db, "ixtframework_widgets", "ixtframework_widgets", "widgets_id", "widgets_name");
 		}
-
 	}
-	
+} else {
+    // algalochkin : this need for support icms1.2 ONLY
+	class ixtframeworkixtframework_widgetsHandler extends IcmsPersistableObjectHandler 
+	{
+		function __construct(&$db) 
+		{
+			parent::__construct($db, "ixtframework_widgets", "ixtframework_widgets", "widgets_id", "widgets_name", "");
+		}
+	}
+}
 ?>

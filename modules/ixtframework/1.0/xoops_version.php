@@ -15,12 +15,12 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
 	
 	$modversion["name"] = "IXTFramework";
-	$modversion["version"] = 1.04;
+	$modversion["version"] = 1.05;
 	$modversion["description"] = "Engine for management the XOOPS Themes by IXThemes. IXThemes is an implementation of innovative methods in the development of qualitative universality modules and themes for CMS based on the XOOPS.";
 	$modversion["author"] = "algalochkin";
 	$modversion["authormail"] = "support@ixthemes.org";
@@ -29,7 +29,7 @@
 	$modversion["author_website_url"] = "http://ixthemes.org";
 	$modversion["author_website_name"] = "IXThemes Project";
 	$modversion["credits"] = "IXThemes Project";
- $modversion["help"] = "http://ixthemes.org/modules/liaise/index.php?form_id=1";
+ $modversion["help"] = "http://ixthemes.com/modules/liaise/index.php?form_id=1";
 	$modversion["license"] = "GPL 2.0";
 	$modversion["release_info"] = "Release";
 	$modversion["release_file"] = "none";
@@ -49,7 +49,7 @@
 	$modversion["demo_site_name"] = "IXThemes Demo";
 	$modversion["module_website_url"] = "http://ixthemes.com";
 	$modversion["module_website_name"] = "IXThemes Modules and Themes";
-	$modversion["release"] = "12-20-2010";
+	$modversion["release"] = "03-03-2010";
 	$modversion["module_status"] = "Final";
 	
 	// Admin things
@@ -89,7 +89,12 @@
 	$modversion["config"][$i]["formtype"]    = "select";
 	$modversion["config"][$i]["valuetype"]   = "text";
 	$modversion["config"][$i]["default"]     = "dhtmltextarea";
-	$modversion["config"][$i]["options"]     = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . "/class/xoopseditor");
+	if (is_dir(XOOPS_ROOT_PATH . "/editors")) {
+	 $editors = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . "/editors");
+	} else {
+	 $editors = XoopsLists::getDirListAsArray(XOOPS_ROOT_PATH . "/class/xoopseditor");
+	}
+	$modversion["config"][$i]["options"]     = $editors;
 	$modversion["config"][$i]["category"]    = "global";
 	$i++;
 	

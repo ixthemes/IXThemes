@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  
@@ -82,14 +82,24 @@ if (!class_exists("XoopsPersistableObjectHandler")) {
 			return $form;
 		}
 	}
+	
+if (class_exists("XoopsPersistableObjectHandler")) {
 	class ixtframeworkixtframework_fixskinHandler extends XoopsPersistableObjectHandler 
 	{
-
 		function __construct(&$db) 
 		{
 			parent::__construct($db, "ixtframework_fixskin", "ixtframework_fixskin", "fixskin_id", "fixskin_name");
 		}
-
 	}
-	
+} else {
+    // algalochkin : this need for support icms1.2 ONLY
+	class ixtframeworkixtframework_fixskinHandler extends IcmsPersistableObjectHandler 
+	{
+		function __construct(&$db) 
+		{
+			parent::__construct($db, "ixtframework_fixskin", "ixtframework_fixskin", "fixskin_id", "fixskin_name", "");
+		}
+	}
+}
+
 ?>

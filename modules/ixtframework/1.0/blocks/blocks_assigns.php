@@ -15,7 +15,7 @@
  * @package         ixtframework
  * @author          IXThemes Project (http://ixthemes.org)
  *
- * Version : 1.04:
+ * Version : 1.05:
  * ****************************************************************************
  */
  	
@@ -91,7 +91,12 @@ switch ($type_block)
 }
 
 $criteria->setLimit($nb_assigns);
-$assigns_arr = $assignsHandler->getall($criteria);
+if (class_exists("XoopsPersistableObjectHandler")) {
+ $assigns_arr = $assignsHandler->getall($criteria);
+} else {
+ // algalochkin : this need for support icms1.2 ONLY
+ $assigns_arr = $assignsHandler->getObjects($criteria, false, true);
+}
 $k=0; // algalochkin: new index variable
 
 	foreach (array_keys($assigns_arr) as $i) 
@@ -101,6 +106,8 @@ $k=0; // algalochkin: new index variable
 			$assigns[$k]["assigns_name"] = $assigns_arr[$i]->getVar("assigns_name");
 			
 $assigns[$k]["assigns_scrolblocks"] = explode(',',$assigns_arr[$i]->getVar("assigns_scrolblocks"));
+
+$assigns[$k]["assigns_slblocks"] = explode(',',$assigns_arr[$i]->getVar("assigns_slblocks"));
 			
 $verif_assigns_jsenable = ( $assigns_arr[$i]->getVar("assigns_jsenable") == 1 ) ? "yes" : "no";
 $assigns[$k]["assigns_jsenable"] = $verif_assigns_jsenable;
